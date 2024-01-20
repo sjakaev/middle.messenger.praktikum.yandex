@@ -1,0 +1,33 @@
+{
+    "name": "messenger",
+    "private": true,
+    "version": "1.0.0",
+    "description": "The project is a messenger that allows you to exchange messages between users.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "serve": "vite preview",
+        "start": "vite build && node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sjakaev/messenger.git"
+    },
+    "author": "Roman Siakaev",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sjakaev/messenger/issues"
+    },
+    "homepage": "https://github.com/sjakaev/messenger#readme",
+    "devDependencies": {
+        "express": "^4.18.2",
+        "handlebars": "^4.7.8",
+        "sass": "^1.69.7",
+        "typescript": "^5.3.3",
+        "vite": "^5.0.11",
+        "vite-plugin-handlebars": "^2.0.0",
+        "vite-plugin-inspect": "^0.8.1"
+    }
+}

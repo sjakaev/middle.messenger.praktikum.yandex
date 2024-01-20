@@ -1,0 +1,26 @@
+.register {
+    &__title {
+        color: #333;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0 0 20px 0;
+    }
+
+    &__input {
+        margin-bottom: 15px;
+    }
+
+    &__button {
+        margin-bottom: 15px;
+    }
+
+    &__footer {
+        text-align: center;
+        padding-top: 10px;
+        font-size: 14px;
+    }
+
+    &__footer-link {
+        font-weight: 600;
+    }
+}

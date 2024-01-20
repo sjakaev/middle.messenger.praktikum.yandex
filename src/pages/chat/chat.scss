@@ -1,0 +1,19 @@
+.chat {
+    &__title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 14px;
+    }
+
+    &__subtitle {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 14px;
+    }
+
+    &__button {
+        margin-bottom: 15px;
+    }
+}

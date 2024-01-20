@@ -1,0 +1,34 @@
+@import "./src/pages/login/login.scss";
+@import "./src/pages/register/register.scss";
+@import "./src/pages/chat/chat.scss";
+@import "./src/pages/error404/error404.scss";
+@import "./src/pages/error500/error500.scss";
+@import "./src/pages/userSettings/userSettings.scss";
+
+@import "./src/components/button/button.scss";
+@import "./src/components/input/input.scss";
+@import "./src/components/form/form.scss";
+@import "./src/components/link/link.scss";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 340px;
+    padding: 50px 30px 30px 30px;
+}
