@@ -1,0 +1,89 @@
+.chat-item {
+    height: 70px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #F5F5F5;
+    }
+
+    &__wrapper {
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: normal;
+        justify-content: space-between;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    &__first-column {
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    &__avatar {
+        width: 47px;
+        height: 47px;
+        background-color: #EFEFEF;
+        border-radius: 50%;
+    }
+
+    &__name {
+        margin: 0 0 4px 0;
+        font-size: 13px;
+        line-height: 13px;
+        font-weight: 600;
+    }
+
+    &__last-message {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        color: #999;
+    }
+
+    &__time {
+        color: #999;
+        text-align: right;
+        font-family: Inter;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 13px;
+    }
+
+    &__unread-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        color: #FFFFFF;
+        background-color: #3369F3;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 11px;
+        line-height: 12px;
+    }
+
+    &__second-column {
+        width: calc(100% - 50px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    &__third-column {
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+}
