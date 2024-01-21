@@ -9,9 +9,7 @@
 @import "./src/components/input/input.scss";
 @import "./src/components/form/form.scss";
 @import "./src/components/link/link.scss";
-
-@import "./src/pages/chat/ChatItem/ChatItem.scss";
-
+@import "./src/components/errorInfo/errorInfo.scss";
 
 
 * {
@@ -23,9 +21,20 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
 #app {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .card {
