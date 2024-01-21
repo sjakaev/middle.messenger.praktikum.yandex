@@ -1,2 +1,2 @@
-export { default as ChatSearch } from './chatSearch.hbs?raw';
+export { default as ChatSearch } from './ChatSearch.hbs?raw';
 
