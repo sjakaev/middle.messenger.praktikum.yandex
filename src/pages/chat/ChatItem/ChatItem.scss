@@ -44,11 +44,11 @@
         font-size: 12px;
         font-weight: 500;
         line-height: 15px;
-        color: #999;
+        color: var(--color-text-light);
     }
 
     &__time {
-        color: #999;
+        color: var(--color-text-light);;
         text-align: right;
         font-family: Inter;
         font-size: 9px;
@@ -63,8 +63,8 @@
         justify-content: center;
         width: 20px;
         height: 20px;
-        color: #FFFFFF;
-        background-color: #3369F3;
+        color: var(--color-text-inverse);
+        background-color: var(--color-button-bg-primary);
         border-radius: 50%;
         text-align: center;
         font-size: 11px;

@@ -1,7 +1,7 @@
 .user-settings-button {
     position: relative;
     padding-right: 8px;
-    color: #999;
+    color: var(--color-text-light);
     text-align: right;
     font-size: 12px;
     line-height: 12px;
@@ -15,7 +15,7 @@
         width: 5px;
         height: 1px;
         transform: rotate(130deg);
-        background-color: #999;
+        background-color: var(--color-text-light);
     }
 
     &::before {
@@ -26,6 +26,6 @@
         width: 5px;
         height: 1px;
         transform: rotate(40deg);
-        background-color: #999;
+        background-color: var(--color-text-light);
     }
 }

@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             content: 'Change avatar';
-            color: #FFFFFF;
+            color: var(--color-text-inverse);
             position: absolute;
             top: 0;
             left: 0;
@@ -97,7 +97,7 @@
         text-align: left;
         background-color: transparent;
         border: none;
-        color: #3369F3;
+        color: var(--color-text-link);
         cursor: pointer;
 
         &:hover {
@@ -105,7 +105,7 @@
         }
 
         &_color_red {
-            color: #FF0000;
+            color: var(--color-text-danger);
         }
     }
 }

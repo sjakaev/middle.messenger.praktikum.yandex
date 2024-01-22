@@ -19,7 +19,7 @@
     }
 
     &__item-error {
-        color: red;
-        border-color: red;
+        color: var(--color-text-danger);
+        border-color: var(--color-border-danger);
     }
 }

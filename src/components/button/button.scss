@@ -2,8 +2,8 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background: #3369F3;
-    color: white;
+    background: var(--color-button-bg-primary);
+    color:  var(--color-button-text-primary);
     border: none;
     border-radius: 4px;
     margin-top: 10px;
@@ -12,6 +12,6 @@
     font-weight: 600;
 
     &:hover {
-        background-color: #265eea;
+        background-color: var(--color-button-bg-hover-primary);
     }
 }
