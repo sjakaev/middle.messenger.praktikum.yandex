@@ -9,12 +9,16 @@
         </div>
 
         <div class="profile__fields-wrapper">
-            {{> UserSettingsField label="Email" name="email" type="email" value="pochta@yandex.ru" }}
-            {{> UserSettingsField label="Login" name="login" type="text" value="Roman3000" }}
-            {{> UserSettingsField label="First name" name="first_name" type="text" value="Ivan" }}
-            {{> UserSettingsField label="Second name" name="second_name" type="text" value="Ivanov" }}
-            {{> UserSettingsField label="Display name" name="display_name" type="text" value="Ivanches" }}
-            {{> UserSettingsField label="Phone number" name="phone" type="tel" value="+7 (909) 987 30 30" }}
+            {{#> Form action="/submit" method="post" name="user-settings"}}
+                {{> UserSettingsField label="Email" name="email" type="email" value="pochta@yandex.ru" }}
+                {{> UserSettingsField label="Login" name="login" type="text" value="Roman3000" }}
+                {{> UserSettingsField label="First name" name="first_name" type="text" value="Ivan" }}
+                {{> UserSettingsField label="Second name" name="second_name" type="text" value="Ivanov" }}
+                {{> UserSettingsField label="Display name" name="display_name" type="text" value="Ivanches" }}
+                {{> UserSettingsField label="Phone number" name="phone" type="tel" value="+7 (909) 987 30 30" }}
+
+                {{> Button text="Save" type="submit" class="profile__submit-button" hidden="true"}}
+            {{/ Form }}
         </div>
 
         <div class="profile__buttons-wrapper">
