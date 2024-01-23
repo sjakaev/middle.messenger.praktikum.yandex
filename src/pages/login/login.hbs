@@ -1,13 +1,13 @@
 <main class="card">
     <div class="login">
-        <h1 class="login__title">Вход</h1>
+        <h1 class="login__title">Authorization</h1>
         {{#> Form action="/submit" method="post" name="login" }}
             {{> Input value="roman3000" name="login" type="text" placeholder="Login" class="login__input"}}
             {{> Input value="roman3001" name="password" type="password" placeholder="Password" class="login__input"}}
-            {{> Button page="chat" class="login__button" type="submit" text="Авторизоваться" }}
+            {{> Button page="chat" class="login__button" type="submit" text="Sign in" }}
         {{/ Form }}
         <div class="login__footer">
-            {{> Link page='register' href="#" text="Нет аккаунта?" class="login__footer-link"}}
+            {{> Link page='register' href="#" text="Create a profile" class="login__footer-link"}}
         </div>
     </div>
 </main>
