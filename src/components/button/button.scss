@@ -6,12 +6,16 @@
     color:  var(--color-button-text-primary);
     border: none;
     border-radius: 4px;
-    margin-top: 10px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
 
     &:hover {
         background-color: var(--color-button-bg-hover-primary);
+    }
+
+    &_is_hidden {
+        display: none;
+        margin: 0;
     }
 }
