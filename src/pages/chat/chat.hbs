@@ -1,0 +1,42 @@
+<main class="chat">
+    <div class="chat__wrapper">
+        <div class="chat__sidebar">
+            <div class="chat__user-settings">
+                {{> UserSettingsButton }}
+            </div>
+            {{> ChatSearch }}
+            <ul class="chat__chat-list chat-list">
+                {{#each (chats)}}
+                    {{> ChatItem }}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="chat__window">
+            <div>
+                <h2>Pages:</h2><br>
+                <nav>
+                    <ul>
+                        <li>
+                            <a page='login' href="/login">Login</a>
+                        </li>
+                        <li>
+                            <a page='register' href="/register">Register</a>
+                        </li>
+                        <li>
+                            <a page='chat' href="/chat">Chat List</a>
+                        </li>
+                        <li>
+                            <a page='user-settings' href="/user-settings">User Settings</a>
+                        </li>
+                        <li>
+                            <a page='error404' href="/error404">Error 404</a>
+                        </li>
+                        <li>
+                            <a page='error500' href="/error500">Error 5**</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</main>

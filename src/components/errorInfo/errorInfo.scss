@@ -1,0 +1,36 @@
+.error-info {
+    text-align: center;
+
+    &__code {
+        color: var(--color-text-main);
+        text-align: center;
+        font-family: Inter;
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 40px;
+    }
+
+    &__message {
+        margin-top: 20px;
+        color: var(--color-text-main);
+        text-align: center;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    &__back-link {
+        display: block;
+        text-decoration: none;
+        margin-top: 70px;
+        color: var(--color-text-link);
+        text-align: center;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px;
+    }
+}

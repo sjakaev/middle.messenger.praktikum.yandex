@@ -1,0 +1,115 @@
+.profile {
+    color: #4a4a4a;
+    min-width: 510px;
+    margin: 20px;
+
+    &__avatar-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 130px;
+        height: 130px;
+        margin: 0 auto;
+        background-color: #EFEFEF;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &::after {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            content: 'Change avatar';
+            color: var(--color-text-inverse);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 130px;
+            height: 130px;
+            font-size: 13px;
+            line-height: 14px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+
+    &__avatar-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    &__name-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    &__name {
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+        align: center;
+    }
+
+    &__fields-wrapper,
+    &__buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__fields-wrapper {
+        margin-bottom: 60px;
+    }
+
+    &__field-wrapper,
+    &__button-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #EAEAEA;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__field-title {
+        font-size: 14px;
+        color: #1E1E1E;
+    }
+
+    &__field-value {
+        font-size: 14px;
+        color: #999999;
+    }
+
+    &__button {
+        font-size: 14px;
+        text-align: left;
+        background-color: transparent;
+        border: none;
+        color: var(--color-text-link);
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &_color_red {
+            color: var(--color-text-danger);
+        }
+    }
+
+    &__submit-button {
+        margin-top: 60px;
+    }
+}

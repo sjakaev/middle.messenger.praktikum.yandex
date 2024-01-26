@@ -1,0 +1,25 @@
+.input {
+    &__label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+
+    &__item {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+
+        :focus {
+            outline: none;
+            border-color: #777;
+        }
+    }
+
+    &__item-error {
+        color: var(--color-text-danger);
+        border-color: var(--color-border-danger);
+    }
+}

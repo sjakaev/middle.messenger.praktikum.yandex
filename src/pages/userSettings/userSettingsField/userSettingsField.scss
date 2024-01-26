@@ -1,0 +1,22 @@
+.user-settings-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #EAEAEA;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &__label {
+        font-size: 14px;
+        color: #1E1E1E;
+    }
+
+    &__input {
+        font-size: 14px;
+        color: var(--color-text-light);;
+        text-align: end;
+    }
+}

@@ -1,0 +1,21 @@
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: var(--color-button-bg-primary);
+    color:  var(--color-button-text-primary);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--color-button-bg-hover-primary);
+    }
+
+    &_is_hidden {
+        display: none;
+        margin: 0;
+    }
+}
