@@ -11,18 +11,16 @@
         "serve": "vite preview",
         "start": "vite build && node server.js"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/sjakaev/messenger.git"
-    },
     "author": "Roman Siakaev",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/sjakaev/messenger/issues"
+    "dependencies": {
+        "express": "^4.18.2"
     },
-    "homepage": "https://github.com/sjakaev/messenger#readme",
     "devDependencies": {
-        "express": "^4.18.2",
+        "@typescript-eslint/eslint-plugin": "^6.20.0",
+        "@typescript-eslint/parser": "^6.20.0",
+        "eslint": "^8.56.0",
+        "eslint-config-airbnb": "^19.0.4",
         "handlebars": "^4.7.8",
         "sass": "^1.69.7",
         "typescript": "^5.3.3",

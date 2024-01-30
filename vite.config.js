@@ -4,7 +4,7 @@ import viteInspect from 'vite-plugin-inspect';
 
 export default defineConfig({
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
   },
   plugins: [
     viteInspect(),
