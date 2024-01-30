@@ -9,7 +9,11 @@
         "dev": "vite",
         "build": "vite build",
         "serve": "vite preview",
-        "start": "vite build && node server.js"
+        "start": "vite build && node server.js",
+        "stylelint" : "npx stylelint **/*.scss",
+        "stylelint fix" : "npx stylelint **/*.scss --fix",
+        "eslint": "node_modules/.bin/eslint .",
+        "eslint fix": "node_modules/.bin/eslint . --fix"
     },
     "author": "Roman Siakaev",
     "license": "ISC",
@@ -23,6 +27,9 @@
         "eslint-config-airbnb": "^19.0.4",
         "handlebars": "^4.7.8",
         "sass": "^1.69.7",
+        "stylelint": "^16.2.0",
+        "stylelint-config-standard-scss": "^13.0.0",
+        "stylelint-scss": "^6.1.0",
         "typescript": "^5.3.3",
         "vite": "^5.0.11",
         "vite-plugin-handlebars": "^2.0.0",
