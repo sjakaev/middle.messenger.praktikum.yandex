@@ -1,0 +1,10 @@
+<form class="message-send-form" action="/path-to-server-endpoint" method="post" enctype="multipart/form-data">
+    <label for="file-input" class="message-send-form__file-input-label">
+         <img class="message-send-form__send-icon" src="{{ addFile }}" alt="add file"/>
+        <input type="file" id="file-input" name="file" class="message-send-form__file-input" hidden>
+    </label>
+    <input type="text" name="message" placeholder="Message" class="message-send-form__message-input">
+    <button class="message-send-form__send-button" type="submit">
+        <img class="message-send-form__send-icon" src="{{ arrowRight }}" alt="send message"/>
+    </button>
+</form>
