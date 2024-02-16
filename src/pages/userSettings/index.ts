@@ -1,10 +1,9 @@
-import Handlebars from "handlebars";
-export { default as userSettings } from './userSettings.hbs?raw';
+import Handlebars from 'handlebars';
 import avatar from '../../assets/default-avatar.svg';
-import {UserSettingsField} from "./userSettingsField/index.ts";
-import "./userSettingsField/userSettingsField.scss";
+import { UserSettingsField } from './userSettingsField/index.ts';
+import './userSettingsField/userSettingsField.scss';
+
+export { default as userSettings } from './userSettings.hbs?raw';
 
 Handlebars.registerPartial('UserSettingsField', UserSettingsField);
-Handlebars.registerHelper('avatar', () => {
-    return avatar
-})
+Handlebars.registerHelper('avatar', () => avatar);

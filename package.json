@@ -10,10 +10,10 @@
         "build": "vite build",
         "serve": "vite preview",
         "start": "vite build && node server.js",
-        "stylelint" : "npx stylelint **/*.scss",
-        "stylelint fix" : "npx stylelint **/*.scss --fix",
+        "stylelint": "npx stylelint **/*.scss",
+        "stylelint-fix": "npx stylelint **/*.scss --fix",
         "eslint": "node_modules/.bin/eslint .",
-        "eslint fix": "node_modules/.bin/eslint . --fix"
+        "eslint-fix": "./node_modules/.bin/eslint --fix ."
     },
     "author": "Roman Siakaev",
     "license": "ISC",
