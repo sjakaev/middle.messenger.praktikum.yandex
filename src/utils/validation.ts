@@ -23,7 +23,7 @@ export const passwordValidation = (value: string) => {
 };
 
 export const nameValidation = (value: string) => {
-    const namePattern = /^[A-ZА-Я][a-zа-яA-ZА-Я\-]*$/;
+    const namePattern = /^[A-ZА-Я][a-zа-яA-ZА-Я-]*$/;
     if (!namePattern.test(value)) {
         return 'Invalid name format';
     }
