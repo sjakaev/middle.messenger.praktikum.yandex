@@ -1,5 +1,4 @@
 // eslint-disable-next-line max-classes-per-file
-// @ts-nocheck
 
 import Handlebars from 'handlebars';
 import EventBus from './EventBus.ts';
@@ -15,7 +14,7 @@ export default class Block {
     _props;
     _id;
     _children;
-    _element;
+    _element: any;
     _meta;
     _eventBus;
     _setUpdate = false;
@@ -113,6 +112,7 @@ export default class Block {
         }
     }
 
+    // eslint-disable-next-line
     componentDidUpdate(oldProps, newProps) {
         return true;
     }
@@ -153,6 +153,7 @@ export default class Block {
 
     compile(template, props) {
         if (typeof (props) === 'undefined') {
+            // eslint-disable-next-line no-param-reassign
             props = this._props;
         }
 
@@ -184,6 +185,7 @@ export default class Block {
             },
             set(target, prop, value) {
                 const oldValue = { ...target };
+                // eslint-disable-next-line no-param-reassign
                 target[prop] = value;
                 self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target);
                 return true;
