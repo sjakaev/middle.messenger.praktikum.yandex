@@ -4,7 +4,7 @@ import ChatItemList from './ChatItemList/ChatItemList.ts';
 import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
-import Nav from '../../components/nav/Nav.ts';
+import Nav from '../../components/nav/nav.ts';
 import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
 import './ChatItemList/chatItemList.scss';
