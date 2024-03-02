@@ -2,6 +2,9 @@
     "extends": "airbnb",
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
+    "env": {
+        "browser": true
+    },
     "rules": {
         "no-unused-vars": 2,
         "indent": ["error", 4],

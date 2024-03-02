@@ -6,6 +6,19 @@ import {
     Form,
 } from '../../../components/index.ts';
 
+const inputSendMessage = new Input('div', {
+    value: '',
+    name: 'message',
+    type: 'text',
+    class: 'message-send-form__message-input',
+    placeholder: 'Your message',
+    attr: {
+        class: 'message-send-form__message-input-wrapper',
+        type: 'submit',
+        page: 'chat',
+    },
+});
+
 const submitMessage = () => {
     const messageInputItem = inputSendMessage._element.querySelector('[name="message"]');
     const messageInputValue = messageInputItem.getAttribute('value');
@@ -19,19 +32,6 @@ const submitMessage = () => {
         console.log('--------------------------------');
     }
 };
-
-const inputSendMessage = new Input('div', {
-    value: '',
-    name: 'message',
-    type: 'text',
-    class: 'message-send-form__message-input',
-    placeholder: 'Your message',
-    attr: {
-        class: 'message-send-form__message-input-wrapper',
-        type: 'submit',
-        page: 'chat',
-    },
-});
 
 const buttonSendMessage = new Button('button', {
     text: '',

@@ -11,6 +11,7 @@ import {
 } from './pages/index.ts';
 
 const changePage = (newPage) => {
+    // eslint-disable-next-line no-use-before-define
     page.setProps({ content: newPage });
 };
 
