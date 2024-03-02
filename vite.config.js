@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import handlebars from 'vite-plugin-handlebars';
 import viteInspect from 'vite-plugin-inspect';
 
 export default defineConfig({
@@ -8,6 +7,5 @@ export default defineConfig({
     },
     plugins: [
         viteInspect(),
-        handlebars(),
     ],
 });

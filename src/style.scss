@@ -1,11 +1,14 @@
 @import "./variables";
-@import "./src/pages/login/login";
-@import "./src/pages/register/register";
-@import "./src/pages/chat/chat";
-@import "./src/pages/userSettings/userSettings";
 @import "./src/components/button/button";
 @import "./src/components/input/input";
 @import "./src/components/link/link";
+@import "./src/pages/Login/login";
+@import "./src/pages/register/register";
+@import "./src/pages/chat/chat";
+@import "./src/pages/chat/ChatSearch/chatSearch";
+@import "./src/pages/chat/MessageSendForm/messageSendForm";
+@import "./src/pages/chat/ChatItem/chatItem";
+@import "./src/pages/userSettings/userSettings";
 @import "./src/components/errorInfo/errorInfo";
 
 
@@ -21,7 +24,7 @@
 html, body {
     height: 100%;
     overflow: hidden scroll;
-  }
+}
 
 #app {
     display: flex;

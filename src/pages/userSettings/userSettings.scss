@@ -111,4 +111,31 @@
     &__submit-button {
         margin-top: 60px;
     }
+
+    &__field {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #EAEAEA;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__field-label {
+        font-size: 14px;
+        color: #1E1E1E;
+    }
+
+
+    &__field-input {
+        max-width: 200px;
+        font-size: 14px;
+        color: var(--color-text-light);;
+        text-align: end;
+        border: none;
+        padding: 0;
+    }
 }

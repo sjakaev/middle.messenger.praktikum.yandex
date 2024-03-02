@@ -19,7 +19,12 @@
     }
 
     &__item-error {
-        color: var(--color-text-danger);
         border-color: var(--color-border-danger);
+    }
+
+    &__error-message {
+        margin-top: 5px;
+        color: var(--color-text-danger);
+        font-size: 12px;
     }
 }

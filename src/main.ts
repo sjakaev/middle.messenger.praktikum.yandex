@@ -1,37 +1,65 @@
-import './style.scss';
-import Handlebars from 'handlebars';
-import * as Pages from './pages';
-import * as Components from './components';
+import renderDOM from './utils/renderDOM.ts';
+import IndexLayout from './layout/index.ts';
 
-const pages: { [key: string]: [any, {info: string}] } = {
-    login: [Pages.login, { info: '' }],
-    register: [Pages.register, { info: '' }],
-    chat: [Pages.chat, { info: '' }],
-    'user-settings': [Pages.userSettings, { info: '' }],
-    error404: [Pages.notFound, { info: '' }],
-    error500: [Pages.serverError, { info: '' }],
+import {
+    LoginPage,
+    RegisterPage,
+    ChatPage,
+    Error404Page,
+    Error500Page,
+    UserSettingsPage,
+} from './pages/index.ts';
+
+const changePage = (newPage) => {
+    page.setProps({ content: newPage });
 };
 
-Object.entries(Components).forEach(([name, component]) => {
-    Handlebars.registerPartial(name, <Handlebars.TemplateDelegate<any> | string>component);
-});
+const loginPage = new LoginPage();
+const chatPage = new ChatPage();
+const registerPage = new RegisterPage();
+const error404Page = new Error404Page();
+const error500Page = new Error500Page();
+const userSettingsPage = new UserSettingsPage();
 
-function navigate(page: string) {
-    const [source, context] = pages[page];
-    const container = document.getElementById('app');
-    if (container) {
-        container.innerHTML = Handlebars.compile(source)(context);
-    }
-}
+const page = new IndexLayout(
+    'div',
+    {
+        content: loginPage,
+        attr: {
+            class: 'page',
+        },
+        events: {
+            click: (e) => {
+                if (e.target.getAttribute('page')) {
+                    const newPage = e.target.getAttribute('page');
+                    if (newPage === 'login') {
+                        changePage(loginPage);
+                    }
+                    if (newPage === 'register') {
+                        changePage(registerPage);
+                    }
 
-document.addEventListener('DOMContentLoaded', () => navigate('login'));
+                    if (newPage === 'chat') {
+                        changePage(chatPage);
+                    }
 
-document.addEventListener('click', (e) => {
-    const targetElement = e.target as Element;
-    const page = targetElement.getAttribute('page');
-    if (page) {
-        navigate(page);
-    }
-    e.preventDefault();
-    e.stopImmediatePropagation();
-});
+                    if (newPage === 'error404') {
+                        changePage(error404Page);
+                    }
+
+                    if (newPage === 'error500') {
+                        changePage(error500Page);
+                    }
+
+                    if (newPage === 'user-settings') {
+                        changePage(userSettingsPage);
+                    }
+                }
+                e.preventDefault();
+                e.stopPropagation();
+            },
+        },
+    },
+);
+
+renderDOM('#app', page);

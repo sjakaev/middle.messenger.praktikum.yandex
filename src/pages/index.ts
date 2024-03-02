@@ -1,6 +1,6 @@
-export {login} from './login';
-export {register} from './register';
-export {notFound} from './error404';
-export {serverError} from './error500';
-export {chat} from './chat';
-export {userSettings} from './userSettings';
+export { default as LoginPage } from './Login/Login.ts';
+export { default as ChatPage } from './Chat/Chat.ts';
+export { default as RegisterPage } from './Register/Register.ts';
+export { default as Error404Page } from './Error404/Error404.ts';
+export { default as Error500Page } from './Error500/Error500.ts';
+export { default as UserSettingsPage } from './UserSettings/UserSettings.ts';
