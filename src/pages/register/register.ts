@@ -1,9 +1,11 @@
 import Button from '../../components/button/Button.ts';
 import Block from '../../core/Block.ts';
-import Input from '../../components/Input/Input.ts';
-import Link from '../../components/link/Link.ts';
-import Form from '../../components/form/Form.ts';
 import registerTemplate from './template.ts';
+import {
+    Input,
+    Link,
+    Form,
+} from '../../components/index.ts';
 
 import {
     loginValidation,
