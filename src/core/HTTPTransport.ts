@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+
+// eslint-disable-next-line no-shadow
 enum METHOD {
     GET = 'GET',
     POST = 'POST',
