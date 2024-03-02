@@ -113,8 +113,4 @@ export default class LoginPage extends Block {
         };
         return this.compile(template, context);
     }
-
-    addEvents(): void {
-        super.addEvents();
-    }
 }
