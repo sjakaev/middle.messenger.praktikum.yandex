@@ -108,9 +108,6 @@ export default class LoginPage extends Block {
         });
     }
     render() {
-        const context = {
-            title: 'Authorization',
-        };
-        return this.compile(template, context);
+        return this.compile(template);
     }
 }

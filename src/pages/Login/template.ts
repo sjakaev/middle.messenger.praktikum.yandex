@@ -1,7 +1,7 @@
 const tmp = `
     <main class="card">
         <div class="login">
-            <h1 class="login__title">{{ title }}</h1>
+            <h1 class="login__title">Authorization</h1>
             {{{ loginForm }}}
 
             <div class="login__footer">
