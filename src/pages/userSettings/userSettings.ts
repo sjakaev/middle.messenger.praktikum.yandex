@@ -1,6 +1,5 @@
-import Button from '../../components/button/Button.ts';
-import Input from '../../components/Input/Input.ts';
 import Block from '../../core/Block.ts';
+import { Input, Button } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 
 const handleChangeData = (event) => {
