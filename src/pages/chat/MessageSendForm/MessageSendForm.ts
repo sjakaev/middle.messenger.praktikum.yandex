@@ -26,6 +26,7 @@ const submitMessage = () => {
 
     if (messageInputValue) {
         console.log('--------------------------------');
+        // eslint-disable-next-line
         console.log('messageSendForm', messageSendForm);
         console.log('Form name:', form.name);
         console.log('message', messageInputValue);

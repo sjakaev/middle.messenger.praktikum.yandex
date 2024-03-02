@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import Button from '../../components/button/Button.ts';
 import Block from '../../core/Block.ts';
 import registerTemplate from './template.ts';

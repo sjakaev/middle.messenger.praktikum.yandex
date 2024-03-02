@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
 import template from './template.ts';
 import {

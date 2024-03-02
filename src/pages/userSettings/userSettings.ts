@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
 import { Input, Button } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
