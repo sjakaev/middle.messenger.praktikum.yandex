@@ -6,7 +6,6 @@ import {
     Input,
     Form,
 } from '../../components/index.ts';
-import './login.scss';
 
 import { loginValidation, passwordValidation } from '../../utils/validation.ts';
 
