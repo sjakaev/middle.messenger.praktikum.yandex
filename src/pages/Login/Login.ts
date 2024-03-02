@@ -1,6 +1,5 @@
-import Handlebars from 'handlebars';
 import Block from '../../core/Block.ts';
-import loginTemplate from './template.ts';
+import template from './template.ts';
 import {
     Link,
     Button,
@@ -111,7 +110,7 @@ export default class LoginPage extends Block {
         const context = {
             title: 'Authorization',
         };
-        return this.compile(loginTemplate, context);
+        return this.compile(template, context);
     }
 
     addEvents(): void {
