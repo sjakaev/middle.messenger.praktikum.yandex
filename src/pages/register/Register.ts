@@ -1,8 +1,8 @@
-import Button from '../../components/Button/Button.ts';
+import Button from '../../components/button/Button.ts';
 import Block from '../../core/Block.ts';
 import Input from '../../components/Input/Input.ts';
-import Link from '../../components/Link/Link.ts';
-import Form from '../../components/Form/Form.ts';
+import Link from '../../components/link/Link.ts';
+import Form from '../../components/form/Form.ts';
 import registerTemplate from './template.ts';
 
 import {

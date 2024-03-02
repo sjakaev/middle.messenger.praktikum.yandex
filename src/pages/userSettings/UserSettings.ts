@@ -1,4 +1,4 @@
-import Button from '../../components/Button/Button.ts';
+import Button from '../../components/button/Button.ts';
 import Input from '../../components/Input/Input.ts';
 import Block from '../../core/Block.ts';
 import userSettingsTemplate from './template.ts';

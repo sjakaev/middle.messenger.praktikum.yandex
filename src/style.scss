@@ -1,16 +1,16 @@
 @import "./src/variables";
 
-@import "./src/components/Input/input.scss";
-@import "./src/components/Button/button.scss";
-@import "./src/components/Link/link.scss";
-@import "./src/pages/Login/login.scss";
-@import "./src/pages/Register/register.scss";
-@import "./src/pages/Chat/chat.scss";
-@import "./src/pages/Chat/ChatSearch/chatSearch.scss";
-@import "./src/pages/Chat/MessageSendForm/MessageSendForm.scss";
-@import "./src/pages/Chat/ChatItem/ChatItem.scss";
-@import "./src/pages/UserSettings/userSettings.scss";
-@import "./src/components/ErrorInfo/errorInfo.scss";
+@import "./src/components/input/input.scss";
+@import "./src/components/button/button.scss";
+@import "./src/components/link/link.scss";
+@import "./src/pages/login/login.scss";
+@import "./src/pages/register/register.scss";
+@import "./src/pages/chat/chat.scss";
+@import "./src/pages/chat/ChatSearch/chatSearch.scss";
+@import "./src/pages/chat/MessageSendForm/MessageSendForm.scss";
+@import "./src/pages/chat/ChatItem/ChatItem.scss";
+@import "./src/pages/userSettings/userSettings.scss";
+@import "./src/components/errorInfo/errorInfo.scss";
 
 
 * {
