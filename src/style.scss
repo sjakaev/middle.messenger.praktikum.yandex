@@ -1,15 +1,15 @@
 @import "./variables";
-@import "./src/components/Input/input";
-@import "./src/components/Button/button";
-@import "./src/components/Link/link";
-@import "./src/pages/Login/login";
-@import "./src/pages/Register/register";
-@import "./src/pages/Chat/chat";
-@import "./src/pages/Chat/ChatSearch/chatSearch";
-@import "./src/pages/Chat/MessageSendForm/messageSendForm";
-@import "./src/pages/Chat/ChatItem/chatItem";
-@import "./src/pages/UserSettings/userSettings";
-@import "./src/components/ErrorInfo/errorInfo";
+@import "./components/Input/input.scss";
+@import "./components/Button/button.scss";
+@import "./components/Link/link.scss";
+@import "./pages/Login/login.scss";
+@import "./pages/Register/register.scss";
+@import "./pages/Chat/chat.scss";
+@import "./pages/Chat/ChatSearch/chatSearch.scss";
+@import "./pages/Chat/MessageSendForm/MessageSendForm.scss";
+@import "./pages/Chat/ChatItem/ChatItem.scss";
+@import "./pages/UserSettings/userSettings.scss";
+@import "./components/ErrorInfo/errorInfo.scss";
 
 
 * {
