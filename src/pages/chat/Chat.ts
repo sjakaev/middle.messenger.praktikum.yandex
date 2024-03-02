@@ -1,14 +1,13 @@
 import ChatSearch from './ChatSearch/ChatSearch.ts';
-import Link from '../../components/link/Link.ts';
 import ChatItemList from './ChatItemList/ChatItemList.ts';
 import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
-import Nav from '../../components/nav/nav.ts';
 import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
 import './ChatItemList/chatItemList.scss';
 import './ChatItem/chatItem.scss';
+import { Nav, Link } from '../../components/index.ts';
 
 const userSettingsButton = new Link('span', {
     text: 'Profile',
