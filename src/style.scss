@@ -1,12 +1,11 @@
 @import "./src/variables";
-
-@import "./src/components/input/input.scss";
-@import "./src/components/button/button.scss";
-@import "./src/components/link/link.scss";
-@import "./src/components/errorInfo/errorInfo.scss";
-@import "./src/pages/chat/chat.scss";
-@import "./src/pages/register/register.scss";
-@import "./src/pages/userSettings/userSettings.scss";
+@import "./src/components/input/input";
+@import "./src/components/button/buttos";
+@import "./src/components/link/link";
+@import "./src/components/errorInfo/errorInfo";
+@import "./src/pages/chat/chat";
+@import "./src/pages/register/register";
+@import "./src/pages/userSettings/userSettings";
 
 
 * {
