@@ -1,8 +1,10 @@
 import template from './template.ts';
 import Block from '../../../core/Block.ts';
-import Input from '../../../components/Input/Input.ts';
-import Button from '../../../components/Button/Button.ts';
-import Form from '../../../components/Form/Form.ts';
+import {
+    Input,
+    Button,
+    Form,
+} from '../../../components/index.ts';
 
 const submitMessage = () => {
     const messageInputItem = inputSendMessage._element.querySelector('[name="message"]');

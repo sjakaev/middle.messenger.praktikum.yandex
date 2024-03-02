@@ -1,4 +1,3 @@
-// export { default as Form } from './form.hbs?raw';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
 

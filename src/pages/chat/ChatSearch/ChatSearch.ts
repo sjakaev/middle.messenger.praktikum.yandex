@@ -1,7 +1,10 @@
 import Block from '../../../core/Block.ts';
-import Input from '../../../components/Input/Input.ts';
-import Form from '../../../components/Form/Form.ts';
+
 import template from './template.ts';
+import {
+    Input,
+    Form,
+} from '../../../components/index.ts';
 
 const inputChatSearch = new Input('div', {
     value: '',
