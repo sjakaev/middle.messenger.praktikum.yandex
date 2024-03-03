@@ -92,7 +92,7 @@ export default class Block {
 
     _componentDidMount() {
         this.componentDidMount();
-        Object.values(this._children).forEach((child) => child.dispatchComponentDidMount());
+        Object.values(this._children).forEach((child: any) => child.dispatchComponentDidMount());
     }
 
     componentDidMount() {}
@@ -113,7 +113,7 @@ export default class Block {
     }
 
     // eslint-disable-next-line
-    componentDidUpdate(oldProps: any, newProps: any) {
+    componentDidUpdate(_oldProps: any, _newProps: any) {
         return true;
     }
 
@@ -136,9 +136,9 @@ export default class Block {
     };
 
     // eslint-disable-next-line class-methods-use-this
-    getChildren(propsAndChilds) {
-        const children = {};
-        const props = {};
+    getChildren(propsAndChilds: Record<string, any>) {
+        const children: { [key: string]: Block } = {};
+        const props: { [key: string]: any } = {};
 
         Object.keys(propsAndChilds).forEach((key) => {
             if (propsAndChilds[key] instanceof Block) {
@@ -163,7 +163,7 @@ export default class Block {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
         });
 
-        const fragment = this.createDocumentElement('template');
+        const fragment = this.createDocumentElement('template') as HTMLTemplateElement;
         fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
         Object.values(this._children).forEach((child) => {
@@ -176,17 +176,17 @@ export default class Block {
         return fragment.content;
     }
 
-    makePropsProxy(props) {
+    makePropsProxy(props: Record<string, any>) {
         const self = this;
         return new Proxy(props, {
             get(target, prop) {
-                const value = target[prop];
+                const value = target[String(prop)];
                 return typeof value === 'function' ? value.bind(target) : value;
             },
             set(target, prop, value) {
                 const oldValue = { ...target };
                 // eslint-disable-next-line no-param-reassign
-                target[prop] = value;
+                target[String(prop)] = value;
                 self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target);
                 return true;
             },

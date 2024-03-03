@@ -10,7 +10,7 @@ import {
     UserSettingsPage,
 } from './pages/index.ts';
 
-const changePage = (newPage) => {
+const changePage = (newPage: any) => {
     // eslint-disable-next-line no-use-before-define
     page.setProps({ content: newPage });
 };
@@ -30,7 +30,7 @@ const page = new IndexLayout(
             class: 'page',
         },
         events: {
-            click: (e) => {
+            click: (e: any) => {
                 if (e.target.getAttribute('page')) {
                     const newPage = e.target.getAttribute('page');
                     if (newPage === 'login') {
