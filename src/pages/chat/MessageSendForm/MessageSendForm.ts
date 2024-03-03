@@ -28,7 +28,7 @@ const submitMessage = () => {
         console.log('--------------------------------');
         // eslint-disable-next-line
         console.log('messageSendForm', messageSendForm);
-        console.log('Form name:', form.name);
+        console.log('Form name:', form?.name);
         console.log('message', messageInputValue);
         console.log('--------------------------------');
     }
@@ -71,6 +71,6 @@ export default class MessageSendForm extends Block {
         });
     }
     render() {
-        return this.compile(template);
+        return this.compile(template, this._props);
     }
 }

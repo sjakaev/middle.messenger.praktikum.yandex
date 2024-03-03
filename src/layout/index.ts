@@ -3,7 +3,7 @@ import template from './template.ts';
 
 export default class IndexLayout extends Block {
     render() {
-        return this.compile(template);
+        return this.compile(template, this._props);
     }
 
     // componentDidUpdate(oldProps: any, newProps: any): boolean {

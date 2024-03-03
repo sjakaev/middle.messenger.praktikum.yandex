@@ -21,6 +21,6 @@ export default class Error500Page extends Block {
         });
     }
     render() {
-        return this.compile(template);
+        return this.compile(template, this._props);
     }
 }

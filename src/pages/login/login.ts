@@ -21,7 +21,7 @@ const validatePassword = () => {
 const submitLoginForm = (event) => {
     const form = document.querySelector('#login-form');
     const formData = new FormData(form);
-    const formName = form.name;
+    const formName = form?.name;
 
     validateLogin();
     validatePassword();
@@ -108,6 +108,6 @@ export default class LoginPage extends Block {
         });
     }
     render() {
-        return this.compile(template);
+        return this.compile(template, this._props);
     }
 }

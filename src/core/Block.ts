@@ -44,7 +44,7 @@ export default class Block {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    createDocumentElement(tagName) {
+    createDocumentElement(tagName: string) {
         const element = document.createElement(tagName);
 
         return element;
@@ -151,7 +151,7 @@ export default class Block {
         return { children, props };
     }
 
-    compile(template, props) {
+    compile(template: string, props: Record<string, any>) {
         if (typeof (props) === 'undefined') {
             // eslint-disable-next-line no-param-reassign
             props = this._props;

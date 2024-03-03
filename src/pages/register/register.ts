@@ -222,6 +222,6 @@ export default class RegisterPage extends Block {
         });
     }
     render() {
-        return this.compile(registerTemplate);
+        return this.compile(registerTemplate, this._props);
     }
 }

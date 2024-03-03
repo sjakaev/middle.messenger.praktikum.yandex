@@ -14,10 +14,10 @@ const handleChangeData = (event) => {
     const buttonChangeDataItem = document.querySelector('.profile__button-change-data');
     const buttonChangePasswordItem = document.querySelector('.profile__button-change-password');
     const buttonLogOutItem = document.querySelector('.profile__button-log-out');
-    buttonChangeDataItem.classList.add('btn_is_hidden');
-    buttonChangePasswordItem.classList.add('btn_is_hidden');
-    buttonLogOutItem.classList.add('btn_is_hidden');
-    userSettingsButton.classList.remove('btn_is_hidden');
+    buttonChangeDataItem?.classList.add('btn_is_hidden');
+    buttonChangePasswordItem?.classList.add('btn_is_hidden');
+    buttonLogOutItem?.classList.add('btn_is_hidden');
+    userSettingsButton?.classList.remove('btn_is_hidden');
     event.preventDefault();
     event.stopPropagation();
 };
@@ -33,10 +33,10 @@ const submitUserSettings = (event) => {
     const buttonChangeDataItem = document.querySelector('.profile__button-change-data');
     const buttonChangePasswordItem = document.querySelector('.profile__button-change-password');
     const buttonLogOutItem = document.querySelector('.profile__button-log-out');
-    buttonChangeDataItem.classList.remove('btn_is_hidden');
-    buttonChangePasswordItem.classList.remove('btn_is_hidden');
-    buttonLogOutItem.classList.remove('btn_is_hidden');
-    userSettingsButton.classList.add('btn_is_hidden');
+    buttonChangeDataItem?.classList.remove('btn_is_hidden');
+    buttonChangePasswordItem?.classList.remove('btn_is_hidden');
+    buttonLogOutItem?.classList.remove('btn_is_hidden');
+    userSettingsButton?.classList.add('btn_is_hidden');
     event.preventDefault();
     event.stopPropagation();
 };
@@ -183,6 +183,6 @@ export default class UserSettingsPage extends Block {
         });
     }
     render() {
-        return this.compile(userSettingsTemplate);
+        return this.compile(userSettingsTemplate, this._props);
     }
 }
