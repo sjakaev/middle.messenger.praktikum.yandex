@@ -52,9 +52,9 @@ const validationConfirmPassword = () => {
 };
 
 const submitRegisterForm = (event: Event) => {
-    const form = document.querySelector('#register-form');
+    const form = document.querySelector('#register-form') as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form?.name;
+    const formName = form.name;
 
     validateLogin();
     validatePassword();

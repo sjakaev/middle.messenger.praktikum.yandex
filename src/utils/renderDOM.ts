@@ -1,7 +1,7 @@
 import Block from '../core/Block.ts';
 
 export default function render(query: string, block: Block): HTMLElement | null {
-    const root = document.querySelector(query);
+    const root = document.querySelector(query) as HTMLElement;
 
     if (!root) {
         console.error(`No element found with query: ${query}`);

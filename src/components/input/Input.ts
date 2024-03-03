@@ -7,7 +7,7 @@ export default class Input extends Block {
     }
 
     setAttributeValue(event: Event) {
-        const newValue = event.target?.value;
+        const newValue = (event.target as HTMLInputElement).value;
         const inputValue = this._element.querySelector('.input__item');
         inputValue.setAttribute('value', newValue);
     }

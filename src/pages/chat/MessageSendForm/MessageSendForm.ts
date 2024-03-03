@@ -22,13 +22,13 @@ const inputSendMessage = new Input('div', {
 const submitMessage = () => {
     const messageInputItem = inputSendMessage._element.querySelector('[name="message"]');
     const messageInputValue = messageInputItem.getAttribute('value');
-    const form = document.querySelector('#message-send-form');
+    const form = document.querySelector('#message-send-form') as HTMLFormElement;
 
     if (messageInputValue) {
         console.log('--------------------------------');
         // eslint-disable-next-line
         console.log('messageSendForm', messageSendForm);
-        console.log('Form name:', form?.name);
+        console.log('Form name:', form.name);
         console.log('message', messageInputValue);
         console.log('--------------------------------');
     }

@@ -17,7 +17,7 @@ const inputChatSearch = new Input('div', {
     },
 });
 
-const submitChatSearchForm = (event) => {
+const submitChatSearchForm = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
 };
