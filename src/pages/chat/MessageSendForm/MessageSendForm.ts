@@ -36,7 +36,7 @@ const submitMessage = () => {
         const message = document.createElement('div');
         message.className = 'chat__message';
         message.innerHTML = messageInputValue;
-        document.querySelector('.chat__messages-wrapper').appendChild(message);
+        document.querySelector('.chat__messages-wrapper')?.appendChild(message);
 
         inputSendMessage.setProps({ value: '' });
     }
