@@ -130,9 +130,8 @@
         padding: 11px;
         background-color: #E4EDFD;
         border-radius: 12px 12px 0;
-        flex-direction: column;
+        flex-flow: column wrap;
         align-items: flex-start;
-        flex-wrap: wrap;
         margin-bottom: 7px;
     }
 
