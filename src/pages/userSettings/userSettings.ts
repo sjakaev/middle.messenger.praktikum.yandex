@@ -3,7 +3,7 @@ import Block from '../../core/Block.ts';
 import { Input, Button } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 
-const handleChangeData = (event) => {
+const handleChangeData = (event: Event) => {
     userSettingsMail.setProps({ readonly: false });
     userSettingsLogin.setProps({ readonly: false });
     userSettingsFirstName.setProps({ readonly: false });
@@ -22,7 +22,7 @@ const handleChangeData = (event) => {
     event.stopPropagation();
 };
 
-const submitUserSettings = (event) => {
+const submitUserSettings = (event: Event) => {
     userSettingsMail.setProps({ readonly: true });
     userSettingsLogin.setProps({ readonly: true });
     userSettingsFirstName.setProps({ readonly: true });

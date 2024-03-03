@@ -104,7 +104,7 @@ export default class Block {
         }
     }
 
-    _componentDidUpdate(oldProps, newProps) {
+    _componentDidUpdate(oldProps: any, newProps: any) {
         const isReRender = this.componentDidUpdate(oldProps, newProps);
 
         if (isReRender) {
@@ -113,7 +113,7 @@ export default class Block {
     }
 
     // eslint-disable-next-line
-    componentDidUpdate(oldProps, newProps) {
+    componentDidUpdate(oldProps: any, newProps: any) {
         return true;
     }
 

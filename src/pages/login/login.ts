@@ -18,7 +18,7 @@ const validatePassword = () => {
     inputPassword.validateInput(passwordValidation);
 };
 
-const submitLoginForm = (event) => {
+const submitLoginForm = (event: Event) => {
     const form = document.querySelector('#login-form');
     const formData = new FormData(form);
     const formName = form?.name;

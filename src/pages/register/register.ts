@@ -51,10 +51,10 @@ const validationConfirmPassword = () => {
     inputRepeatPassword.validateConfirmPassword(firstPasswordValue, secondPasswordValue);
 };
 
-const submitRegisterForm = (event) => {
+const submitRegisterForm = (event: Event) => {
     const form = document.querySelector('#register-form');
     const formData = new FormData(form);
-    const formName = form.name;
+    const formName = form?.name;
 
     validateLogin();
     validatePassword();

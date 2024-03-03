@@ -6,13 +6,13 @@ export default class Input extends Block {
         return this.compile(tpl, this._props);
     }
 
-    setAttributeValue(event) {
-        const newValue = event.target.value;
+    setAttributeValue(event: Event) {
+        const newValue = event.target?.value;
         const inputValue = this._element.querySelector('.input__item');
         inputValue.setAttribute('value', newValue);
     }
 
-    validateInput(validationFunction) {
+    validateInput(validationFunction: any) {
         const inputItem = this._element.querySelector('.input__item');
         const inputValue = inputItem.getAttribute('value');
         const validationMessage = validationFunction(inputValue);
