@@ -2,6 +2,7 @@
 import Block from '../../core/Block.ts';
 import { Input, Button } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
+import defaultAvatarIcon from '../../assets/default-avatar.svg';
 
 const handleChangeData = (event: Event) => {
     userSettingsMail.setProps({ readonly: false });
@@ -169,7 +170,7 @@ const buttonLogOut = new Button('button', {
 export default class UserSettingsPage extends Block {
     constructor() {
         super('section', {
-            avatar: '/src/assets/default-avatar.svg',
+            avatar: `${defaultAvatarIcon}`,
             userSettingsMail,
             userSettingsLogin,
             userSettingsFirstName,

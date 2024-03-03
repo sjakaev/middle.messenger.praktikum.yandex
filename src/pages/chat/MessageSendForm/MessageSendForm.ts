@@ -1,5 +1,6 @@
 import template from './template.ts';
 import Block from '../../../core/Block.ts';
+import arrowRightIcon from '../../../assets/arrow-right.svg';
 import {
     Input,
     Button,
@@ -36,7 +37,7 @@ const submitMessage = () => {
 
 const buttonSendMessage = new Button('button', {
     text: '',
-    icon: '/src/assets/arrow-right.svg',
+    icon: `${arrowRightIcon}`,
     alt: 'Send message',
     attr: {
         class: 'message-send-form__send-button',
