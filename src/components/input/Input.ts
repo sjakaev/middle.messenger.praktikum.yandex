@@ -18,7 +18,7 @@ export default class Input extends Block {
         const validationMessage = validationFunction(inputValue);
 
         if (validationMessage) {
-            this.setProps({ error: validationMessage, value: '' });
+            this.setProps({ error: validationMessage, value: inputValue });
         }
 
         if (!validationMessage && this._props.error) {

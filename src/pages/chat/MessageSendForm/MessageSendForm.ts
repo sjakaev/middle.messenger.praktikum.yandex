@@ -32,6 +32,13 @@ const submitMessage = () => {
         console.log('Form name:', form.name);
         console.log('message', messageInputValue);
         console.log('--------------------------------');
+
+        const message = document.createElement('div');
+        message.className = 'chat__message';
+        message.innerHTML = messageInputValue;
+        document.querySelector('.chat__messages-wrapper').appendChild(message);
+
+        inputSendMessage.setProps({ value: '' });
     }
 };
 

@@ -19,6 +19,9 @@ const userSettingsButton = new Link('span', {
 const nav = new Nav(
     'ul',
     {
+        attr: {
+            class: 'chat__nav',
+        },
         items: [
             { url: '/', title: 'Login', page: 'login' },
             { url: '/', title: 'Register', page: 'register' },

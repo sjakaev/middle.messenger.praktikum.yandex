@@ -15,9 +15,11 @@ const tmp = `
                     </div>
                 </div>
                 <div class="chat__window-body">
-                    <nav>
-                        {{{ nav }}}
-                    </nav>
+                    <div class="chat__messages-wrapper">
+                        <div class="chat__message">
+                            <nav> {{{ nav }}} </nav>
+                        </div>
+                    </div>
                 </div>
                 {{{ messageSendForm }}}
             </div>
