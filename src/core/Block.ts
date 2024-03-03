@@ -112,9 +112,8 @@ export default class Block {
         }
     }
 
-    componentDidUpdate(oldProps: any, newProps: any) {
-        console.log('oldProps: ', oldProps);
-        console.log('newProps: ', newProps);
+    // eslint-disable-next-line
+    componentDidUpdate(_oldProps: any, _newProps: any) {
         return true;
     }
 
