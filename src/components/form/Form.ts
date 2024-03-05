@@ -25,6 +25,7 @@ export interface IForm {
     buttonSendMessage: IButton,
     buttonRegister: IButton,
     buttonSignIn: IButton,
+    attr?: { [key: string]: string };
 }
 
 export default class Form extends Block<IForm> {

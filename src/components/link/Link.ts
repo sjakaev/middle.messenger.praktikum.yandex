@@ -6,6 +6,7 @@ export interface ILink {
     text: string;
     page?: string;
     class?: string;
+    attr?: { [key: string]: string };
 }
 
 export default class Link extends Block<ILink> {

@@ -5,6 +5,7 @@ export interface INav {
     url?: string;
     page: string;
     title: string;
+    attr?: { [key: string]: string };
 }
 
 export default class Nav extends Block<INav> {
