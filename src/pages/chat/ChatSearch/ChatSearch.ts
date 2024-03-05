@@ -3,15 +3,14 @@ import Block from '../../../core/Block.ts';
 import template from './template.ts';
 import {
     Input,
-    IInput,
     Form,
 } from '../../../components/index.ts';
 
 interface IChatSearch {
-    inputChatSearch: IInput;
+    chatSearchForm: Form;
 }
 
-const inputChatSearch = new Input('div', {
+const inputChatSearch: any = new Input('div', {
     value: '',
     name: 'chat_search',
     type: 'text',

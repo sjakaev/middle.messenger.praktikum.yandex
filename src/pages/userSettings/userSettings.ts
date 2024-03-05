@@ -1,23 +1,23 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
 import {
-    Input, Button, IInput, IButton,
+    Input, Button,
 } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 import defaultAvatarIcon from '../../assets/default-avatar.svg';
 
 interface IUserSettingsPage {
     avatar: string;
-    userSettingsMail: IInput;
-    userSettingsLogin: IInput;
-    userSettingsFirstName: IInput;
-    userSettingsSecondName: IInput;
-    userSettingsDisplayName: IInput;
-    userSettingsPhoneNumber: IInput;
-    buttonSaveUserSettings: IButton;
-    buttonChangeData: IButton;
-    buttonChangePassword: IButton;
-    buttonLogOut: IButton;
+    userSettingsMail: Input;
+    userSettingsLogin: Input;
+    userSettingsFirstName: Input;
+    userSettingsSecondName: Input;
+    userSettingsDisplayName: Input;
+    userSettingsPhoneNumber: Input;
+    buttonSaveUserSettings: Button;
+    buttonChangeData: Button;
+    buttonChangePassword: Button;
+    buttonLogOut: Button;
 }
 
 const handleChangeData = (event: Event) => {

@@ -1,22 +1,21 @@
 import ChatSearch from './ChatSearch/ChatSearch.ts';
 import ChatItemList from './ChatItemList/ChatItemList.ts';
-import MessageSendForm, { IMessageSendForm } from './MessageSendForm/MessageSendForm.ts';
+import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
 import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
 import './ChatItemList/chatItemList.scss';
-import './ChatItem/chatItem.scss';
 import {
-    Nav, Link, ILink, INav,
+    Nav, Link,
 } from '../../components/index.ts';
 
 interface IChatPage {
-    userSettingsButton: ILink;
+    userSettingsButton: Link;
     chatSearch: ChatSearch;
     chatItemList: ChatItemList;
-    nav: INav;
-    messageSendForm: IMessageSendForm;
+    nav: Nav;
+    messageSendForm: MessageSendForm;
 }
 
 const userSettingsButton = new Link('span', {

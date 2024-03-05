@@ -1,9 +1,9 @@
 import Block from '../../core/Block.ts';
-import { ErrorInfo, IErrorInfo } from '../../components/index.ts';
+import { ErrorInfo } from '../../components/index.ts';
 import template from './template.ts';
 
 interface IError500Page {
-    errorInfo: IErrorInfo;
+    errorInfo: ErrorInfo;
 }
 
 const errorInfo = new ErrorInfo(

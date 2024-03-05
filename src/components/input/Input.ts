@@ -2,7 +2,7 @@ import tpl from './template.ts';
 import Block from '../../core/Block.ts';
 
 export interface IInput {
-    name: string;
+    name?: string;
     type?: string;
     placeholder?: string;
     label?: string;
@@ -12,17 +12,15 @@ export interface IInput {
     required?: boolean;
     disabled?: boolean;
     value?: string;
+    class?: string;
+    attr?: { [key: string]: string };
+    // eslint-disable-next-line no-unused-vars
+    events?: { [key: string]: (event: Event) => void };
 }
 
 export default class Input extends Block<IInput> {
     render() {
         return this.compile(tpl, this._props);
-    }
-
-    setAttributeValue(event: Event) {
-        const newValue = (event.target as HTMLInputElement).value;
-        const inputValue = this._element.querySelector('.input__item');
-        inputValue.setAttribute('value', newValue);
     }
 
     validateInput(validationFunction: any) {
@@ -52,19 +50,11 @@ export default class Input extends Block<IInput> {
         }
     }
 
-    addEvents() {
+    _addEvents() {
+        super._addEvents();
+
         this._element
             .querySelector('.input__item')
             .addEventListener('blur', this._props.events?.blur);
-
-        this._element
-            .querySelector('.input__item')
-            .addEventListener('focus', this._props.events?.focus);
-
-        this._element
-            .querySelector('.input__item')
-            .addEventListener('input', this.setAttributeValue.bind(this));
-
-        super.addEvents();
     }
 }

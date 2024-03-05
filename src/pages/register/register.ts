@@ -6,9 +6,6 @@ import {
     Input,
     Link,
     Form,
-    IInput,
-    ILink,
-    IButton,
 } from '../../components/index.ts';
 
 import {
@@ -20,19 +17,8 @@ import {
 } from '../../utils/validation.ts';
 
 interface IRegisterPage {
-    registerForm: IRegisterForm;
-    authLink: ILink;
-}
-
-interface IRegisterForm {
-    inputEmail: IInput;
-    inputLogin: IInput;
-    inputFirstName: IInput;
-    inputSecondName: IInput;
-    inputPhone: IInput;
-    inputPassword: IInput;
-    inputRepeatPassword: IInput;
-    buttonRegister: IButton;
+    registerForm: Form;
+    authLink: Link;
 }
 
 const validateMail = () => {
@@ -106,7 +92,7 @@ const submitRegisterForm = (event: Event) => {
     console.log('-------------------------------');
 };
 
-const inputEmail = new Input('div', {
+const inputEmail: any = new Input('div', {
     value: 'roman@gmail.com',
     label: 'Email',
     name: 'email',
@@ -119,7 +105,7 @@ const inputEmail = new Input('div', {
     },
 });
 
-const inputLogin = new Input('div', {
+const inputLogin: any = new Input('div', {
     value: 'Roman3000',
     label: 'Login',
     name: 'login',
@@ -132,7 +118,7 @@ const inputLogin = new Input('div', {
     },
 });
 
-const inputFirstName = new Input('div', {
+const inputFirstName: any = new Input('div', {
     value: 'Ivan',
     label: 'First name',
     name: 'first_name',
@@ -145,7 +131,7 @@ const inputFirstName = new Input('div', {
     },
 });
 
-const inputSecondName = new Input('div', {
+const inputSecondName: any = new Input('div', {
     value: 'Petrov',
     label: 'Second name',
     name: 'second_name',
@@ -158,7 +144,7 @@ const inputSecondName = new Input('div', {
     },
 });
 
-const inputPhone = new Input('div', {
+const inputPhone: any = new Input('div', {
     value: '+7123456789',
     label: 'Phone number',
     name: 'phone',
@@ -171,7 +157,7 @@ const inputPhone = new Input('div', {
     },
 });
 
-const inputPassword = new Input('div', {
+const inputPassword: any = new Input('div', {
     value: 'Roman3001',
     label: 'Password',
     name: 'password',
@@ -184,7 +170,7 @@ const inputPassword = new Input('div', {
     },
 });
 
-const inputRepeatPassword = new Input('div', {
+const inputRepeatPassword: any = new Input('div', {
     value: 'Roman3001',
     label: 'Repeat password',
     name: 'second_password',
@@ -197,7 +183,7 @@ const inputRepeatPassword = new Input('div', {
     },
 });
 
-const buttonRegister = new Button('button', {
+const buttonRegister: any = new Button('button', {
     text: 'Sign up',
     attr: {
         page: 'chat',
