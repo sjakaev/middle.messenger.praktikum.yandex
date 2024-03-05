@@ -1,7 +1,20 @@
 import tpl from './template.ts';
 import Block from '../../core/Block.ts';
 
-export default class Input extends Block {
+export interface IInput {
+    name: string;
+    type?: string;
+    placeholder?: string;
+    label?: string;
+    labelClass?: string;
+    error?: string;
+    readonly?: boolean;
+    required?: boolean;
+    disabled?: boolean;
+    value?: string;
+}
+
+export default class Input extends Block<IInput> {
     render() {
         return this.compile(tpl, this._props);
     }

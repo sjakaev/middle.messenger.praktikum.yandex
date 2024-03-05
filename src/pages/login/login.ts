@@ -6,9 +6,22 @@ import {
     Button,
     Input,
     Form,
+    ILink,
+    IInput,
+    IButton,
 } from '../../components/index.ts';
-
 import { loginValidation, passwordValidation } from '../../utils/validation.ts';
+
+interface ILoginPage {
+    loginForm: ILoginForm;
+    link: ILink;
+}
+
+interface ILoginForm {
+    inputLogin: IInput;
+    inputPassword: IInput;
+    buttonSignIn: IButton;
+}
 
 const validateLogin = () => {
     inputLogin.validateInput(loginValidation);
@@ -100,7 +113,7 @@ const loginForm = new Form('form', {
     },
 });
 
-export default class LoginPage extends Block {
+export default class LoginPage extends Block<ILoginPage> {
     constructor() {
         super('section', {
             loginForm,

@@ -1,8 +1,24 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
-import { Input, Button } from '../../components/index.ts';
+import {
+    Input, Button, IInput, IButton,
+} from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 import defaultAvatarIcon from '../../assets/default-avatar.svg';
+
+interface IUserSettingsPage {
+    avatar: string;
+    userSettingsMail: IInput;
+    userSettingsLogin: IInput;
+    userSettingsFirstName: IInput;
+    userSettingsSecondName: IInput;
+    userSettingsDisplayName: IInput;
+    userSettingsPhoneNumber: IInput;
+    buttonSaveUserSettings: IButton;
+    buttonChangeData: IButton;
+    buttonChangePassword: IButton;
+    buttonLogOut: IButton;
+}
 
 const handleChangeData = (event: Event) => {
     userSettingsMail.setProps({ readonly: false });
@@ -167,7 +183,7 @@ const buttonLogOut = new Button('button', {
     },
 });
 
-export default class UserSettingsPage extends Block {
+export default class UserSettingsPage extends Block<IUserSettingsPage> {
     constructor() {
         super('section', {
             avatar: `${defaultAvatarIcon}`,

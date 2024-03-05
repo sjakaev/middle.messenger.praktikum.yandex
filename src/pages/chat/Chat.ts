@@ -1,13 +1,23 @@
 import ChatSearch from './ChatSearch/ChatSearch.ts';
 import ChatItemList from './ChatItemList/ChatItemList.ts';
-import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
+import MessageSendForm, { IMessageSendForm } from './MessageSendForm/MessageSendForm.ts';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
 import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
 import './ChatItemList/chatItemList.scss';
 import './ChatItem/chatItem.scss';
-import { Nav, Link } from '../../components/index.ts';
+import {
+    Nav, Link, ILink, INav,
+} from '../../components/index.ts';
+
+interface IChatPage {
+    userSettingsButton: ILink;
+    chatSearch: ChatSearch;
+    chatItemList: ChatItemList;
+    nav: INav;
+    messageSendForm: IMessageSendForm;
+}
 
 const userSettingsButton = new Link('span', {
     text: 'Profile',
@@ -75,7 +85,7 @@ const chatItemList = new ChatItemList(
     },
 );
 
-export default class ChatPage extends Block {
+export default class ChatPage extends Block<IChatPage> {
     constructor() {
         super('section', {
             userSettingsButton,

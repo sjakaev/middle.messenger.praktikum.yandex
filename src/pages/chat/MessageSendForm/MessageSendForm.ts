@@ -5,7 +5,14 @@ import {
     Input,
     Button,
     Form,
+    IInput,
+    IButton,
 } from '../../../components/index.ts';
+
+export interface IMessageSendForm {
+    inputSendMessage: IInput;
+    buttonSendMessage: IButton;
+}
 
 const inputSendMessage = new Input('div', {
     value: '',
@@ -69,7 +76,7 @@ const messageSendForm = new Form('form', {
     },
 });
 
-export default class MessageSendForm extends Block {
+export default class MessageSendForm extends Block<IMessageSendForm> {
     constructor() {
         super('div', {
             messageSendForm,

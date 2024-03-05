@@ -3,7 +3,7 @@
 import Handlebars from 'handlebars';
 import EventBus from './EventBus.ts';
 
-export default class Block {
+export default abstract class Block<Props extends Record<string, any> = any> {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -11,7 +11,7 @@ export default class Block {
         FLOW_RENDER: 'flow:render',
     };
 
-    _props;
+    _props: Props;
     _id;
     _children;
     _element: any;
@@ -19,14 +19,14 @@ export default class Block {
     _eventBus;
     _setUpdate = false;
 
-    constructor(tagName = 'div', propsAndChilds = {}) {
+    constructor(tagName: string = 'div', propsAndChilds: Partial<Props> = {}) {
         const { children, props } = this.getChildren(propsAndChilds);
 
         this._eventBus = new EventBus();
         this._meta = { tagName, props };
         this._id = 1;
-        this._props = this.makePropsProxy(props);
-        this._children = this.makePropsProxy(children);
+        this._props = this.makePropsProxy(props as Props);
+        this._children = this.makePropsProxy(children as Props);
         this.registerEvents();
         this._eventBus.emit(Block.EVENTS.INIT);
     }
@@ -55,13 +55,13 @@ export default class Block {
         this.removeEvents();
         this._element.innerHTML = '';
         this._element.appendChild(block);
-        this.addEvents();
+        this._addEvents();
         this.addAttributes();
     }
 
     render() {}
 
-    addEvents() {
+    _addEvents() {
         const { events = {} } = this._props;
 
         if (!events) return;
@@ -117,7 +117,7 @@ export default class Block {
         return true;
     }
 
-    setProps = (nextProps: any) => {
+    setProps = (nextProps: Props) => {
         if (!nextProps) {
             return;
         }
@@ -136,13 +136,13 @@ export default class Block {
     };
 
     // eslint-disable-next-line class-methods-use-this
-    getChildren(propsAndChilds: Record<string, any>) {
+    getChildren(propsAndChilds: Partial<Props>) {
         const children: { [key: string]: Block } = {};
         const props: { [key: string]: any } = {};
 
         Object.keys(propsAndChilds).forEach((key) => {
-            if (propsAndChilds[key] instanceof Block) {
-                children[key] = propsAndChilds[key];
+            if ((propsAndChilds[key] as any) instanceof Block) {
+                children[key] = propsAndChilds[key] as Block;
             } else {
                 props[key] = propsAndChilds[key];
             }
@@ -151,13 +151,13 @@ export default class Block {
         return { children, props };
     }
 
-    compile(template: string, props: Record<string, any>) {
+    compile(template: string, props: Props) {
         if (typeof (props) === 'undefined') {
             // eslint-disable-next-line no-param-reassign
             props = this._props;
         }
 
-        const propsAndStubs = { ...props };
+        const propsAndStubs: { [key: string]: any } = { ...props };
 
         Object.entries(this._children).forEach(([key, child]) => {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
@@ -176,7 +176,7 @@ export default class Block {
         return fragment.content;
     }
 
-    makePropsProxy(props: Record<string, any>) {
+    makePropsProxy(props: Props) {
         const self = this;
         return new Proxy(props, {
             get(target, prop) {
@@ -186,7 +186,7 @@ export default class Block {
             set(target, prop, value) {
                 const oldValue = { ...target };
                 // eslint-disable-next-line no-param-reassign
-                target[String(prop)] = value;
+                (target as any)[String(prop)] = value;
                 self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target);
                 return true;
             },

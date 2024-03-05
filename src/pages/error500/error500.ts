@@ -1,6 +1,10 @@
 import Block from '../../core/Block.ts';
-import { ErrorInfo } from '../../components/index.ts';
+import { ErrorInfo, IErrorInfo } from '../../components/index.ts';
 import template from './template.ts';
+
+interface IError500Page {
+    errorInfo: IErrorInfo;
+}
 
 const errorInfo = new ErrorInfo(
     'div',
@@ -14,7 +18,7 @@ const errorInfo = new ErrorInfo(
 
 );
 
-export default class Error500Page extends Block {
+export default class Error500Page extends Block<IError500Page> {
     constructor() {
         super('section', {
             errorInfo,

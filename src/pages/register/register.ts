@@ -6,6 +6,9 @@ import {
     Input,
     Link,
     Form,
+    IInput,
+    ILink,
+    IButton,
 } from '../../components/index.ts';
 
 import {
@@ -15,6 +18,22 @@ import {
     nameValidation,
     phoneValidation,
 } from '../../utils/validation.ts';
+
+interface IRegisterPage {
+    registerForm: IRegisterForm;
+    authLink: ILink;
+}
+
+interface IRegisterForm {
+    inputEmail: IInput;
+    inputLogin: IInput;
+    inputFirstName: IInput;
+    inputSecondName: IInput;
+    inputPhone: IInput;
+    inputPassword: IInput;
+    inputRepeatPassword: IInput;
+    buttonRegister: IButton;
+}
 
 const validateMail = () => {
     inputEmail.validateInput(emailValidation);
@@ -214,7 +233,7 @@ const registerForm = new Form('form', {
     },
 });
 
-export default class RegisterPage extends Block {
+export default class RegisterPage extends Block<IRegisterPage> {
     constructor() {
         super('section', {
             registerForm,

@@ -3,8 +3,13 @@ import Block from '../../../core/Block.ts';
 import template from './template.ts';
 import {
     Input,
+    IInput,
     Form,
 } from '../../../components/index.ts';
+
+interface IChatSearch {
+    inputChatSearch: IInput;
+}
 
 const inputChatSearch = new Input('div', {
     value: '',
@@ -33,7 +38,7 @@ const chatSearchForm = new Form('form', {
     },
 });
 
-export default class ChatSearch extends Block {
+export default class ChatSearch extends Block<IChatSearch> {
     constructor() {
         super('section', {
             chatSearchForm,
