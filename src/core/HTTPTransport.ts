@@ -9,13 +9,14 @@ enum METHOD {
     DELETE = 'DELETE',
   }
 
-  type Options = {
+type Options = {
     headers?: Record<string, string>;
-    method: METHOD;
+    method?: METHOD;
     data?: any;
-  };
+    timeout?: number;
+};
 
-  type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
 
 function queryStringify(data: Record<string, any>) {
     if (typeof data !== 'object') {
@@ -29,38 +30,23 @@ function queryStringify(data: Record<string, any>) {
 }
 
 class HTTPTransport {
-    get(
-        url: string,
-        options: OptionsWithoutMethod = {},
-    ) {
-        return this.request(url, { ...options, method: METHOD.GET });
-    }
+    get: HTTPMethod = (url, options = {}) => this
+        .request(url, { ...options, method: METHOD.GET }, options.timeout);
 
-    post(
-        url: string,
-        options: OptionsWithoutMethod = {},
-    ) {
-        return this.request(url, { ...options, method: METHOD.POST });
-    }
+    post: HTTPMethod = (url, options = {}) => this
+        .request(url, { ...options, method: METHOD.POST }, options.timeout);
 
-    put(
-        url: string,
-        options: OptionsWithoutMethod = {},
-    ) {
-        return this.request(url, { ...options, method: METHOD.POST });
-    }
+    put: HTTPMethod = (url, options = {}) => this
+        .request(url, { ...options, method: METHOD.PUT }, options.timeout);
 
-    delete(
-        url: string,
-        options: OptionsWithoutMethod = {},
-    ) {
-        return this.request(url, { ...options, method: METHOD.POST });
-    }
+    delete: HTTPMethod = (url, options = {}) => this
+        .request(url, { ...options, method: METHOD.DELETE }, options.timeout);
 
     // eslint-disable-next-line class-methods-use-this
     request(
         url: string,
-        options: Options = { method: METHOD.GET },
+        options: Options,
+        timeout?: number,
     ) {
         const { headers = {}, method, data } = options;
 
@@ -78,6 +64,10 @@ class HTTPTransport {
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
             });
+
+            if (timeout) {
+                xhr.timeout = timeout;
+            }
 
             xhr.onload = function () {
                 resolve(xhr);
