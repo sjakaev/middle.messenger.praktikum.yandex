@@ -1,7 +1,7 @@
 import Block from '../../core/Block.ts';
 import template from './template.ts';
 
-export interface IButton {
+export interface IButtonProps {
     text?: string;
     icon?: string;
     alt?: string;
@@ -10,7 +10,7 @@ export interface IButton {
     events?: { [key: string]: (event: Event) => void };
 }
 
-export default class Button extends Block<IButton> {
+export default class Button extends Block<IButtonProps> {
     render() {
         return this.compile(template, this._props);
     }

@@ -6,21 +6,12 @@ import {
     Button,
     Input,
     Form,
-    ILink,
-    IInput,
-    IButton,
 } from '../../components/index.ts';
 import { loginValidation, passwordValidation } from '../../utils/validation.ts';
 
 interface ILoginPage {
-    loginForm: ILoginForm;
-    link: ILink;
-}
-
-interface ILoginForm {
-    inputLogin: IInput;
-    inputPassword: IInput;
-    buttonSignIn: IButton;
+    loginForm: Form;
+    link: Link;
 }
 
 const validateLogin = () => {
@@ -29,6 +20,13 @@ const validateLogin = () => {
 
 const validatePassword = () => {
     inputPassword.validateInput(passwordValidation);
+};
+
+const setAttributeValue = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const newValue = target.value;
+    const inputElement = event.target as HTMLInputElement;
+    inputElement?.setAttribute('value', newValue);
 };
 
 const submitLoginForm = (event: Event) => {
@@ -55,7 +53,7 @@ const submitLoginForm = (event: Event) => {
     console.log('-------------------------------');
 };
 
-const inputLogin = new Input('div', {
+const inputLogin: any = new Input('div', {
     value: 'Login',
     name: 'login',
     type: 'text',
@@ -65,10 +63,11 @@ const inputLogin = new Input('div', {
     },
     events: {
         blur: validateLogin,
+        input: setAttributeValue,
     },
 });
 
-const inputPassword = new Input('div', {
+const inputPassword: any = new Input('div', {
     value: 'Password1',
     name: 'password',
     type: 'password',
@@ -78,10 +77,11 @@ const inputPassword = new Input('div', {
     },
     events: {
         blur: validatePassword,
+        input: setAttributeValue,
     },
 });
 
-const buttonSignIn = new Button('button', {
+const buttonSignIn: any = new Button('button', {
     text: 'Sign in',
     attr: {
         class: 'btn login__button',

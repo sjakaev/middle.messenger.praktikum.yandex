@@ -18,6 +18,14 @@
         }
     }
 
+    &__item-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: self-end;
+    }
+
     &__item-error {
         border-color: var(--color-border-danger);
     }

@@ -56,6 +56,13 @@ const validationConfirmPassword = () => {
     inputRepeatPassword.validateConfirmPassword(firstPasswordValue, secondPasswordValue);
 };
 
+const setAttributeValue = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const newValue = target.value;
+    const inputElement = event.target as HTMLInputElement;
+    inputElement?.setAttribute('value', newValue);
+};
+
 const submitRegisterForm = (event: Event) => {
     const form = document.querySelector('#register-form') as HTMLFormElement;
     const formData = new FormData(form);
@@ -102,6 +109,7 @@ const inputEmail: any = new Input('div', {
     },
     events: {
         blur: validateMail,
+        input: setAttributeValue,
     },
 });
 
@@ -115,6 +123,7 @@ const inputLogin: any = new Input('div', {
     },
     events: {
         blur: validateLogin,
+        input: setAttributeValue,
     },
 });
 
@@ -128,6 +137,7 @@ const inputFirstName: any = new Input('div', {
     },
     events: {
         blur: validateFirstName,
+        input: setAttributeValue,
     },
 });
 
@@ -141,6 +151,7 @@ const inputSecondName: any = new Input('div', {
     },
     events: {
         blur: validateSecondName,
+        input: setAttributeValue,
     },
 });
 
@@ -154,6 +165,7 @@ const inputPhone: any = new Input('div', {
     },
     events: {
         blur: validatePhone,
+        input: setAttributeValue,
     },
 });
 
@@ -167,6 +179,7 @@ const inputPassword: any = new Input('div', {
     },
     events: {
         blur: validatePassword,
+        input: setAttributeValue,
     },
 });
 
@@ -180,6 +193,7 @@ const inputRepeatPassword: any = new Input('div', {
     },
     events: {
         blur: validationConfirmPassword,
+        input: setAttributeValue,
     },
 });
 

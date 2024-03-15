@@ -5,20 +5,22 @@ const tpl = `
     >
         {{label}}
     </label>
-    <input
-        class="input__item {{class}}{{#if error}} input__item-error{{/if}}"
-        type="{{type}}"
-        id="{{name}}"
-        name="{{name}}"
-        placeholder="{{placeholder}}"
-        value="{{value}}"
-        {{#if required}}required{{/if}}
-        {{#if disabled}}disabled{{/if}}
-        {{#if readonly}}readonly{{/if}}
-    >
-    {{#if error}}
-        <span class="input__error-message">{{ error }}</span>
-    {{/if}}
+    <div class="input__item-wrapper">
+        <input
+            class="input__item {{class}}{{#if error}} input__item-error{{/if}}"
+            type="{{type}}"
+            id="{{name}}"
+            name="{{name}}"
+            placeholder="{{placeholder}}"
+            value="{{value}}"
+            {{#if required}}required{{/if}}
+            {{#if disabled}}disabled{{/if}}
+            {{#if readonly}}readonly{{/if}}
+        >
+        {{#if error}}
+            <span class="input__error-message">{{ error }}</span>
+        {{/if}}
+    </div>
 `;
 
 export default tpl;

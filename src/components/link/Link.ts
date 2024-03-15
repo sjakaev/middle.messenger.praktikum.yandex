@@ -7,22 +7,12 @@ export interface ILink {
     page?: string;
     class?: string;
     attr?: { [key: string]: string };
+    // eslint-disable-next-line no-unused-vars
+    events?: { [key: string]: (event: Event) => void };
 }
 
 export default class Link extends Block<ILink> {
     render() {
         return this.compile(template, this._props);
-    }
-
-    addEvents() {
-        if (!this._props.events) {
-            return;
-        }
-
-        this._element
-            .querySelector('.link')
-            .addEventListener('click', this._props.events.click);
-
-        super.addEvents();
     }
 }
