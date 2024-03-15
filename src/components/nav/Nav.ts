@@ -6,7 +6,7 @@ interface NanItem {
     page: string;
     title: string;
 }
-export interface INav {
+export interface INavProps {
     url?: string;
     page: string;
     title: string;
@@ -14,7 +14,7 @@ export interface INav {
     attr?: { [key: string]: string };
 }
 
-export default class Nav extends Block<INav> {
+export default class Nav extends Block<INavProps> {
     render() {
         return this.compile(template, this._props);
     }

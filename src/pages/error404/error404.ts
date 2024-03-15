@@ -2,7 +2,7 @@ import Block from '../../core/Block.ts';
 import { ErrorInfo } from '../../components/index.ts';
 import template from './template.ts';
 
-interface IError404Page {
+interface IError404PageProps {
     errorInfo: ErrorInfo;
 }
 
@@ -18,7 +18,7 @@ const errorInfo = new ErrorInfo(
 
 );
 
-export default class Error404Page extends Block<IError404Page> {
+export default class Error404Page extends Block<IError404PageProps> {
     constructor() {
         super('section', {
             errorInfo,

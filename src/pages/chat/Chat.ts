@@ -10,7 +10,7 @@ import {
     Nav, Link,
 } from '../../components/index.ts';
 
-interface IChatPage {
+interface IChatPageProps {
     userSettingsButton: Link;
     chatSearch: ChatSearch;
     chatItemList: ChatItemList;
@@ -84,7 +84,7 @@ const chatItemList = new ChatItemList(
     },
 );
 
-export default class ChatPage extends Block<IChatPage> {
+export default class ChatPage extends Block<IChatPageProps> {
     constructor() {
         super('section', {
             userSettingsButton,

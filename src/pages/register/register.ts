@@ -16,7 +16,7 @@ import {
     phoneValidation,
 } from '../../utils/validation.ts';
 
-interface IRegisterPage {
+interface IRegisterPageProps {
     registerForm: Form;
     authLink: Link;
 }
@@ -233,7 +233,7 @@ const registerForm = new Form('form', {
     },
 });
 
-export default class RegisterPage extends Block<IRegisterPage> {
+export default class RegisterPage extends Block<IRegisterPageProps> {
     constructor() {
         super('section', {
             registerForm,

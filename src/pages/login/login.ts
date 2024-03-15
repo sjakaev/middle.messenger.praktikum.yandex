@@ -9,7 +9,7 @@ import {
 } from '../../components/index.ts';
 import { loginValidation, passwordValidation } from '../../utils/validation.ts';
 
-interface ILoginPage {
+interface ILoginPageProps {
     loginForm: Form;
     link: Link;
 }
@@ -113,7 +113,7 @@ const loginForm = new Form('form', {
     },
 });
 
-export default class LoginPage extends Block<ILoginPage> {
+export default class LoginPage extends Block<ILoginPageProps> {
     constructor() {
         super('section', {
             loginForm,

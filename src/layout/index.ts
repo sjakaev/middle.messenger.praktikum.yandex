@@ -1,11 +1,11 @@
 import Block from '../core/Block.ts';
 import template from './template.ts';
 
-interface ILayout {
+interface ILayoutProps {
     content: Object;
 }
 
-export default class IndexLayout extends Block<ILayout> {
+export default class IndexLayout extends Block<ILayoutProps> {
     render() {
         return this.compile(template, this._props);
     }

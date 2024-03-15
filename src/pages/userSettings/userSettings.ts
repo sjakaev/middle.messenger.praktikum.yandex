@@ -66,7 +66,7 @@ const validateConfirmPassword = () => {
     userSettingsConfirmPassword.validateConfirmPassword(firstPasswordValue, secondPasswordValue);
 };
 
-interface IUserSettingsPage {
+interface IUserSettingsPageProps {
     avatar: string;
     userSettingsForm: Form;
     changePasswordForm: Form;
@@ -440,7 +440,7 @@ const changePasswordForm = new Form('form', {
 buttonSaveUserSettings.hide();
 changePasswordForm.hide();
 
-export default class UserSettingsPage extends Block<IUserSettingsPage> {
+export default class UserSettingsPage extends Block<IUserSettingsPageProps> {
     constructor() {
         super('section', {
             avatar: `${defaultAvatarIcon}`,

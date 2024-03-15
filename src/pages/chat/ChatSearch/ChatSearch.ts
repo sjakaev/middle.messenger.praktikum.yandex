@@ -6,7 +6,7 @@ import {
     Form,
 } from '../../../components/index.ts';
 
-interface IChatSearch {
+interface IChatSearchProps {
     chatSearchForm: Form;
 }
 
@@ -37,7 +37,7 @@ const chatSearchForm = new Form('form', {
     },
 });
 
-export default class ChatSearch extends Block<IChatSearch> {
+export default class ChatSearch extends Block<IChatSearchProps> {
     constructor() {
         super('section', {
             chatSearchForm,

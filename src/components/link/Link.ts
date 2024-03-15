@@ -1,7 +1,7 @@
 import template from './template.ts';
 import Block from '../../core/Block.ts';
 
-export interface ILink {
+export interface ILinkProps {
     href: string;
     text: string;
     page?: string;
@@ -11,7 +11,7 @@ export interface ILink {
     events?: { [key: string]: (event: Event) => void };
 }
 
-export default class Link extends Block<ILink> {
+export default class Link extends Block<ILinkProps> {
     render() {
         return this.compile(template, this._props);
     }

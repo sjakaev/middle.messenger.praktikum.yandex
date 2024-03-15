@@ -7,7 +7,7 @@ import {
     Form,
 } from '../../../components/index.ts';
 
-export interface IMessageSendForm {
+export interface IMessageSendFormProps {
     messageSendForm: Form;
     attr?: { [key: string]: string };
 }
@@ -84,7 +84,7 @@ const messageSendForm = new Form('form', {
     },
 });
 
-export default class MessageSendForm extends Block<IMessageSendForm> {
+export default class MessageSendForm extends Block<IMessageSendFormProps> {
     constructor() {
         super('div', {
             messageSendForm,

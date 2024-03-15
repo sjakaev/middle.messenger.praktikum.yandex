@@ -4,7 +4,7 @@ import {
     IInput, IButton,
 } from '../index.ts';
 
-export interface IForm {
+export interface IFormProps {
     name?: string;
     inputEmail?: IInput,
     inputLogin?: IInput,
@@ -39,7 +39,7 @@ export interface IForm {
     events?: { [key: string]: (event: Event) => void };
 }
 
-export default class Form extends Block<IForm> {
+export default class Form extends Block<IFormProps> {
     render() {
         return this.compile(template, this._props);
     }
