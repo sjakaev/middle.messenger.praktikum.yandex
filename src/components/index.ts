@@ -6,9 +6,9 @@ export { default as Link } from './link/Link.ts';
 export { default as Nav } from './nav/Nav.ts';
 
 // Interfaces
-export type { IErrorInfo } from './errorInfo/ErrorInfo.ts';
-export type { ILink } from './link/Link.ts';
-export type { IButton } from './button/Button.ts';
-export type { IForm } from './form/Form.ts';
+export type { IErrorInfoProps } from './errorInfo/ErrorInfo.ts';
+export type { ILinkProps } from './link/Link.ts';
+export type { IButtonProps } from './button/Button.ts';
+export type { IFormProps } from './form/Form.ts';
 export type { IInput } from './input/Input.ts';
-export type { INav } from './nav/Nav.ts';
+export type { INavProps } from './nav/Nav.ts';
