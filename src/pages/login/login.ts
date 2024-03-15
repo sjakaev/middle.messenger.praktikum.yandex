@@ -62,7 +62,7 @@ const inputLogin: any = new Input('div', {
         class: 'input login__input',
     },
     events: {
-        blur: validateLogin,
+        focusout: validateLogin,
         input: setAttributeValue,
     },
 });
@@ -76,7 +76,7 @@ const inputPassword: any = new Input('div', {
         class: 'input login__input',
     },
     events: {
-        blur: validatePassword,
+        focusout: validatePassword,
         input: setAttributeValue,
     },
 });

@@ -52,7 +52,7 @@ export default abstract class Block<Props extends Record<string, any> = any> {
 
     _render() {
         const block = this.render();
-        this.removeEvents();
+        this._removeEvents();
         this._element.innerHTML = '';
         this._element.appendChild(block);
         this._addEvents();
@@ -80,7 +80,7 @@ export default abstract class Block<Props extends Record<string, any> = any> {
         });
     }
 
-    removeEvents() {
+    _removeEvents() {
         const { events = {} } = this._props;
 
         if (!events || !this._element) return;

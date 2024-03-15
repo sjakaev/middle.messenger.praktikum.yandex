@@ -59,13 +59,4 @@ export default class Input extends Block<IInputProps> implements IInput {
             this.setProps({ error: '', value: inputValue });
         }
     }
-
-    _addEvents() {
-        super._addEvents();
-
-        // вынужденная мера, т.к. blur не всплывает
-        this._element
-            .querySelector('.input__item')
-            .addEventListener('blur', this._props.events?.blur);
-    }
 }

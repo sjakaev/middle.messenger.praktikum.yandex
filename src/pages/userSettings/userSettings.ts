@@ -201,7 +201,7 @@ const userSettingsMail = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateMail,
+        focusout: validateMail,
         input: setAttributeValue,
     },
 });
@@ -219,7 +219,7 @@ const userSettingsLogin = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateLogin,
+        focusout: validateLogin,
         input: setAttributeValue,
     },
 });
@@ -237,7 +237,7 @@ const userSettingsFirstName = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateFirstName,
+        focusout: validateFirstName,
         input: setAttributeValue,
     },
 });
@@ -255,7 +255,7 @@ const userSettingsSecondName = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateSecondName,
+        focusout: validateSecondName,
         input: setAttributeValue,
     },
 });
@@ -273,7 +273,7 @@ const userSettingsDisplayName = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateDisplayName,
+        focusout: validateDisplayName,
         input: setAttributeValue,
     },
 });
@@ -291,7 +291,7 @@ const userSettingsPhoneNumber = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validatePhone,
+        focusout: validatePhone,
         input: setAttributeValue,
     },
 });
@@ -308,7 +308,7 @@ const userSettingsOldPassword = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateOldPassword,
+        focusout: validateOldPassword,
         input: setAttributeValue,
     },
 });
@@ -325,7 +325,7 @@ const userSettingsNewPassword = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateNewPassword,
+        focusout: validateNewPassword,
         input: setAttributeValue,
     },
 });
@@ -342,7 +342,7 @@ const userSettingsConfirmPassword = new Input('div', {
         class: 'profile__field',
     },
     events: {
-        blur: validateConfirmPassword,
+        focusout: validateConfirmPassword,
         input: setAttributeValue,
     },
 });

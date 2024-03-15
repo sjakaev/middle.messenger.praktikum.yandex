@@ -108,7 +108,7 @@ const inputEmail: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validateMail,
+        focusout: validateMail,
         input: setAttributeValue,
     },
 });
@@ -122,7 +122,7 @@ const inputLogin: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validateLogin,
+        focusout: validateLogin,
         input: setAttributeValue,
     },
 });
@@ -136,7 +136,7 @@ const inputFirstName: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validateFirstName,
+        focusout: validateFirstName,
         input: setAttributeValue,
     },
 });
@@ -150,7 +150,7 @@ const inputSecondName: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validateSecondName,
+        focusout: validateSecondName,
         input: setAttributeValue,
     },
 });
@@ -164,7 +164,7 @@ const inputPhone: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validatePhone,
+        focusout: validatePhone,
         input: setAttributeValue,
     },
 });
@@ -178,7 +178,7 @@ const inputPassword: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validatePassword,
+        focusout: validatePassword,
         input: setAttributeValue,
     },
 });
@@ -192,7 +192,7 @@ const inputRepeatPassword: any = new Input('div', {
         class: 'input register__input',
     },
     events: {
-        blur: validationConfirmPassword,
+        focusout: validationConfirmPassword,
         input: setAttributeValue,
     },
 });
