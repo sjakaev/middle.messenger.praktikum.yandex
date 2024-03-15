@@ -1,7 +1,7 @@
 import template from './template.ts';
 import Block from '../../core/Block.ts';
 import {
-    IInput, IButton,
+    IInput, Button,
 } from '../index.ts';
 
 export interface IFormProps {
@@ -26,14 +26,14 @@ export interface IFormProps {
     userSettingsOldPassword?: IInput,
     userSettingsNewPassword?: IInput,
     userSettingsConfirmPassword?: IInput,
-    buttonSaveNewPassword?: IButton,
-    buttonChangeData?: IButton,
-    buttonChangePassword?: IButton,
-    buttonLogOut?: IButton,
-    buttonSaveUserSettings?: IButton,
-    buttonSendMessage?: IButton,
-    buttonRegister?: IButton,
-    buttonSignIn?: IButton,
+    buttonSaveNewPassword?: Button,
+    buttonChangeData?: Button,
+    buttonChangePassword?: Button,
+    buttonLogOut?: Button,
+    buttonSaveUserSettings?: Button,
+    buttonSendMessage?: Button,
+    buttonRegister?: Button,
+    buttonSignIn?: Button,
     attr?: { [key: string]: string };
     // eslint-disable-next-line no-unused-vars
     events?: { [key: string]: (event: Event) => void };
