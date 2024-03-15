@@ -8,27 +8,14 @@ const tmp = `
         </div>
 
         <div class="profile__fields-wrapper">
-            <form name="user-settings">
-                {{{ userSettingsMail }}}
-                {{{ userSettingsLogin }}}
-                {{{ userSettingsFirstName }}}
-                {{{ userSettingsSecondName }}}
-                {{{ userSettingsDisplayName }}}
-                {{{ userSettingsPhoneNumber }}}
-                {{{ buttonSaveUserSettings }}}
-            </form>
+            {{{ userSettingsForm }}}
+            {{{ changePasswordForm }}}
         </div>
 
         <div class="profile__buttons-wrapper">
-            <div class="profile__button-wrapper">
-                {{{ buttonChangeData }}}
-            </div>
-            <div class="profile__button-wrapper">
-                {{{ buttonChangePassword}}}
-            </div>
-            <div class="profile__button-wrapper">
-                {{{ buttonLogOut }}}
-            </div>
+            {{{ buttonChangeData }}}
+            {{{ buttonChangePassword}}}
+            {{{ buttonLogOut }}}
         </div>
     </main>
 `;

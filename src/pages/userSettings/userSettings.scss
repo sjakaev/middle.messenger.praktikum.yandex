@@ -58,18 +58,13 @@
         font-weight: 600;
     }
 
-    &__fields-wrapper,
-    &__buttons-wrapper {
+    &__fields-wrapper {
         display: flex;
         flex-direction: column;
-    }
-
-    &__fields-wrapper {
         margin-bottom: 60px;
     }
 
-    &__field-wrapper,
-    &__button-wrapper {
+    &__field-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -92,10 +87,12 @@
     }
 
     &__button {
+        padding: 10px 0;
+        width: 100%;
+        border-bottom: 1px solid #EAEAEA;
         font-size: 14px;
         text-align: left;
         background-color: transparent;
-        border: none;
         color: var(--color-text-link);
         cursor: pointer;
 
@@ -127,15 +124,20 @@
     &__field-label {
         font-size: 14px;
         color: #1E1E1E;
+        margin-bottom: 0;
     }
 
 
     &__field-input {
-        max-width: 200px;
+        max-width: 250px;
         font-size: 14px;
-        color: var(--color-text-light);;
+        color: var(--color-text-main);
         text-align: end;
         border: none;
         padding: 0;
+
+        &::placeholder {
+            color: var(--color-text-light);
+        }
     }
 }

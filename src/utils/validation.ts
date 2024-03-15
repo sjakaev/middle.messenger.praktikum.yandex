@@ -1,7 +1,7 @@
 export const emailValidation = (value: string) => {
     const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/;
     if (!emailPattern.test(value)) {
-        return 'Неверный формат почты';
+        return 'Invalid mail format';
     }
     return false;
 };
@@ -10,6 +10,14 @@ export const loginValidation = (value: string) => {
     const loginPattern = /^(?=.*[A-Za-z])[A-Za-z0-9_-]{3,20}$/;
     if (!loginPattern.test(value)) {
         return 'Invalid login format';
+    }
+    return false;
+};
+
+export const displayNameValidation = (value: string) => {
+    const loginPattern = /^(?=.*[A-Za-z])[A-Za-z0-9_-]{3,20}$/;
+    if (!loginPattern.test(value)) {
+        return 'Invalid display name';
     }
     return false;
 };
