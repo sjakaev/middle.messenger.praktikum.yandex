@@ -14,10 +14,17 @@ const tpl = `
     {{{ userSettingsSecondName }}}
     {{{ userSettingsDisplayName }}}
     {{{ userSettingsPhoneNumber }}}
+    {{{ userSettingsOldPassword }}}
+    {{{ userSettingsNewPassword }}}
+    {{{ userSettingsConfirmPassword }}}
+    {{{ buttonSaveNewPassword}}}
+    {{{ buttonChangeData }}}
+    {{{ buttonChangePassword }}}
     {{{ buttonSaveUserSettings }}}
     {{{ buttonSendMessage }}}
     {{{ buttonRegister }}}
     {{{ buttonSignIn }}}
+    {{{ buttonLogOut }}}
 `;
 
 export default tpl;
