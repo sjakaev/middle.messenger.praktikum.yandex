@@ -5,16 +5,21 @@ import {
     Input,
     Button,
     Form,
-    IInput,
-    IButton,
 } from '../../../components/index.ts';
 
 export interface IMessageSendForm {
-    inputSendMessage: IInput;
-    buttonSendMessage: IButton;
+    messageSendForm: Form;
+    attr?: { [key: string]: string };
 }
 
-const inputSendMessage = new Input('div', {
+const setAttributeValue = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const newValue = target.value;
+    const inputElement = event.target as HTMLInputElement;
+    inputElement?.setAttribute('value', newValue);
+};
+
+const inputSendMessage: any = new Input('div', {
     value: '',
     name: 'message',
     type: 'text',
@@ -24,6 +29,9 @@ const inputSendMessage = new Input('div', {
         class: 'message-send-form__message-input-wrapper',
         type: 'submit',
         page: 'chat',
+    },
+    events: {
+        input: setAttributeValue,
     },
 });
 
@@ -49,7 +57,7 @@ const submitMessage = () => {
     }
 };
 
-const buttonSendMessage = new Button('button', {
+const buttonSendMessage: any = new Button('button', {
     text: '',
     icon: `${arrowRightIcon}`,
     alt: 'Send message',
