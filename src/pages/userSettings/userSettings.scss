@@ -28,7 +28,7 @@
             height: 130px;
             font-size: 13px;
             line-height: 14px;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgb(0 0 0 / 60%);
             border-radius: 50%;
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
@@ -56,21 +56,15 @@
         font-size: 16px;
         line-height: 16px;
         font-weight: 600;
-        align: center;
-    }
-
-    &__fields-wrapper,
-    &__buttons-wrapper {
-        display: flex;
-        flex-direction: column;
     }
 
     &__fields-wrapper {
+        display: flex;
+        flex-direction: column;
         margin-bottom: 60px;
     }
 
-    &__field-wrapper,
-    &__button-wrapper {
+    &__field-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -89,14 +83,16 @@
 
     &__field-value {
         font-size: 14px;
-        color: #999999;
+        color: #999;
     }
 
     &__button {
+        padding: 10px 0;
+        width: 100%;
+        border-bottom: 1px solid #EAEAEA;
         font-size: 14px;
         text-align: left;
         background-color: transparent;
-        border: none;
         color: var(--color-text-link);
         cursor: pointer;
 
@@ -111,5 +107,37 @@
 
     &__submit-button {
         margin-top: 60px;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #EAEAEA;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__field-label {
+        font-size: 14px;
+        color: #1E1E1E;
+        margin-bottom: 0;
+    }
+
+
+    &__field-input {
+        max-width: 250px;
+        font-size: 14px;
+        color: var(--color-text-main);
+        text-align: end;
+        border: none;
+        padding: 0;
+
+        &::placeholder {
+            color: var(--color-text-light);
+        }
     }
 }

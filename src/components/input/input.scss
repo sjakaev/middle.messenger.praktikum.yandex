@@ -18,8 +18,21 @@
         }
     }
 
+    &__item-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: self-end;
+    }
+
     &__item-error {
-        color: var(--color-text-danger);
         border-color: var(--color-border-danger);
+    }
+
+    &__error-message {
+        margin-top: 5px;
+        color: var(--color-text-danger);
+        font-size: 12px;
     }
 }

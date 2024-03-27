@@ -1,0 +1,33 @@
+.message-send-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__file-input-label {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    &__message-input-wrapper {
+        width: 100%;
+        margin-right: 10px;
+    }
+
+    &__message-input {
+        padding: 10px 20px;
+        border: none;
+        background-color: #efefef;
+        border-radius: 30px;
+        font-size: 14px;
+    }
+
+    &__send-button {
+        width: 32px;
+        height: 32px;
+        background-color: transparent;
+        cursor: pointer;
+    }
+}

@@ -1,14 +1,12 @@
-@import "./variables.scss";
-
-@import "./src/pages/login/login.scss";
-@import "./src/pages/register/register.scss";
-@import "./src/pages/chat/chat.scss";
-@import "./src/pages/userSettings/userSettings.scss";
-
-@import "./src/components/button/button.scss";
-@import "./src/components/input/input.scss";
-@import "./src/components/link/link.scss";
-@import "./src/components/errorInfo/errorInfo.scss";
+@import "./src/variables";
+@import "./src/components/input/input";
+@import "./src/components/button/button";
+@import "./src/components/link/link";
+@import "./src/components/errorInfo/errorInfo";
+@import "./src/pages/chat/chat";
+@import "./src/pages/register/register";
+@import "./src/pages/login/login";
+@import "./src/pages/userSettings/userSettings";
 
 
 * {
@@ -22,9 +20,8 @@
 
 html, body {
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
+    overflow: hidden scroll;
+}
 
 #app {
     display: flex;
@@ -32,14 +29,13 @@ html, body {
     align-items: center;
     min-height: 100vh;
     width: 100vw;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden scroll;
 }
 
 .card {
     background: var(--color-bg-white);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
     width: 340px;
-    padding: 50px 30px 30px 30px;
+    padding: 50px 30px 30px;
 }

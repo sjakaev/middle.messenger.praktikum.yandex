@@ -9,25 +9,29 @@
         "dev": "vite",
         "build": "vite build",
         "serve": "vite preview",
-        "start": "vite build && node server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/sjakaev/messenger.git"
+        "start": "vite build && node server.js",
+        "stylelint": "npx stylelint **/*.scss",
+        "stylelint-fix": "npx stylelint **/*.scss --fix",
+        "eslint": "node_modules/.bin/eslint .",
+        "eslint-fix": "./node_modules/.bin/eslint --fix ."
     },
     "author": "Roman Siakaev",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/sjakaev/messenger/issues"
-    },
-    "homepage": "https://github.com/sjakaev/messenger#readme",
-    "devDependencies": {
+    "dependencies": {
         "express": "^4.18.2",
-        "handlebars": "^4.7.8",
+        "handlebars": "^4.7.8"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^6.20.0",
+        "@typescript-eslint/parser": "^6.20.0",
+        "eslint": "^8.56.0",
+        "eslint-config-airbnb": "^19.0.4",
         "sass": "^1.69.7",
+        "stylelint": "^16.2.0",
+        "stylelint-config-standard-scss": "^13.0.0",
+        "stylelint-scss": "^6.1.0",
         "typescript": "^5.3.3",
-        "vite": "^5.0.11",
-        "vite-plugin-handlebars": "^2.0.0",
-        "vite-plugin-inspect": "^0.8.1"
+        "vite": "^5.1.4",
+        "vite-plugin-inspect": "^0.8.3"
     }
 }
