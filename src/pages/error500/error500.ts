@@ -1,9 +1,11 @@
 import Block from '../../core/Block.ts';
-import { ErrorInfo } from '../../components/index.ts';
+import Router from '../../core/Router.ts';
+import { ErrorInfo, Link } from '../../components/index.ts';
 import template from './template.ts';
 
 interface IError500PageProps {
     errorInfo: ErrorInfo;
+    backToChatsLink: Link;
 }
 
 const errorInfo = new ErrorInfo(
@@ -15,13 +17,28 @@ const errorInfo = new ErrorInfo(
             class: 'error-info',
         },
     },
-
 );
+
+const handlerBackClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    Router.go('/messenger');
+};
+
+const backToChatsLink = new Link('div', {
+    href: '/messenger',
+    text: 'Back to chats',
+    class: 'error-info__back-link',
+    events: {
+        click: handlerBackClick,
+    },
+});
 
 export default class Error500Page extends Block<IError500PageProps> {
     constructor() {
         super('section', {
             errorInfo,
+            backToChatsLink,
         });
     }
     render() {

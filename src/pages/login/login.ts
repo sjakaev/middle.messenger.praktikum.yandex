@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
+import Router from '../../core/Router.ts';
 import template from './template.ts';
 import {
     Link,
@@ -51,6 +52,15 @@ const submitLoginForm = (event: Event) => {
         console.log(`${name}:`, value);
     });
     console.log('-------------------------------');
+
+    Router.go('/messenger');
+};
+
+const handlerLinkClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    Router.go('/sign-up');
 };
 
 const inputLogin: any = new Input('div', {
@@ -98,6 +108,9 @@ const link = new Link('div', {
     href: '#',
     text: 'Create a profile',
     class: 'login__footer-link',
+    events: {
+        click: handlerLinkClick,
+    },
 });
 
 const loginForm = new Form('form', {

@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import Button from '../../components/button/Button.ts';
 import Block from '../../core/Block.ts';
+import Router from '../../core/Router.ts';
 import registerTemplate from './template.ts';
 import {
     Input,
@@ -97,6 +98,15 @@ const submitRegisterForm = (event: Event) => {
         console.log(`${name}:`, value);
     });
     console.log('-------------------------------');
+
+    Router.go('/messenger');
+};
+
+const handlerAuthLinkClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    Router.go('/');
 };
 
 const inputEmail: any = new Input('div', {
@@ -213,6 +223,9 @@ const authLink = new Link('div', {
     page: 'login',
     href: '#',
     text: 'Sign in',
+    events: {
+        click: handlerAuthLinkClick,
+    },
 });
 
 const registerForm = new Form('form', {

@@ -3,6 +3,7 @@ import ChatItemList from './ChatItemList/ChatItemList.ts';
 import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
+import Router from '../../core/Router.ts';
 import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
 import './ChatItemList/chatItemList.scss';
@@ -18,30 +19,21 @@ interface IChatPageProps {
     messageSendForm: MessageSendForm;
 }
 
+const handlerUserSettingsClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    Router.go('/settings');
+};
+
 const userSettingsButton = new Link('span', {
     text: 'Profile',
     class: 'chat__user-settings-button',
-    page: 'user-settings',
-
+    events: {
+        click: handlerUserSettingsClick,
+    },
 });
 
-const nav = new Nav(
-    'ul',
-    {
-        attr: {
-            class: 'chat__nav',
-        },
-        items: [
-            { url: '/', title: 'Login', page: 'login' },
-            { url: '/', title: 'Register', page: 'register' },
-            { url: '/', title: 'Chat', page: 'chat' },
-            { url: '/', title: 'Error404', page: 'error404' },
-            { url: '/', title: 'Error500', page: 'error500' },
-            { url: '/', title: 'User Settings', page: 'user-settings' },
-        ],
-
-    },
-);
+const nav = new Nav();
 
 const chatSearch = new ChatSearch();
 const messageSendForm = new MessageSendForm();

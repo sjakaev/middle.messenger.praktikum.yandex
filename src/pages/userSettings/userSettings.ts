@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
+import Route from '../../core/Router.ts';
 import {
     Input, Button, Form,
 } from '../../components/index.ts';
@@ -186,6 +187,12 @@ const submitChangePassword = (event: Event) => {
 
     event.preventDefault();
     event.stopPropagation();
+};
+
+const handleLogOutClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    Route.go('/');
 };
 
 const userSettingsMail = new Input('div', {
@@ -400,6 +407,9 @@ const buttonLogOut = new Button('button', {
         class: 'profile__button profile__button_color_red profile__button-log-out',
         type: 'submit',
         page: 'chat',
+    },
+    events: {
+        click: handleLogOutClick,
     },
 });
 
