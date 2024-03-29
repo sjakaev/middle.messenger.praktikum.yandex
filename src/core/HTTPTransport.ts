@@ -30,11 +30,18 @@ function queryStringify(data: Record<string, any>) {
 }
 
 class HTTPTransport {
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    _baseUrl: string;
+
+    constructor(endpoint: string) {
+        this._baseUrl = `${HTTPTransport.API_URL}${endpoint}`;
+    }
+
     get: HTTPMethod = (url, options = {}) => this
         .request(url, { ...options, method: METHOD.GET }, options.timeout);
 
-    post: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.POST }, options.timeout);
+    post: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.POST });
 
     put: HTTPMethod = (url, options = {}) => this
         .request(url, { ...options, method: METHOD.PUT }, options.timeout);
@@ -70,17 +77,30 @@ class HTTPTransport {
             }
 
             xhr.onload = function () {
-                resolve(xhr);
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(xhr);
+                } else {
+                    reject(new Error(`Error: ${xhr.status}`));
+                }
             };
 
             xhr.onabort = reject;
             xhr.onerror = reject;
             xhr.ontimeout = reject;
 
+            if (data instanceof FormData === false) {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+            }
+
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
+
             if (isGet || !data) {
                 xhr.send();
-            } else {
+            } else if (data instanceof FormData) {
                 xhr.send(data);
+            } else {
+                xhr.send(JSON.stringify(data));
             }
         });
     }

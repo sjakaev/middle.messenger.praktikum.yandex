@@ -2,6 +2,7 @@
 import Block from '../../core/Block.ts';
 import Router from '../../core/Router.ts';
 import template from './template.ts';
+import authApi from '../../api/authApi.ts';
 import {
     Link,
     Button,
@@ -30,30 +31,28 @@ const setAttributeValue = (event: Event) => {
     inputElement?.setAttribute('value', newValue);
 };
 
-const submitLoginForm = (event: Event) => {
+const submitLoginForm = async (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
     const form = document.querySelector('#login-form') as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form?.name;
+    const login = formData.get('login') as string;
+    const password = formData.get('password') as string;
 
     validateLogin();
     validatePassword();
 
     if (inputLogin._props.error || inputPassword._props.error) {
-        event.preventDefault();
-        event.stopPropagation();
         return;
     }
 
-    console.log('--------------------------------');
-    console.log('loginForm', loginForm);
-    console.log('Form name:', formName);
-
-    Array.from(formData.entries()).forEach(([name, value]) => {
-        console.log(`${name}:`, value);
-    });
-    console.log('-------------------------------');
-
-    Router.go('/messenger');
+    try {
+        await authApi.signIn({ login, password });
+        Router.go('/messenger');
+    } catch (error) {
+        console.log('error: ', error);
+        alert('Authorisation error');
+    }
 };
 
 const handlerLinkClick = (event: Event) => {

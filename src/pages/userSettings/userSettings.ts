@@ -1,11 +1,12 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
-import Route from '../../core/Router.ts';
+import Router from '../../core/Router.ts';
 import {
     Input, Button, Form,
 } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 import defaultAvatarIcon from '../../assets/default-avatar.svg';
+import authApi from '../../api/authApi.ts';
 
 import {
     loginValidation,
@@ -192,7 +193,10 @@ const submitChangePassword = (event: Event) => {
 const handleLogOutClick = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
-    Route.go('/');
+
+    authApi.logout()
+        .then(() => Router.go('/'))
+        .catch((error) => alert(error));
 };
 
 const userSettingsMail = new Input('div', {

@@ -3,6 +3,7 @@ import Button from '../../components/button/Button.ts';
 import Block from '../../core/Block.ts';
 import Router from '../../core/Router.ts';
 import registerTemplate from './template.ts';
+import authApi from '../../api/authApi.ts';
 import {
     Input,
     Link,
@@ -64,10 +65,18 @@ const setAttributeValue = (event: Event) => {
     inputElement?.setAttribute('value', newValue);
 };
 
-const submitRegisterForm = (event: Event) => {
+const submitRegisterForm = async (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const form = document.querySelector('#register-form') as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form.name;
+    const firstName = formData.get('first_name') as string;
+    const secondName = formData.get('second_name') as string;
+    const login = formData.get('login') as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const phone = formData.get('phone') as string;
 
     validateLogin();
     validatePassword();
@@ -85,21 +94,25 @@ const submitRegisterForm = (event: Event) => {
         || inputEmail._props.error
         || inputRepeatPassword._props.error
     ) {
-        event.preventDefault();
-        event.stopPropagation();
         return;
     }
 
-    console.log('--------------------------------');
-    console.log('registerForm', registerForm);
-    console.log('Form name:', formName);
+    const data = {
+        first_name: firstName,
+        second_name: secondName,
+        login,
+        email,
+        password,
+        phone,
+    };
 
-    Array.from(formData.entries()).forEach(([name, value]) => {
-        console.log(`${name}:`, value);
-    });
-    console.log('-------------------------------');
-
-    Router.go('/messenger');
+    try {
+        await authApi.signUp(data);
+        Router.go('/messenger');
+    } catch (error) {
+        console.log('error: ', error);
+        alert('Registration error');
+    }
 };
 
 const handlerAuthLinkClick = (event: Event) => {
