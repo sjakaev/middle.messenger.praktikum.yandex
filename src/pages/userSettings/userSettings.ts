@@ -2,7 +2,7 @@
 import Block from '../../core/Block.ts';
 import Router from '../../core/Router.ts';
 import {
-    Input, Button, Form,
+    Input, Button, Form, Avatar,
 } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 import defaultAvatarIcon from '../../assets/default-avatar.svg';
@@ -25,9 +25,9 @@ type IUser = {
     second_name: string;
     display_name: string;
     phone: string;
+    avatar: string;
 };
 
-// Функция получение данных пользователя, и заполнения данных пользователя
 async function getUserData() {
     try {
         const response = await authApi.getUser() as { response: unknown };
@@ -40,19 +40,46 @@ async function getUserData() {
             second_name: user.second_name,
             display_name: user.display_name,
             phone: user.phone,
+            avatar: user.avatar,
         };
 
         Object.entries(data).forEach(([key, value]) => {
             const input = document.getElementById(key) as HTMLInputElement;
-            if (input) {
-                input.value = String(value);
-                input.setAttribute('value', String(value));
+            if (key === 'avatar') {
+                const avatarImg = document.querySelector('.avatar__image') as HTMLImageElement;
+                const avatar = value
+                    ? `https://ya-praktikum.tech/api/v2/resources/${value}`
+                    : defaultAvatarIcon;
+                if (avatarImg) {
+                    avatarImg.src = avatar;
+                }
             }
+
+            input.value = String(value);
+            input.setAttribute('value', String(value));
         });
 
         console.log('data = ', data);
     } catch (error) {
         console.log('error: ', error);
+    }
+}
+
+async function handleChangeAvatar() {
+    try {
+        const input: any = document.querySelector('.avatar__input');
+        const data = new FormData();
+        data.append('avatar', input.files[0]);
+
+        const result = await usersApi.changeAvatar(data);
+        const avatarImg = document.querySelector('.avatar__image') as HTMLImageElement;
+
+        if (avatarImg) {
+            avatarImg.src = `https://ya-praktikum.tech/api/v2/resources/${result.response.avatar}`;
+        }
+    } catch (error) {
+        console.log('error: ', error);
+        alert('Change settings error');
     }
 }
 
@@ -109,6 +136,7 @@ const validateConfirmPassword = () => {
 
 interface IUserSettingsPageProps {
     avatar: string;
+    userAvatar: Avatar;
     userSettingsForm: Form;
     changePasswordForm: Form;
     buttonChangeData: Button;
@@ -262,7 +290,7 @@ const handleLogOutClick = (event: Event) => {
         .catch((error) => alert(error));
 };
 
-const userSettingsMail = await new Input('div', {
+const userSettingsMail = new Input('div', {
     name: 'email',
     type: 'email',
     placeholder: 'email',
@@ -310,6 +338,13 @@ const userSettingsFirstName = new Input('div', {
     events: {
         focusout: validateFirstName,
         input: setAttributeValue,
+    },
+});
+
+const userAvatar = new Avatar('div', {
+    src: '/test',
+    events: {
+        change: handleChangeAvatar,
     },
 });
 
@@ -509,6 +544,7 @@ export default class UserSettingsPage extends Block<IUserSettingsPageProps> {
     constructor() {
         super('section', {
             avatar: `${defaultAvatarIcon}`,
+            userAvatar,
             userSettingsForm,
             changePasswordForm,
             buttonChangeData,
