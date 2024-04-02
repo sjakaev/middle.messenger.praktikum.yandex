@@ -78,6 +78,15 @@ const submitRegisterForm = async (event: Event) => {
     const password = formData.get('password') as string;
     const phone = formData.get('phone') as string;
 
+    const data = {
+        first_name: firstName,
+        second_name: secondName,
+        login,
+        email,
+        password,
+        phone,
+    };
+
     validateLogin();
     validatePassword();
     validateFirstName();
@@ -96,15 +105,6 @@ const submitRegisterForm = async (event: Event) => {
     ) {
         return;
     }
-
-    const data = {
-        first_name: firstName,
-        second_name: secondName,
-        login,
-        email,
-        password,
-        phone,
-    };
 
     try {
         await authApi.signUp(data);

@@ -37,17 +37,17 @@ class HTTPTransport {
         this._baseUrl = `${HTTPTransport.API_URL}${endpoint}`;
     }
 
-    get: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.GET }, options.timeout);
+    get: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.GET });
 
     post: HTTPMethod = (url, data = {}) => this
         .request(this._baseUrl + url, { data, method: METHOD.POST });
 
-    put: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.PUT }, options.timeout);
+    put: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.PUT });
 
-    delete: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.DELETE }, options.timeout);
+    delete: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.DELETE });
 
     // eslint-disable-next-line class-methods-use-this
     request(

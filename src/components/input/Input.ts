@@ -20,6 +20,7 @@ export interface IInputProps {
 }
 
 export interface IInput {
+    getValue: () => any;
     validateInput: (validationFunction: any) => void;
     validateConfirmPassword: (password: string, confirmPassword: string) => void;
 }
@@ -27,6 +28,13 @@ export interface IInput {
 export default class Input extends Block<IInputProps> implements IInput {
     render() {
         return this.compile(tpl, this._props);
+    }
+
+    getValue() {
+        const inputItem = this._element.querySelector('.input__item');
+        const inputValue = inputItem.getAttribute('value');
+
+        return inputValue;
     }
 
     validateInput(validationFunction: any) {

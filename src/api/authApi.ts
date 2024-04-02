@@ -13,7 +13,7 @@ class Api extends BaseAPI {
         return this._http.post('/signin', data);
     }
 
-    user() {
+    getUser() {
         return this._http.get('/user');
     }
 
