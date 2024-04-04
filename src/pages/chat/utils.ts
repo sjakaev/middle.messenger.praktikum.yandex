@@ -5,6 +5,8 @@ import './ChatList/chatList.scss';
 import './ChatWindowHeader/chatWindowHeader.scss';
 import './ChatWindowBody/chatWindowBody.scss';
 import chatApi from '../../api/chatApi.ts';
+import authApi from '../../api/authApi.ts';
+import { createMessageResponseElement } from './MessageSendForm/MessageSendForm.ts';
 import { IChat } from './IChat.ts';
 
 export function formatUserList(userList: any) {
@@ -63,6 +65,61 @@ export const deleteChat = async (event: Event, сhatItemList: any) => {
     }
 };
 
+export const sendMessage = async (socket: any, messageValue: any) => {
+    socket.send(JSON.stringify({
+        content: messageValue,
+        type: 'message',
+    }));
+};
+
+const socketСonnection = (userId: any, chatId: any, token: any) => {
+    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
+
+    socket.addEventListener('open', () => {
+        console.log('Соединение установлено');
+
+        socket.send(JSON.stringify({
+            content: 'Моё первое сообщение миру!',
+            type: 'message',
+        }));
+    });
+
+    socket.addEventListener('close', (event) => {
+        if (event.wasClean) {
+            console.log('Соединение закрыто чисто');
+        } else {
+            console.log('Обрыв соединения');
+        }
+
+        console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+    });
+
+    socket.addEventListener('message', (event) => {
+        const { content, user_id: dataUserId } = JSON.parse(event.data);
+
+        if (dataUserId === userId) {
+            return;
+        }
+
+        const messageElement = createMessageResponseElement(content);
+        document.querySelector('.chat-window-body__messages-wrapper')?.appendChild(messageElement);
+        console.log('Получены данные', event.data);
+    });
+
+    socket.addEventListener('error', (event: any) => {
+        console.log('Ошибка', event.message);
+    });
+
+    document.querySelector('.message-send-form')!.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const messageInputItem = document.querySelector('.message-send-form__message-input');
+        const messageInputValue = messageInputItem?.getAttribute('value');
+
+        sendMessage(socket, messageInputValue);
+    });
+};
+
 export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage: any) => {
     event.preventDefault();
     event.stopPropagation();
@@ -77,7 +134,6 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
             const chats = responseGetChats.response;
             const activeChat = getChatById(chats, Number(chatId));
             const users = responseGetChatUsers.response;
-            console.log('users = ', users);
             // const users = JSON.stringify(responseGetChatUsers.response, null, 2);
 
             chatWindowHeader.setProps({
@@ -90,6 +146,22 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
             chatPage.setProps({
                 activeChat: JSON.stringify(activeChat, null, 2),
             });
+
+            const host = 'https://ya-praktikum.tech';
+
+            try {
+                const response = await fetch(`${host}/api/v2/chats/token/${activeChat?.id}`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'include',
+                });
+                const data = await response.json();
+                const result = await authApi.getUser();
+                const user = result.response;
+                socketСonnection(user.id, activeChat?.id, data.token);
+            } catch (error) {
+                console.error('Error:', error);
+            }
 
             if (chatWindowBody) {
                 chatWindowBody.textContent = '';

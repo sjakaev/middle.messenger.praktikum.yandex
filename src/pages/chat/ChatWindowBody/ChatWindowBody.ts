@@ -10,6 +10,9 @@ const nav = new Nav();
 export default class ChatWindowBody extends Block<IChatWindowBody> {
     constructor() {
         super('div', {
+            attr: {
+                class: 'chat-window-body',
+            },
             nav,
         });
     }

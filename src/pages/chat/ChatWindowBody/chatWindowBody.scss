@@ -26,5 +26,11 @@
         flex-flow: column wrap;
         align-items: flex-start;
         margin-bottom: 7px;
+
+        &_type_response {
+            background-color: greenyellow;
+            align-self: flex-start;
+            border-radius: 12px 12px 12px 0;
+        }
     }
 }
