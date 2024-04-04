@@ -31,7 +31,7 @@ class Router implements IRouter {
         Router.__instance = this;
     }
 
-    use(pathname: string, block: Block) {
+    use(pathname: string, block: any) {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
         this.routes?.push(route);

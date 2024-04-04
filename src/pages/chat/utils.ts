@@ -7,10 +7,10 @@ import './ChatWindowBody/chatWindowBody.scss';
 import chatApi from '../../api/chatApi.ts';
 import authApi from '../../api/authApi.ts';
 import { createMessageResponseElement } from './MessageSendForm/MessageSendForm.ts';
-import { IChat } from './IChat.ts';
+import { IChat, IUser } from './IChat.ts';
 
 export function formatUserList(userList: any) {
-    return userList?.map((user) => `${user.login} (id: ${user.id})`).join(', ');
+    return userList?.map((user: IUser) => `${user.login} (id: ${user.id})`).join(', ');
 }
 
 export async function componentInit(сhatItemList: any) {
@@ -75,7 +75,7 @@ export const sendMessage = async (socket: any, messageValue: any) => {
     }));
 };
 
-const socketСonnection = (userId: any, chatId: any, token: any) => {
+const socketСonnection = (userId: number, chatId: number, token: any) => {
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     socket.addEventListener('open', () => {
@@ -156,15 +156,15 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
             const host = 'https://ya-praktikum.tech';
 
             try {
-                const response = await fetch(`${host}/api/v2/chats/token/${activeChat?.id}`, {
+                const response = await fetch(`${host}/api/v2/chats/token/${activeChat?.id ?? 0}`, {
                     method: 'POST',
                     mode: 'cors',
                     credentials: 'include',
                 });
                 const data = await response.json();
-                const result = await authApi.getUser();
+                const result: any = await authApi.getUser();
                 const user = result.response;
-                socketСonnection(user.id, activeChat?.id, data.token);
+                socketСonnection(user.id, activeChat?.id ?? 0, data.token);
             } catch (error) {
                 // eslint-disable-next-line
                 console.error('Error:', error);

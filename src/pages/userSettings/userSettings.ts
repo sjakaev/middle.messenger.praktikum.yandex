@@ -70,7 +70,7 @@ async function handleChangeAvatar() {
         const data = new FormData();
         data.append('avatar', input.files[0]);
 
-        const result = await usersApi.changeAvatar(data);
+        const result = await usersApi.changeAvatar(data) as any;
         const avatarImg = document.querySelector('.avatar__image') as HTMLImageElement;
 
         if (avatarImg) {

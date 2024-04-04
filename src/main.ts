@@ -1,5 +1,3 @@
-// import renderDOM from './utils/renderDOM.ts';
-// import IndexLayout from './layout/index.ts';
 import Router from './core/Router.ts';
 
 import {
