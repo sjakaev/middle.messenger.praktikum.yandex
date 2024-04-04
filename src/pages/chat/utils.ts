@@ -35,6 +35,7 @@ export const openSettingsPage = (event: Event) => {
 export const createNewChat = async (event: Event, сhatItemList: any) => {
     event.preventDefault();
     event.stopPropagation();
+    // eslint-disable-next-line
     const chatTitle = prompt('Enter the name of the new chat room');
     if (chatTitle) {
         await chatApi.createChat({ title: chatTitle }) as any;
@@ -52,6 +53,7 @@ export const createNewChat = async (event: Event, сhatItemList: any) => {
 export const deleteChat = async (event: Event, сhatItemList: any) => {
     event.preventDefault();
     event.stopPropagation();
+    // eslint-disable-next-line
     const chatTitle = prompt('Enter chat id');
     if (chatTitle) {
         await chatApi.deleteChat({ chatId: chatTitle }) as any;

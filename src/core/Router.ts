@@ -27,7 +27,7 @@ class Router implements IRouter {
         this._currentRoute = null;
         this._rootQuery = rootQuery;
 
-        // @ts-expect-error
+        // @ts-expect-error - Router.__instance is assigned here to ensure singleton behavior
         Router.__instance = this;
     }
 
