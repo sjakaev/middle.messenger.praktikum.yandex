@@ -6,7 +6,7 @@ const tmp = `
         </div>
         <div class="chat-list__item-second-column">
             <div class="chat-list__item-name">{{ title }} (id: {{id}})</div>
-            <div class="chat-list__item-last-message">{{ last_message }}</div>
+            <div class="chat-list__item-last-message">{{{ last_message.content }}}</div>
         </div>
 
         <div class="chat-list__item-third-column">

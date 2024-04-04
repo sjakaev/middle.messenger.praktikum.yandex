@@ -35,7 +35,7 @@ const inputSendMessage: any = new Input('div', {
     },
 });
 
-export function createMessegeElement(content: string) {
+export function createMessageElement(content: string) {
     const message = document.createElement('div');
     message.className = 'chat-window-body__message';
     message.innerText = content;
@@ -57,7 +57,7 @@ export const submitMessage = () => {
     const messageInputValue = messageInputItem.getAttribute('value');
 
     if (messageInputValue) {
-        const messageElement = createMessegeElement(messageInputValue);
+        const messageElement = createMessageElement(messageInputValue);
         document.querySelector('.chat-window-body__messages-wrapper')?.appendChild(messageElement);
         messageInputItem.value = '';
     }
