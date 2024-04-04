@@ -6,22 +6,18 @@ const tmp = `
                     {{{ userSettingsButton }}}
                 </div>
                 {{{ chatSearch }}}
-                {{{ chatItemList }}}
+                {{{ chatList }}}
+                {{{ buttonCreateNewChat }}}
+                {{{ buttonDeleteChat }}}
             </div>
             <div class="chat__window">
-                <div class="chat__window-header">
-                    <div class="chat__window-header-user">
-                        Alex
-                    </div>
-                </div>
-                <div class="chat__window-body">
-                    <div class="chat__messages-wrapper">
-                        <div class="chat__message">
-                            <nav> {{{ nav }}} </nav>
-                        </div>
-                    </div>
-                </div>
+            {{#if activeChat}}
+                {{{ chatWindowHeader }}}
+                {{{ chatWindowBody }}}
                 {{{ messageSendForm }}}
+            {{else}}
+                <p class="chat__default-text ">Select a chat to send a message</p>
+            {{/if}}
             </div>
         </div>
     </main>

@@ -12,6 +12,8 @@
         width: 310px;
         height: 100vh;
         background-color: #FBFBFB;
+        overflow: scroll;
+        flex: 0 0 auto;
     }
 
 
@@ -37,28 +39,6 @@
         align-items: stretch;
     }
 
-    &__window-header {
-        height: 55px;
-        padding: 10px;
-        margin: 0 20px;
-        display: flex;
-        background-color: transparent;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #EAEAEA;
-    }
-
-    &__window-body {
-        padding: 20px;
-        flex-grow: 1;
-        display: flex;
-        background-color: transparent;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        overflow: scroll;
-    }
 
     &__window-footer {
         height: 55px;
@@ -72,14 +52,6 @@
         border-top: 1px solid #EAEAEA;
     }
 
-    &__button {
-        margin-bottom: 15px;
-    }
-
-    &__chat-list {
-        height: auto;
-        overflow-y: scroll;
-    }
 
     &__user-settings {
         display: flex;
@@ -119,24 +91,19 @@
         }
     }
 
-    &__message {
-        display: flex;
-        width: fit-content;
-        max-width: 500px;
-        padding: 11px;
-        background-color: #E4EDFD;
-        border-radius: 12px 12px 0;
-        flex-flow: column wrap;
-        align-items: flex-start;
-        margin-bottom: 7px;
+    &__delete-chat-button,
+    &__new-chat-button {
+        width: -webkit-fill-available;
+        margin: 15px 10px;
     }
 
-    &__messages-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-end;
+    &__default-text {
         width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:  var(--color-text-light);
     }
 }
 

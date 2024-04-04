@@ -1,0 +1,55 @@
+.chat-window-header {
+
+    height: 55px;
+    padding: 10px;
+    margin: 0 20px;
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EAEAEA;
+
+    &__title {
+        font-weight: 700;
+    }
+
+    &__settings {
+        cursor: pointer;
+        background-color: transparent;
+    }
+
+    &__settings-wrapper {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 65px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 210px;
+        height: 90px;
+        background: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+        border-radius: 12px
+    }
+
+    &__settings-wrapper_active {
+        display: flex;
+    }
+
+    &__delete-user-button,
+    &__add-user-button {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    &__delete-user-button {
+        margin-bottom: 0;
+    }
+}

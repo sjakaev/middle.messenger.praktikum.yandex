@@ -1,0 +1,30 @@
+.chat-window-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    background-color: transparent;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: scroll;
+
+    &__messages-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    &__message {
+        display: flex;
+        width: fit-content;
+        max-width: 500px;
+        padding: 11px;
+        background-color: #E4EDFD;
+        border-radius: 12px 12px 0;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        margin-bottom: 7px;
+    }
+}

@@ -1,92 +1,80 @@
 import ChatSearch from './ChatSearch/ChatSearch.ts';
-import ChatItemList from './ChatItemList/ChatItemList.ts';
+import ChatList from './ChatList/ChatList.ts';
 import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
 import template from './template.ts';
 import Block from '../../core/Block.ts';
-import Router from '../../core/Router.ts';
 import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
-import './ChatItemList/chatItemList.scss';
+import './ChatList/chatList.scss';
+import './ChatWindowHeader/chatWindowHeader.scss';
+import './ChatWindowBody/chatWindowBody.scss';
 import {
-    Nav, Link,
+    Link, Button,
 } from '../../components/index.ts';
+import ChatWindowBody from './ChatWindowBody/ChatWindowBody.ts';
+import ChatWindowHeader from './ChatWindowHeader/ChatWindowHeader.ts';
+import { IChat, IChatPageProps } from './IChat.ts';
+import {
+    createNewChat, deleteChat, openSettingsPage, openTheСhat, componentInit,
+} from './utils.ts';
 
-interface IChatPageProps {
-    userSettingsButton: Link;
-    chatSearch: ChatSearch;
-    chatItemList: ChatItemList;
-    nav: Nav;
-    messageSendForm: MessageSendForm;
-}
-
-const handlerUserSettingsClick = (event: Event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    Router.go('/settings');
-};
-
-const userSettingsButton = new Link('span', {
-    text: 'Profile',
-    class: 'chat__user-settings-button',
-    events: {
-        click: handlerUserSettingsClick,
-    },
-});
-
-const nav = new Nav();
-
+const chats: IChat[] = [];
 const chatSearch = new ChatSearch();
 const messageSendForm = new MessageSendForm();
-
-const chatItemList = new ChatItemList(
-    'ul',
-    {
-        items: [
-            {
-                chatName: 'Liza',
-                lastMessage: 'I love you!',
-                time: '11:11',
-                unreadsCount: 1,
-            },
-            {
-                chatName: 'Alex',
-                lastMessage: 'Hi, Bro',
-                time: '23:12',
-                unreadsCount: 1,
-            },
-            {
-                chatName: 'John',
-                lastMessage: 'Hi, how are you?',
-                time: '09:11',
-                unreadsCount: 4,
-            },
-            {
-                chatName: 'Anastasia',
-                lastMessage: 'What do u think about it?',
-                time: '08:16',
-                unreadsCount: 91,
-            },
-            {
-                chatName: 'Kate',
-                lastMessage: 'ok',
-                time: '10:01',
-                unreadsCount: 2,
-            },
-        ],
-    },
-);
+const chatWindowHeader = new ChatWindowHeader('Chat name');
+const chatWindowBody = new ChatWindowBody();
 
 export default class ChatPage extends Block<IChatPageProps> {
     constructor() {
+        const userSettingsButton = new Link('span', {
+            text: 'Profile',
+            class: 'chat__user-settings-button',
+            events: {
+                click: openSettingsPage,
+            },
+        });
+
+        const chatList = new ChatList('ul', {
+            events: {
+                click: (event: Event) => openTheСhat(event, chatWindowHeader, this),
+            },
+        });
+
+        const buttonCreateNewChat = new Button('button', {
+            text: 'Add new chat',
+            attr: {
+                class: 'btn chat__new-chat-button',
+            },
+            events: {
+                click: (event: Event) => createNewChat(event, chatList),
+            },
+        });
+
+        const buttonDeleteChat = new Button('button', {
+            text: 'Delete chat',
+            attr: {
+                class: 'btn chat__delete-chat-button',
+            },
+            events: {
+                click: (event: Event) => deleteChat(event, chatList),
+            },
+        });
+
         super('section', {
             userSettingsButton,
             chatSearch,
-            chatItemList,
-            nav,
+            chatList,
+            buttonCreateNewChat,
+            buttonDeleteChat,
+            chatWindowHeader,
+            chatWindowBody,
             messageSendForm,
-
+            chats,
         });
+
+        componentInit(chatList);
     }
+
     render() {
         return this.compile(template, this._props);
     }
