@@ -49,11 +49,15 @@ const submitLoginForm = async (event: Event) => {
     try {
         await authApi.signIn({ login, password });
         Router.go('/messenger');
-    } catch (error) {
+    } catch (error: any) {
+        if (error.reason === 'User already in system') {
+            Router.go('/messenger');
+            return;
+        }
         // eslint-disable-next-line
         console.log('error: ', error);
         // eslint-disable-next-line
-        alert('Authorisation error');
+        alert(`Authorisation error: ${error.reason}`);
     }
 };
 
@@ -65,10 +69,10 @@ const handlerLinkClick = (event: Event) => {
 };
 
 const inputLogin: any = new Input('div', {
-    value: 'Login',
+    value: '',
     name: 'login',
     type: 'text',
-    placeholder: 'Login',
+    placeholder: '',
     attr: {
         class: 'input login__input',
     },
@@ -79,10 +83,10 @@ const inputLogin: any = new Input('div', {
 });
 
 const inputPassword: any = new Input('div', {
-    value: 'Password1',
+    value: '',
     name: 'password',
     type: 'password',
-    placeholder: 'Password',
+    placeholder: '',
     attr: {
         class: 'input login__input',
     },
@@ -134,6 +138,7 @@ export default class LoginPage extends Block<ILoginPageProps> {
             link,
         });
     }
+
     render() {
         return this.compile(template, this._props);
     }

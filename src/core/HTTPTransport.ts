@@ -80,7 +80,7 @@ class HTTPTransport {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     resolve(xhr);
                 } else {
-                    reject(new Error(`Error: ${xhr.status}`));
+                    reject(xhr.response);
                 }
             };
 
