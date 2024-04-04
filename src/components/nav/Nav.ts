@@ -5,21 +5,7 @@ import {
 } from '../index.ts';
 import Router from '../../core/Router.ts';
 import './nav.scss';
-
-export interface INavProps {
-    url?: string;
-    title?: string;
-    text?: string;
-    items?: Link[];
-    attr: { [key: string]: string };
-    events?: { [key: string]: (event: Event) => void };
-    loginLink: Link;
-    registerLink: Link;
-    messengerLink: Link;
-    error404Link: Link;
-    error500Link: Link;
-    settingsLink: Link;
-}
+import { INavProps } from './INav.ts';
 
 const handlerNavClick = (event: Event, url: string) => {
     event.preventDefault();
