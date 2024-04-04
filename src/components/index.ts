@@ -12,4 +12,4 @@ export type { ILinkProps } from './link/Link.ts';
 export type { IButtonProps } from './button/Button.ts';
 export type { IFormProps } from './form/Form.ts';
 export type { IInput } from './input/Input.ts';
-export type { INavProps } from './nav/Nav.ts';
+export type { INavProps } from './nav/INav.ts';
