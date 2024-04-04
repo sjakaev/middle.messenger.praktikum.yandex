@@ -72,7 +72,7 @@ const inputLogin: any = new Input('div', {
     value: '',
     name: 'login',
     type: 'text',
-    placeholder: '',
+    placeholder: 'Login',
     attr: {
         class: 'input login__input',
     },
@@ -86,7 +86,7 @@ const inputPassword: any = new Input('div', {
     value: '',
     name: 'password',
     type: 'password',
-    placeholder: '',
+    placeholder: 'Password',
     attr: {
         class: 'input login__input',
     },

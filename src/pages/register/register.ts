@@ -125,10 +125,11 @@ const handlerAuthLinkClick = (event: Event) => {
 };
 
 const inputEmail: any = new Input('div', {
-    value: 'roman@gmail.com',
+    value: '',
     label: 'Email',
     name: 'email',
     type: 'text',
+    placeholder: 'Email',
     attr: {
         class: 'input register__input',
     },
@@ -139,9 +140,10 @@ const inputEmail: any = new Input('div', {
 });
 
 const inputLogin: any = new Input('div', {
-    value: 'Roman3000',
+    value: '',
     label: 'Login',
     name: 'login',
+    placeholder: 'Login',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -153,9 +155,10 @@ const inputLogin: any = new Input('div', {
 });
 
 const inputFirstName: any = new Input('div', {
-    value: 'Ivan',
+    value: '',
     label: 'First name',
     name: 'first_name',
+    placeholder: 'First name',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -167,9 +170,10 @@ const inputFirstName: any = new Input('div', {
 });
 
 const inputSecondName: any = new Input('div', {
-    value: 'Petrov',
+    value: '',
     label: 'Second name',
     name: 'second_name',
+    placeholder: 'Second name',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -181,9 +185,10 @@ const inputSecondName: any = new Input('div', {
 });
 
 const inputPhone: any = new Input('div', {
-    value: '+7123456789',
+    value: '',
     label: 'Phone number',
     name: 'phone',
+    placeholder: '+7123456789',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -195,10 +200,11 @@ const inputPhone: any = new Input('div', {
 });
 
 const inputPassword: any = new Input('div', {
-    value: 'Roman3001',
+    value: '',
     label: 'Password',
     name: 'password',
     type: 'password',
+    placeholder: 'Password',
     attr: {
         class: 'input register__input',
     },
@@ -209,10 +215,11 @@ const inputPassword: any = new Input('div', {
 });
 
 const inputRepeatPassword: any = new Input('div', {
-    value: 'Roman3001',
+    value: '',
     label: 'Repeat password',
     name: 'second_password',
     type: 'password',
+    placeholder: 'Repeat password',
     attr: {
         class: 'input register__input',
     },
