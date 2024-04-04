@@ -27,7 +27,7 @@ class Router implements IRouter {
         this._currentRoute = null;
         this._rootQuery = rootQuery;
 
-        // @ts-ignore-next-line
+        // @ts-expect-error
         Router.__instance = this;
     }
 

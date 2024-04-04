@@ -76,7 +76,7 @@ class HTTPTransport {
                 xhr.timeout = timeout;
             }
 
-            xhr.onload = function () {
+            xhr.onload = function onload() {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     resolve(xhr);
                 } else {

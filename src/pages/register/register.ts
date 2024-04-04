@@ -110,7 +110,9 @@ const submitRegisterForm = async (event: Event) => {
         await authApi.signUp(data);
         Router.go('/messenger');
     } catch (error) {
+        // eslint-disable-next-line
         console.log('error: ', error);
+        // eslint-disable-next-line
         alert('Registration error');
     }
 };

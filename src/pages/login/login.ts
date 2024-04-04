@@ -50,7 +50,9 @@ const submitLoginForm = async (event: Event) => {
         await authApi.signIn({ login, password });
         Router.go('/messenger');
     } catch (error) {
+        // eslint-disable-next-line
         console.log('error: ', error);
+        // eslint-disable-next-line
         alert('Authorisation error');
     }
 };

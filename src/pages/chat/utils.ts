@@ -16,7 +16,6 @@ export function formatUserList(userList: any) {
 export async function componentInit(сhatItemList: any) {
     const response = await chatApi.getChats() as { response: IChat[] };
     const chats = response.response;
-    console.log('chats = ', chats);
 
     сhatItemList.setProps({
         items: chats,
@@ -45,6 +44,7 @@ export const createNewChat = async (event: Event, сhatItemList: any) => {
             items: chats,
         });
     } else {
+        // eslint-disable-next-line
         console.log('The name of the chat room cannot be empty');
     }
 };
@@ -61,6 +61,7 @@ export const deleteChat = async (event: Event, сhatItemList: any) => {
             items: chats,
         });
     } else {
+        // eslint-disable-next-line
         console.log('The chat id cannot be empty');
     }
 };
@@ -76,6 +77,7 @@ const socketСonnection = (userId: any, chatId: any, token: any) => {
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     socket.addEventListener('open', () => {
+        // eslint-disable-next-line
         console.log('Соединение установлено');
 
         socket.send(JSON.stringify({
@@ -86,11 +88,14 @@ const socketСonnection = (userId: any, chatId: any, token: any) => {
 
     socket.addEventListener('close', (event) => {
         if (event.wasClean) {
+            // eslint-disable-next-line
             console.log('Соединение закрыто чисто');
         } else {
+            // eslint-disable-next-line
             console.log('Обрыв соединения');
         }
 
+        // eslint-disable-next-line
         console.log(`Код: ${event.code} | Причина: ${event.reason}`);
     });
 
@@ -103,10 +108,10 @@ const socketСonnection = (userId: any, chatId: any, token: any) => {
 
         const messageElement = createMessageResponseElement(content);
         document.querySelector('.chat-window-body__messages-wrapper')?.appendChild(messageElement);
-        console.log('Получены данные', event.data);
     });
 
     socket.addEventListener('error', (event: any) => {
+        // eslint-disable-next-line
         console.log('Ошибка', event.message);
     });
 
@@ -134,7 +139,6 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
             const chats = responseGetChats.response;
             const activeChat = getChatById(chats, Number(chatId));
             const users = responseGetChatUsers.response;
-            // const users = JSON.stringify(responseGetChatUsers.response, null, 2);
 
             chatWindowHeader.setProps({
                 chatName: activeChat?.title,
@@ -160,6 +164,7 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
                 const user = result.response;
                 socketСonnection(user.id, activeChat?.id, data.token);
             } catch (error) {
+                // eslint-disable-next-line
                 console.error('Error:', error);
             }
 

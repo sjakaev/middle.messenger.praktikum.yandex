@@ -58,9 +58,8 @@ async function getUserData() {
             input.value = String(value);
             input.setAttribute('value', String(value));
         });
-
-        console.log('data = ', data);
     } catch (error) {
+        // eslint-disable-next-line
         console.log('error: ', error);
     }
 }
@@ -78,8 +77,8 @@ async function handleChangeAvatar() {
             avatarImg.src = `https://ya-praktikum.tech/api/v2/resources/${result.response.avatar}`;
         }
     } catch (error) {
+        // eslint-disable-next-line
         console.log('error: ', error);
-        alert('Change settings error');
     }
 }
 
@@ -234,8 +233,8 @@ const submitUserSettings = async (event: Event) => {
         buttonLogOut.show();
         buttonSaveUserSettings.hide();
     } catch (error) {
+        // eslint-disable-next-line
         console.log('error: ', error);
-        alert('Change settings error');
     }
 };
 
@@ -276,8 +275,8 @@ const submitChangePassword = async (event: Event) => {
         buttonChangePassword.show();
         buttonLogOut.show();
     } catch (error) {
+        // eslint-disable-next-line
         console.log('error: ', error);
-        alert('Change settings error');
     }
 };
 
@@ -287,6 +286,7 @@ const handleLogOutClick = (event: Event) => {
 
     authApi.logout()
         .then(() => Router.go('/'))
+        // eslint-disable-next-line
         .catch((error) => alert(error));
 };
 

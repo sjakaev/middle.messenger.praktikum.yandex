@@ -11,5 +11,6 @@ app.use(express.static(path.join(process.cwd(), 'dist')));
 // });
 
 app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(`Example app - http://localhost:${PORT}/`);
 });

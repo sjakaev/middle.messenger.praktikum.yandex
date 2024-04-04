@@ -67,6 +67,7 @@ export default class chatWindowHeader extends Block<IChatWindowHeader> {
     handlerAddUsersButtonClick = async (event: Event) => {
         event.preventDefault();
         event.stopPropagation();
+        // eslint-disable-next-line
         const usersId = prompt('Enter the user id');
         const { chatId } = this._props;
         if (usersId) {
@@ -86,6 +87,7 @@ export default class chatWindowHeader extends Block<IChatWindowHeader> {
                 usersFormattedString,
             });
         } else {
+            // eslint-disable-next-line
             console.log('Error adding user to chat');
         }
     };
@@ -93,6 +95,7 @@ export default class chatWindowHeader extends Block<IChatWindowHeader> {
     handlerDeleteUsersButtonClick = async (event: Event) => {
         event.preventDefault();
         event.stopPropagation();
+        // eslint-disable-next-line
         const usersId = prompt('Enter the user id');
         const { chatId } = this._props;
         if (usersId) {
@@ -112,6 +115,7 @@ export default class chatWindowHeader extends Block<IChatWindowHeader> {
                 usersFormattedString,
             });
         } else {
+            // eslint-disable-next-line
             console.log('Error deleting user from chat');
         }
     };
