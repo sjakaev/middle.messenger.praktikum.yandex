@@ -99,4 +99,18 @@
             color: var(--color-text-light);
         }
     }
+
+    &__button-back {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 64px;
+        height: 100%;
+        background-color: #FBFBFB;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #F5F5F5;
+        }
+    }
 }

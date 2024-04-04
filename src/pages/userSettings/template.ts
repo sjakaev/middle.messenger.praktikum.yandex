@@ -15,6 +15,7 @@ const tmp = `
             {{{ buttonChangePassword}}}
             {{{ buttonLogOut }}}
         </div>
+        {{{ buttonBackToMessenger }}}
     </main>
 `;
 

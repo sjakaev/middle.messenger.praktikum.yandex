@@ -8,6 +8,7 @@ import userSettingsTemplate from './template.ts';
 import defaultAvatarIcon from '../../assets/default-avatar.svg';
 import authApi from '../../api/authApi.ts';
 import usersApi from '../../api/usersApi.ts';
+import arrowLeftIcon from '../../assets/arrow-left.svg';
 
 import {
     loginValidation,
@@ -141,6 +142,7 @@ interface IUserSettingsPageProps {
     buttonChangeData: Button;
     buttonChangePassword: Button;
     buttonLogOut: Button;
+    buttonBackToMessenger: Button;
 }
 
 const handleChangeData = (event: Event) => {
@@ -503,6 +505,21 @@ const buttonLogOut = new Button('button', {
     },
 });
 
+const buttonBackToMessenger: any = new Button('button', {
+    text: '',
+    icon: `${arrowLeftIcon}`,
+    alt: 'Back to messanger button',
+    attr: {
+        class: 'profile__button-back',
+        type: 'button',
+    },
+    events: {
+        click: () => {
+            Router.go('/messenger');
+        },
+    },
+});
+
 const userSettingsForm = new Form('form', {
     userSettingsMail,
     userSettingsLogin,
@@ -550,6 +567,7 @@ export default class UserSettingsPage extends Block<IUserSettingsPageProps> {
             buttonChangeData,
             buttonChangePassword,
             buttonLogOut,
+            buttonBackToMessenger,
         });
         getUserData();
     }
