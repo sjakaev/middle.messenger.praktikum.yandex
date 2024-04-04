@@ -14,12 +14,21 @@ export function formatUserList(userList: any) {
 }
 
 export async function componentInit(сhatItemList: any) {
-    const response = await chatApi.getChats() as { response: IChat[] };
-    const chats = response.response;
+    try {
+        const response = await chatApi.getChats() as { response: IChat[] };
+        const chats = response.response;
 
-    сhatItemList.setProps({
-        items: chats,
-    });
+        сhatItemList.setProps({
+            items: chats,
+        });
+    } catch (error: any) {
+        if (error.reason === 'Cookie is not valid') {
+            Router.go('/');
+            return;
+        }
+        // eslint-disable-next-line
+        console.log('error: ', error);
+    }
 }
 
 export function getChatById(userChats: IChat[], chatId: number) {
