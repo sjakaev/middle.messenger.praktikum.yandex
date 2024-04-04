@@ -1,5 +1,4 @@
 import Route from './Route.ts';
-import Block from './Block.ts';
 
 interface IRouter {
     __instance?: IRouter | null;
