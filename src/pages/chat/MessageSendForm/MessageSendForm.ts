@@ -28,7 +28,6 @@ const inputSendMessage: any = new Input('div', {
     attr: {
         class: 'message-send-form__message-input-wrapper',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         input: setAttributeValue,
@@ -70,7 +69,6 @@ const buttonSendMessage: any = new Button('button', {
     attr: {
         class: 'message-send-form__send-button',
         type: 'submit',
-        page: 'chat',
     },
 });
 

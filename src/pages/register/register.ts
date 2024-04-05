@@ -232,7 +232,6 @@ const inputRepeatPassword: any = new Input('div', {
 const buttonRegister: any = new Button('button', {
     text: 'Sign up',
     attr: {
-        page: 'chat',
         type: 'submit',
         class: 'btn register__button',
     },
@@ -242,7 +241,6 @@ const buttonRegister: any = new Button('button', {
 });
 
 const authLink = new Link('div', {
-    page: 'login',
     href: '#',
     text: 'Sign in',
     events: {

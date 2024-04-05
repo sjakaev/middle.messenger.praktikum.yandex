@@ -4,7 +4,6 @@ import Block from '../../core/Block.ts';
 export interface ILinkProps {
     href: string;
     text: string;
-    page?: string;
     class?: string;
     attr?: { [key: string]: string };
     // eslint-disable-next-line no-unused-vars

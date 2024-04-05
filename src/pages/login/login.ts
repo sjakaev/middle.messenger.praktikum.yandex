@@ -101,7 +101,6 @@ const buttonSignIn: any = new Button('button', {
     attr: {
         class: 'btn login__button',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         click: submitLoginForm,
@@ -109,7 +108,6 @@ const buttonSignIn: any = new Button('button', {
 });
 
 const link = new Link('div', {
-    page: 'register',
     href: '#',
     text: 'Create a profile',
     class: 'login__footer-link',
