@@ -1,11 +1,6 @@
 import Block from '../../../core/Block.ts';
 import template from './template.ts';
-import {
-    Nav,
-} from '../../../components/index.ts';
 import { IChatWindowBody } from './IChatWindowBody.ts';
-
-const nav = new Nav();
 
 export default class ChatWindowBody extends Block<IChatWindowBody> {
     constructor() {
@@ -13,7 +8,6 @@ export default class ChatWindowBody extends Block<IChatWindowBody> {
             attr: {
                 class: 'chat-window-body',
             },
-            nav,
         });
     }
 
