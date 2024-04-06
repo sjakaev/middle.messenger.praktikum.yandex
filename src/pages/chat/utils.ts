@@ -6,8 +6,8 @@ import './ChatWindowHeader/chatWindowHeader.scss';
 import './ChatWindowBody/chatWindowBody.scss';
 import chatApi from '../../api/chatApi.ts';
 import authApi from '../../api/authApi.ts';
-import { createMessageResponseElement } from './MessageSendForm/MessageSendForm.ts';
 import { IChat, IUser } from './IChat.ts';
+import Message from './Message/Message.ts';
 
 export function formatUserList(userList: any) {
     return userList?.map((user: IUser) => `${user.login} (id: ${user.id})`).join(', ');
@@ -91,9 +91,15 @@ const socketСonnection = (userId: number, chatId: number, token: any) => {
         // eslint-disable-next-line
         console.log('Соединение установлено');
 
+        const messagesWrapper = document
+            .querySelector('.chat-window-body__messages-wrapper');
+        if (messagesWrapper) {
+            messagesWrapper.innerHTML = '';
+        }
+
         socket.send(JSON.stringify({
-            content: 'Моё первое сообщение миру!',
-            type: 'message',
+            content: '0',
+            type: 'get old',
         }));
     });
 
@@ -111,14 +117,32 @@ const socketСonnection = (userId: number, chatId: number, token: any) => {
     });
 
     socket.addEventListener('message', (event) => {
-        const { content, user_id: dataUserId } = JSON.parse(event.data);
+        const data = JSON.parse(event.data);
 
-        if (dataUserId === userId) {
-            return;
+        if (data instanceof Array) {
+            if (data.length > 0) {
+                data.forEach((message: any) => {
+                    if (message.user_id === userId) {
+                        const messageRequest = new Message(message, false);
+                        messageRequest.addMessage();
+                    }
+
+                    if (message.user_id !== userId) {
+                        const messageResponse = new Message(message, true);
+                        messageResponse.addMessage();
+                    }
+                });
+            }
         }
 
-        const messageElement = createMessageResponseElement(content);
-        document.querySelector('.chat-window-body__messages-wrapper')?.appendChild(messageElement);
+        if (data.content) {
+            if (data.user_id === userId) {
+                return;
+            }
+
+            const messageResponse = new Message(data, true);
+            messageResponse.addMessage();
+        }
     });
 
     socket.addEventListener('error', (event: any) => {
@@ -145,7 +169,6 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
         if (chatId) {
             const responseGetChatUsers: any = await chatApi.getChatUsers(Number(chatId));
             const responseGetChats = await chatApi.getChats() as { response: IChat[] } as any;
-            const chatWindowBody = document.querySelector('.chat__window-body');
 
             const chats = responseGetChats.response;
             const activeChat = getChatById(chats, Number(chatId));
@@ -177,11 +200,6 @@ export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage
             } catch (error) {
                 // eslint-disable-next-line
                 console.error('Error:', error);
-            }
-
-            if (chatWindowBody) {
-                chatWindowBody.textContent = '';
-                chatWindowBody.textContent = JSON.stringify(responseGetChatUsers.response, null, 2);
             }
         }
     }

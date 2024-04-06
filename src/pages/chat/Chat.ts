@@ -7,6 +7,7 @@ import './MessageSendForm/messageSendForm.scss';
 import './ChatSearch/chatSearch.scss';
 import './ChatList/chatList.scss';
 import './ChatWindowHeader/chatWindowHeader.scss';
+import './Message/message.scss';
 import './ChatWindowBody/chatWindowBody.scss';
 import {
     Link, Button,
