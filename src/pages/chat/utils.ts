@@ -117,7 +117,13 @@ const socketСonnection = (userId: number, chatId: number, token: any) => {
     });
 
     socket.addEventListener('message', (event) => {
-        const data = JSON.parse(event.data);
+        let data;
+        try {
+            data = JSON.parse(event.data);
+        } catch (error) {
+            console.error('Data parsing error:', error);
+            return;
+        }
 
         if (data instanceof Array) {
             if (data.length > 0) {
