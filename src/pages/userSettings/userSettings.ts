@@ -44,6 +44,11 @@ async function getUserData() {
             avatar: user.avatar,
         };
 
+        userAvatar.setProps({
+            displayName: user.display_name,
+            src: `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`,
+        });
+
         Object.entries(data).forEach(([key, value]) => {
             const input = document.getElementById(key) as HTMLInputElement;
             if (key === 'avatar') {
@@ -224,6 +229,7 @@ const submitUserSettings = async (event: Event) => {
     try {
         await usersApi.changeSettings(data);
 
+        userAvatar.setProps({ displayName: data.display_name });
         userSettingsMail.setProps({ readonly: true });
         userSettingsLogin.setProps({ readonly: true });
         userSettingsFirstName.setProps({ readonly: true });
@@ -343,8 +349,8 @@ const userSettingsFirstName = new Input('div', {
     },
 });
 
-const userAvatar = new Avatar('div', {
-    src: '/test',
+const userAvatar = new Avatar({
+    src: defaultAvatarIcon,
     events: {
         change: handleChangeAvatar,
     },

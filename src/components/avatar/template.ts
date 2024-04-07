@@ -10,6 +10,11 @@ const tpl = `
             id="avatar"
         />
     </div>
+    {{#if displayName}}
+        <div class="avatar__name-wrapper">
+            <p class="avatar__name">{{{ displayName }}}</p>
+        </div>
+    {{/if}}
 `;
 
 export default tpl;

@@ -48,4 +48,18 @@
         opacity: 0;
         cursor: pointer;
     }
+
+    &__name-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    &__name {
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+    }
 }
