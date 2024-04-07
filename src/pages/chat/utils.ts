@@ -9,7 +9,7 @@ import authApi from '../../api/authApi.ts';
 import { IChat, IUser } from './IChat.ts';
 import Message from './Message/Message.ts';
 
-export function formatUserList(userList: any) {
+export function formatUserList(userList: Array<IUser> | undefined) {
     return userList?.map((user: IUser) => `${user.login} (id: ${user.id})`).join(', ');
 }
 
@@ -77,14 +77,14 @@ export const deleteChat = async (event: Event, сhatList: any) => {
     }
 };
 
-export const sendMessage = async (socket: any, messageValue: any) => {
+export const sendMessage = async (socket: any, messageValue: string) => {
     socket.send(JSON.stringify({
         content: messageValue,
         type: 'message',
     }));
 };
 
-const socketСonnection = (userId: number, chatId: number, token: any) => {
+const socketСonnection = (userId: number, chatId: number, token: string) => {
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     socket.addEventListener('open', () => {
@@ -160,13 +160,14 @@ const socketСonnection = (userId: number, chatId: number, token: any) => {
         event.preventDefault();
 
         const messageInputItem = document.querySelector('.message-send-form__message-input');
-        const messageInputValue = messageInputItem?.getAttribute('value');
+        const messageInputValue = messageInputItem?.getAttribute('value') || '';
 
         sendMessage(socket, messageInputValue);
     });
 };
 
-export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage: any) => {
+export const openTheСhat = async (event
+        : Event, chatWindowHeader: any, chatPage: any) => {
     event.preventDefault();
     event.stopPropagation();
     const target = (event.target as HTMLElement).closest('.chat-list__item');

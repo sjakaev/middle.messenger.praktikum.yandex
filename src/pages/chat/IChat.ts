@@ -16,7 +16,7 @@ export interface IUser {
     email: string;
     login: string;
     phone: string;
-    role: string;
+    role?: string;
 }
 
 export interface IMessage {

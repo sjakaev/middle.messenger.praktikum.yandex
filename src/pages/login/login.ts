@@ -68,7 +68,7 @@ const handlerLinkClick = (event: Event) => {
     Router.go('/sign-up');
 };
 
-const inputLogin: any = new Input('div', {
+const inputLogin: Input = new Input('div', {
     value: '',
     name: 'login',
     type: 'text',
@@ -82,7 +82,7 @@ const inputLogin: any = new Input('div', {
     },
 });
 
-const inputPassword: any = new Input('div', {
+const inputPassword: Input = new Input('div', {
     value: '',
     name: 'password',
     type: 'password',
@@ -96,7 +96,7 @@ const inputPassword: any = new Input('div', {
     },
 });
 
-const buttonSignIn: any = new Button('button', {
+const buttonSignIn: Button = new Button('button', {
     text: 'Sign in',
     attr: {
         class: 'btn login__button',

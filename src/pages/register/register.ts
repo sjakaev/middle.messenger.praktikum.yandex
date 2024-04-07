@@ -124,7 +124,7 @@ const handlerAuthLinkClick = (event: Event) => {
     Router.go('/');
 };
 
-const inputEmail: any = new Input('div', {
+const inputEmail: Input = new Input('div', {
     value: '',
     label: 'Email',
     name: 'email',
@@ -139,7 +139,7 @@ const inputEmail: any = new Input('div', {
     },
 });
 
-const inputLogin: any = new Input('div', {
+const inputLogin: Input = new Input('div', {
     value: '',
     label: 'Login',
     name: 'login',
@@ -154,7 +154,7 @@ const inputLogin: any = new Input('div', {
     },
 });
 
-const inputFirstName: any = new Input('div', {
+const inputFirstName: Input = new Input('div', {
     value: '',
     label: 'First name',
     name: 'first_name',
@@ -169,7 +169,7 @@ const inputFirstName: any = new Input('div', {
     },
 });
 
-const inputSecondName: any = new Input('div', {
+const inputSecondName: Input = new Input('div', {
     value: '',
     label: 'Second name',
     name: 'second_name',
@@ -184,7 +184,7 @@ const inputSecondName: any = new Input('div', {
     },
 });
 
-const inputPhone: any = new Input('div', {
+const inputPhone: Input = new Input('div', {
     value: '',
     label: 'Phone number',
     name: 'phone',
@@ -199,7 +199,7 @@ const inputPhone: any = new Input('div', {
     },
 });
 
-const inputPassword: any = new Input('div', {
+const inputPassword: Input = new Input('div', {
     value: '',
     label: 'Password',
     name: 'password',
@@ -214,7 +214,7 @@ const inputPassword: any = new Input('div', {
     },
 });
 
-const inputRepeatPassword: any = new Input('div', {
+const inputRepeatPassword: Input = new Input('div', {
     value: '',
     label: 'Repeat password',
     name: 'second_password',
@@ -229,7 +229,7 @@ const inputRepeatPassword: any = new Input('div', {
     },
 });
 
-const buttonRegister: any = new Button('button', {
+const buttonRegister: Button = new Button('button', {
     text: 'Sign up',
     attr: {
         type: 'submit',

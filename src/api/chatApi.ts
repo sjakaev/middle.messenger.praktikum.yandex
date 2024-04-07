@@ -30,7 +30,7 @@ class Api extends BaseAPI {
     }
 
     uploadChatAvatar(data: object) {
-        return this._http.put('avatar', data);
+        return this._http.put('/avatar', data);
     }
 }
 
