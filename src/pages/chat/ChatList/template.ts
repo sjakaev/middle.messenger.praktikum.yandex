@@ -2,7 +2,16 @@ const tmp = `
     {{#each items}}
         <div class="chat-list__item" data-id={{id}}>
         <div class="chat-list__item-first-column">
-            <div class="chat-list__item-avatar"></div>
+            {{#if avatart}}
+            <img
+                class="chat-list__item-avatar"
+                src="https://ya-praktikum.tech/api/v2/resources/{{{avatart}}}"
+                alt="avatar"
+            />
+            {{else}}
+                <div class="chat-list__item-avatar"></div>
+            {{/if}}
+
         </div>
         <div class="chat-list__item-second-column">
             <div class="chat-list__item-name">{{ title }} (id: {{id}})</div>

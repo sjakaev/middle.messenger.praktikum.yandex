@@ -13,12 +13,12 @@ export function formatUserList(userList: any) {
     return userList?.map((user: IUser) => `${user.login} (id: ${user.id})`).join(', ');
 }
 
-export async function componentInit(сhatItemList: any) {
+export async function componentInit(сhatList: any) {
     try {
         const response = await chatApi.getChats() as { response: IChat[] };
         const chats = response.response;
 
-        сhatItemList.setProps({
+        сhatList.setProps({
             items: chats,
         });
     } catch (error: any) {
@@ -41,7 +41,7 @@ export const openSettingsPage = (event: Event) => {
     Router.go('/settings');
 };
 
-export const createNewChat = async (event: Event, сhatItemList: any) => {
+export const createNewChat = async (event: Event, сhatList: any) => {
     event.preventDefault();
     event.stopPropagation();
     // eslint-disable-next-line
@@ -50,7 +50,7 @@ export const createNewChat = async (event: Event, сhatItemList: any) => {
         await chatApi.createChat({ title: chatTitle }) as any;
         const responseGetChats = await chatApi.getChats() as { response: IChat[] };
         const chats = responseGetChats.response;
-        сhatItemList.setProps({
+        сhatList.setProps({
             items: chats,
         });
     } else {
@@ -59,7 +59,7 @@ export const createNewChat = async (event: Event, сhatItemList: any) => {
     }
 };
 
-export const deleteChat = async (event: Event, сhatItemList: any) => {
+export const deleteChat = async (event: Event, сhatList: any) => {
     event.preventDefault();
     event.stopPropagation();
     // eslint-disable-next-line
@@ -68,7 +68,7 @@ export const deleteChat = async (event: Event, сhatItemList: any) => {
         await chatApi.deleteChat({ chatId: chatTitle }) as any;
         const responseGetChats = await chatApi.getChats() as { response: IChat[] };
         const chats = responseGetChats.response;
-        сhatItemList.setProps({
+        сhatList.setProps({
             items: chats,
         });
     } else {
