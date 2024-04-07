@@ -14,12 +14,12 @@ import {
 } from '../../components/index.ts';
 import ChatWindowBody from './ChatWindowBody/ChatWindowBody.ts';
 import ChatWindowHeader from './ChatWindowHeader/ChatWindowHeader.ts';
-import { IChat, IChatPageProps } from './IChat.ts';
+import { IChatListItem, IChatPageProps } from '../index.ts';
 import {
     createNewChat, deleteChat, openSettingsPage, openTheСhat, componentInit,
 } from './utils.ts';
 
-const chats: IChat[] = [];
+const chats: IChatListItem[] = [];
 const chatSearch = new ChatSearch();
 const messageSendForm = new MessageSendForm();
 const chatWindowHeader = new ChatWindowHeader('Chat name');
@@ -36,6 +36,7 @@ export default class ChatPage extends Block<IChatPageProps> {
         });
 
         const chatList = new ChatList('ul', {
+            items: chats,
             events: {
                 click: (event: Event) => openTheСhat(event, chatWindowHeader, this),
             },

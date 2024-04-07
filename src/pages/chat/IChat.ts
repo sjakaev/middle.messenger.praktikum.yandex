@@ -6,6 +6,7 @@ import ChatList from './ChatList/ChatList.ts';
 import ChatSearch from './ChatSearch/ChatSearch.ts';
 import MessageSendForm from './MessageSendForm/MessageSendForm.ts';
 import ChatWindowHeader from './ChatWindowHeader/ChatWindowHeader.ts';
+import { IChatListItem } from '../index.ts';
 
 export interface IUser {
     id: number;
@@ -43,7 +44,7 @@ export interface IChatPageProps {
     messageSendForm: MessageSendForm;
     chatWindowHeader: ChatWindowHeader;
     chatWindowBody: ChatWindowBody;
-    chats: IChat[];
+    chats: IChatListItem[];
     activeChat?: any;
     chatId?: number;
     chatUsers?: any;

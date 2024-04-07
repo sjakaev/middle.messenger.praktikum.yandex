@@ -84,12 +84,15 @@ export const sendMessage = async (socket: any, messageValue: string) => {
     }));
 };
 
-const socketСonnection = (userId: number, chatId: number, token: string) => {
+const socketСonnection = async (chatId: number, token: string, chatPage: any) => {
+    const user: any = await authApi.getUser();
+    const userId = user.response.id;
+
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
     socket.addEventListener('open', () => {
         // eslint-disable-next-line
-        console.log('Соединение установлено');
+        console.log('Connection established');
 
         const messagesWrapper = document
             .querySelector('.chat-window-body__messages-wrapper');
@@ -106,14 +109,14 @@ const socketСonnection = (userId: number, chatId: number, token: string) => {
     socket.addEventListener('close', (event) => {
         if (event.wasClean) {
             // eslint-disable-next-line
-            console.log('Соединение закрыто чисто');
+            console.log('Connection closed cleanly');
         } else {
             // eslint-disable-next-line
-            console.log('Обрыв соединения');
+            console.log('Connection failure');
         }
 
         // eslint-disable-next-line
-        console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+        console.log(`Code: ${event.code} | Reason: ${event.reason}`);
     });
 
     socket.addEventListener('message', (event) => {
@@ -127,6 +130,7 @@ const socketСonnection = (userId: number, chatId: number, token: string) => {
 
         if (data instanceof Array) {
             if (data.length > 0) {
+                data = data.reverse();
                 data.forEach((message: any) => {
                     if (message.user_id === userId) {
                         const messageRequest = new Message(message, false);
@@ -151,63 +155,69 @@ const socketСonnection = (userId: number, chatId: number, token: string) => {
         }
     });
 
-    socket.addEventListener('error', (event: any) => {
+    const { messageSendForm } = chatPage._children;
+    messageSendForm._props.events = {
+        submit: (event: Event) => {
+            event.preventDefault();
+            const messageInputItem = document.querySelector('.message-send-form__message-input');
+            const messageInputValue = messageInputItem?.getAttribute('value') || '';
+            sendMessage(socket, messageInputValue);
+        },
+    };
+};
+
+const getToken = async (chatId: number) => {
+    const host = 'https://ya-praktikum.tech';
+    let socketToken;
+    try {
+        const response = await fetch(`${host}/api/v2/chats/token/${chatId}`, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+        });
+        const result = await response.json();
+        socketToken = result.token;
+    } catch (error) {
         // eslint-disable-next-line
-        console.log('Ошибка', event.message);
-    });
+        console.error('Error:', error);
+    }
+    return socketToken;
+};
 
-    document.querySelector('.message-send-form')!.addEventListener('submit', (event) => {
-        event.preventDefault();
+const getChatAndUsers = async (chatId: string) => {
+    const responseGetChatUsers: any = await chatApi.getChatUsers(Number(chatId));
+    const responseGetChats = await chatApi.getChats() as { response: IChat[] } as any;
 
-        const messageInputItem = document.querySelector('.message-send-form__message-input');
-        const messageInputValue = messageInputItem?.getAttribute('value') || '';
+    const chats = responseGetChats.response;
+    const activeChat = getChatById(chats, Number(chatId));
+    const users = responseGetChatUsers.response;
 
-        sendMessage(socket, messageInputValue);
+    return { activeChat, users };
+};
+
+const updateChatWindowHeader = (chatWindowHeader: any, activeChat: IChat
+    | undefined, users: IUser[]) => {
+    chatWindowHeader.setProps({
+        chatName: activeChat?.title,
+        chatId: activeChat?.id,
+        users,
+        usersFormattedString: formatUserList(users),
     });
 };
 
-export const openTheСhat = async (event
-        : Event, chatWindowHeader: any, chatPage: any) => {
-    event.preventDefault();
-    event.stopPropagation();
+const updateChatPageProps = (chatPage: any, activeChat: IChat | undefined) => {
+    chatPage.setProps({
+        activeChat,
+    });
+};
+
+export const openTheСhat = async (event: Event, chatWindowHeader: any, chatPage: any) => {
     const target = (event.target as HTMLElement).closest('.chat-list__item');
-    if (target) {
-        const chatId = target.getAttribute('data-id');
-        if (chatId) {
-            const responseGetChatUsers: any = await chatApi.getChatUsers(Number(chatId));
-            const responseGetChats = await chatApi.getChats() as { response: IChat[] } as any;
+    const chatId = target!.getAttribute('data-id')!;
+    const { activeChat, users } = await getChatAndUsers(chatId);
+    updateChatWindowHeader(chatWindowHeader, activeChat, users);
+    updateChatPageProps(chatPage, activeChat);
 
-            const chats = responseGetChats.response;
-            const activeChat = getChatById(chats, Number(chatId));
-            const users = responseGetChatUsers.response;
-
-            chatWindowHeader.setProps({
-                chatName: activeChat?.title,
-                chatId: activeChat?.id,
-                users,
-                usersFormattedString: formatUserList(users),
-            });
-
-            chatPage.setProps({
-                activeChat: JSON.stringify(activeChat, null, 2),
-            });
-
-            const host = 'https://ya-praktikum.tech';
-
-            try {
-                const response = await fetch(`${host}/api/v2/chats/token/${activeChat?.id ?? 0}`, {
-                    method: 'POST',
-                    mode: 'cors',
-                    credentials: 'include',
-                });
-                const data = await response.json();
-                const result: any = await authApi.getUser();
-                const user = result.response;
-                socketСonnection(user.id, activeChat?.id ?? 0, data.token);
-            } catch (error) {
-                // eslint-disable-next-line
-                console.error('Error:', error);
-            }
-        }
-    }
+    const token = await getToken(activeChat!.id);
+    socketСonnection(activeChat!.id, token, chatPage);
 };

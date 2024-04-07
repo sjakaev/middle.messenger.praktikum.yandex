@@ -1,7 +1,10 @@
 .chat-window-body {
+    display: flex;
     padding: 20px;
     background-color: transparent;
     overflow: auto;
+    flex-grow: 1;
+    flex-direction: column-reverse;
 
     &__messages-wrapper {
         display: flex;
