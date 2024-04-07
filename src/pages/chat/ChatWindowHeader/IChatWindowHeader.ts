@@ -7,7 +7,7 @@ export interface IChatWindowHeader {
     chatName: string;
     chatId: number;
     users: IUser[];
-    usersFormattedString: string;
+    usersFormattedString: string | undefined;
     userSettingsButton: Button,
     addUsersButton: Button,
     deleteUsersButton: Button,
