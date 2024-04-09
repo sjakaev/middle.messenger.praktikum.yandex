@@ -1,23 +1,22 @@
-.chat-item {
-    height: 70px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #F5F5F5;
-    }
-
-    &__wrapper {
+.chat-list {
+    &__item {
         padding: 10px;
         width: 100%;
-        height: 100%;
+        height: 70px;
         display: flex;
         flex-direction: row;
         align-items: normal;
         justify-content: space-between;
         border-bottom: 1px solid #e6e6e6;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #F5F5F5;
+        }
     }
 
-    &__first-column {
+
+    &__item-first-column {
         width: 50px;
         display: flex;
         flex-direction: column;
@@ -26,28 +25,29 @@
         padding: 0 10px;
     }
 
-    &__avatar {
+    &__item-avatar {
         width: 47px;
         height: 47px;
         background-color: #EFEFEF;
         border-radius: 50%;
+        object-fit: cover;
     }
 
-    &__name {
+    &__item-name {
         margin: 0 0 4px;
         font-size: 13px;
         line-height: 13px;
         font-weight: 600;
     }
 
-    &__last-message {
+    &__item-last-message {
         font-size: 12px;
         font-weight: 500;
         line-height: 15px;
         color: var(--color-text-light);
     }
 
-    &__time {
+    &__item-time {
         color: var(--color-text-light);;
         text-align: right;
         font-size: 9px;
@@ -56,7 +56,7 @@
         line-height: 13px;
     }
 
-    &__unread-count {
+    &__item-unread-count {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -70,7 +70,7 @@
         line-height: 12px;
     }
 
-    &__second-column {
+    &__item-second-column {
         width: calc(100% - 50px);
         display: flex;
         flex-direction: column;
@@ -78,7 +78,7 @@
         padding: 0 10px;
     }
 
-    &__third-column {
+    &__item-third-column {
         width: 50px;
         display: flex;
         flex-direction: column;

@@ -3,61 +3,6 @@
     min-width: 510px;
     margin: 20px;
 
-    &__avatar-wrapper {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 130px;
-        height: 130px;
-        margin: 0 auto;
-        background-color: #EFEFEF;
-        border-radius: 50%;
-        cursor: pointer;
-
-        &::after {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            content: 'Change avatar';
-            color: var(--color-text-inverse);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 130px;
-            height: 130px;
-            font-size: 13px;
-            line-height: 14px;
-            background-color: rgb(0 0 0 / 60%);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        &:hover::after {
-            opacity: 1;
-        }
-    }
-
-    &__avatar-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    &__name-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 60px;
-    }
-
-    &__name {
-        font-size: 16px;
-        line-height: 16px;
-        font-weight: 600;
-    }
-
     &__fields-wrapper {
         display: flex;
         flex-direction: column;
@@ -138,6 +83,20 @@
 
         &::placeholder {
             color: var(--color-text-light);
+        }
+    }
+
+    &__button-back {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 64px;
+        height: 100%;
+        background-color: #FBFBFB;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #F5F5F5;
         }
     }
 }

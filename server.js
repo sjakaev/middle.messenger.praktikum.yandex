@@ -6,10 +6,12 @@ const PORT = 3000;
 
 app.use(express.static(path.join(process.cwd(), 'dist')));
 
-app.get('/', (req, res) => {
+app.use(express.static('./dist'));
+app.use('/*', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
+    // eslint-disable-next-line
     console.log(`Example app - http://localhost:${PORT}/`);
 });

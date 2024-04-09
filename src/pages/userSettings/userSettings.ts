@@ -1,10 +1,14 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
+import Router from '../../core/Router.ts';
 import {
-    Input, Button, Form,
+    Input, Button, Form, Avatar,
 } from '../../components/index.ts';
 import userSettingsTemplate from './template.ts';
 import defaultAvatarIcon from '../../assets/default-avatar.svg';
+import authApi from '../../api/authApi.ts';
+import usersApi from '../../api/usersApi.ts';
+import arrowLeftIcon from '../../assets/arrow-left.svg';
 
 import {
     loginValidation,
@@ -14,6 +18,75 @@ import {
     phoneValidation,
     displayNameValidation,
 } from '../../utils/validation.ts';
+
+type IUser = {
+    email: string;
+    login: string;
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    phone: string;
+    avatar: string;
+};
+
+async function getUserData() {
+    try {
+        const response = await authApi.getUser() as { response: unknown };
+        const user = response.response as IUser;
+
+        const data: any = {
+            email: user.email,
+            login: user.login,
+            first_name: user.first_name,
+            second_name: user.second_name,
+            display_name: user.display_name,
+            phone: user.phone,
+            avatar: user.avatar,
+        };
+
+        userAvatar.setProps({
+            displayName: user.display_name,
+            src: `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`,
+        });
+
+        Object.entries(data).forEach(([key, value]) => {
+            const input = document.getElementById(key) as HTMLInputElement;
+            if (key === 'avatar') {
+                const avatarImg = document.querySelector('.avatar__image') as HTMLImageElement;
+                const avatar = value
+                    ? `https://ya-praktikum.tech/api/v2/resources/${value}`
+                    : defaultAvatarIcon;
+                if (avatarImg) {
+                    avatarImg.src = avatar;
+                }
+            }
+
+            input.value = String(value);
+            input.setAttribute('value', String(value));
+        });
+    } catch (error) {
+        // eslint-disable-next-line
+        console.log('error: ', error);
+    }
+}
+
+async function handleChangeAvatar() {
+    try {
+        const input: any = document.querySelector('.avatar__input');
+        const data = new FormData();
+        data.append('avatar', input.files[0]);
+
+        const result = await usersApi.changeAvatar(data) as any;
+        const avatarImg = document.querySelector('.avatar__image') as HTMLImageElement;
+
+        if (avatarImg) {
+            avatarImg.src = `https://ya-praktikum.tech/api/v2/resources/${result.response.avatar}`;
+        }
+    } catch (error) {
+        // eslint-disable-next-line
+        console.log('error: ', error);
+    }
+}
 
 const setAttributeValue = (event: Event) => {
     const target = event.target as HTMLInputElement;
@@ -68,25 +141,35 @@ const validateConfirmPassword = () => {
 
 interface IUserSettingsPageProps {
     avatar: string;
+    userAvatar: Avatar;
     userSettingsForm: Form;
     changePasswordForm: Form;
     buttonChangeData: Button;
     buttonChangePassword: Button;
     buttonLogOut: Button;
+    buttonBackToMessenger: Button;
 }
 
 const handleChangeData = (event: Event) => {
-    userSettingsMail.setProps({ readonly: false });
-    userSettingsLogin.setProps({ readonly: false });
-    userSettingsFirstName.setProps({ readonly: false });
-    userSettingsSecondName.setProps({ readonly: false });
-    userSettingsDisplayName.setProps({ readonly: false });
-    userSettingsPhoneNumber.setProps({ readonly: false });
+    const settings = [
+        userSettingsMail,
+        userSettingsLogin,
+        userSettingsFirstName,
+        userSettingsSecondName,
+        userSettingsDisplayName,
+        userSettingsPhoneNumber,
+    ];
+
+    settings.forEach((inputInstance: any) => {
+        const value = inputInstance.getValue();
+        inputInstance.setProps({ readonly: false, value });
+    });
 
     buttonSaveUserSettings.show();
     buttonChangeData.hide();
     buttonChangePassword.hide();
     buttonLogOut.hide();
+
     event.preventDefault();
     event.stopPropagation();
 };
@@ -102,10 +185,27 @@ const handleChangePassword = (event: Event) => {
     event.stopPropagation();
 };
 
-const submitUserSettings = (event: Event) => {
+const submitUserSettings = async (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const form = userSettingsForm._element as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form.name;
+    const firstName = formData.get('first_name') as string;
+    const secondName = formData.get('second_name') as string;
+    const login = formData.get('login') as string;
+    const email = formData.get('email') as string;
+    const displayName = formData.get('display_name') as string;
+    const phone = formData.get('phone') as string;
+
+    const data = {
+        first_name: firstName,
+        second_name: secondName,
+        login,
+        email,
+        display_name: displayName,
+        phone,
+    };
 
     validateMail();
     validateLogin();
@@ -126,34 +226,32 @@ const submitUserSettings = (event: Event) => {
         return;
     }
 
-    console.log('--------------------------------');
-    console.log('userSettingsForm', userSettingsForm);
-    console.log('Form name:', formName);
+    try {
+        await usersApi.changeSettings(data);
 
-    Array.from(formData.entries()).forEach(([name, value]) => {
-        console.log(`${name}:`, value);
-    });
-    console.log('-------------------------------');
-
-    userSettingsMail.setProps({ readonly: true });
-    userSettingsLogin.setProps({ readonly: true });
-    userSettingsFirstName.setProps({ readonly: true });
-    userSettingsSecondName.setProps({ readonly: true });
-    userSettingsDisplayName.setProps({ readonly: true });
-    userSettingsPhoneNumber.setProps({ readonly: true });
-    buttonChangeData.show();
-    buttonChangePassword.show();
-    buttonLogOut.show();
-    buttonSaveUserSettings.hide();
-
-    event.preventDefault();
-    event.stopPropagation();
+        userAvatar.setProps({ displayName: data.display_name });
+        userSettingsMail.setProps({ readonly: true });
+        userSettingsLogin.setProps({ readonly: true });
+        userSettingsFirstName.setProps({ readonly: true });
+        userSettingsSecondName.setProps({ readonly: true });
+        userSettingsDisplayName.setProps({ readonly: true });
+        userSettingsPhoneNumber.setProps({ readonly: true });
+        buttonChangeData.show();
+        buttonChangePassword.show();
+        buttonLogOut.show();
+        buttonSaveUserSettings.hide();
+    } catch (error) {
+        // eslint-disable-next-line
+        console.log('error: ', error);
+    }
 };
 
-const submitChangePassword = (event: Event) => {
+const submitChangePassword = async (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const form = changePasswordForm._element as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form.name;
 
     validateNewPassword();
     validateConfirmPassword();
@@ -168,28 +266,39 @@ const submitChangePassword = (event: Event) => {
         return;
     }
 
-    console.log('--------------------------------');
-    console.log('userChangePassword', changePasswordForm);
-    console.log('Form name:', formName);
+    try {
+        const oldPassword = formData.get('oldPassword') as string;
+        const newPassword = formData.get('newPassword') as string;
 
-    Array.from(formData.entries()).forEach(([name, value]) => {
-        console.log(`${name}:`, value);
-    });
-    console.log('-------------------------------');
+        const data = {
+            oldPassword,
+            newPassword,
+        };
 
-    changePasswordForm.hide();
-    userSettingsForm.show();
+        await usersApi.changePassword(data);
 
-    buttonChangeData.show();
-    buttonChangePassword.show();
-    buttonLogOut.show();
+        changePasswordForm.hide();
+        userSettingsForm.show();
+        buttonChangeData.show();
+        buttonChangePassword.show();
+        buttonLogOut.show();
+    } catch (error) {
+        // eslint-disable-next-line
+        console.log('error: ', error);
+    }
+};
 
+const handleLogOutClick = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
+
+    authApi.logout()
+        .then(() => Router.go('/'))
+        // eslint-disable-next-line
+        .catch((error) => alert(error));
 };
 
 const userSettingsMail = new Input('div', {
-    value: 'pochta@yandex.ru',
     name: 'email',
     type: 'email',
     placeholder: 'email',
@@ -207,7 +316,6 @@ const userSettingsMail = new Input('div', {
 });
 
 const userSettingsLogin = new Input('div', {
-    value: 'Ivan3000',
     name: 'login',
     type: 'text',
     placeholder: 'Login',
@@ -225,7 +333,6 @@ const userSettingsLogin = new Input('div', {
 });
 
 const userSettingsFirstName = new Input('div', {
-    value: 'Ivan',
     name: 'first_name',
     type: 'text',
     placeholder: 'First name',
@@ -242,8 +349,14 @@ const userSettingsFirstName = new Input('div', {
     },
 });
 
+const userAvatar = new Avatar({
+    src: defaultAvatarIcon,
+    events: {
+        change: handleChangeAvatar,
+    },
+});
+
 const userSettingsSecondName = new Input('div', {
-    value: 'Ivanov',
     name: 'second_name',
     type: 'text',
     placeholder: 'Second name',
@@ -261,7 +374,6 @@ const userSettingsSecondName = new Input('div', {
 });
 
 const userSettingsDisplayName = new Input('div', {
-    value: 'Ivanches',
     name: 'display_name',
     type: 'text',
     placeholder: 'Display name',
@@ -279,7 +391,7 @@ const userSettingsDisplayName = new Input('div', {
 });
 
 const userSettingsPhoneNumber = new Input('div', {
-    value: '+7123456789',
+    value: '-',
     name: 'phone',
     type: 'tel',
     placeholder: 'Phone number',
@@ -297,7 +409,6 @@ const userSettingsPhoneNumber = new Input('div', {
 });
 
 const userSettingsOldPassword = new Input('div', {
-    value: 'Password123',
     label: 'Old password',
     name: 'oldPassword',
     type: 'password',
@@ -314,7 +425,6 @@ const userSettingsOldPassword = new Input('div', {
 });
 
 const userSettingsNewPassword = new Input('div', {
-    value: 'Password1234',
     label: 'New password',
     name: 'newPassword',
     type: 'password',
@@ -331,7 +441,6 @@ const userSettingsNewPassword = new Input('div', {
 });
 
 const userSettingsConfirmPassword = new Input('div', {
-    value: 'Password1234',
     label: 'Confirm password',
     name: 'confirmPassword',
     type: 'password',
@@ -350,9 +459,8 @@ const userSettingsConfirmPassword = new Input('div', {
 const buttonSaveUserSettings = new Button('button', {
     text: 'Save',
     attr: {
-        class: 'btn profile__submit-button',
+        class: 'btn profile__submit-button profile__submit-button_type_settings',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         click: submitUserSettings,
@@ -362,9 +470,8 @@ const buttonSaveUserSettings = new Button('button', {
 const buttonSaveNewPassword = new Button('button', {
     text: 'Save',
     attr: {
-        class: 'btn profile__submit-button',
+        class: 'btn profile__submit-button  profile__submit-button_type_password',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         click: submitChangePassword,
@@ -387,7 +494,6 @@ const buttonChangePassword = new Button('button', {
     attr: {
         class: 'profile__button profile__button-change-password',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         click: handleChangePassword,
@@ -399,7 +505,24 @@ const buttonLogOut = new Button('button', {
     attr: {
         class: 'profile__button profile__button_color_red profile__button-log-out',
         type: 'submit',
-        page: 'chat',
+    },
+    events: {
+        click: handleLogOutClick,
+    },
+});
+
+const buttonBackToMessenger: any = new Button('button', {
+    text: '',
+    icon: `${arrowLeftIcon}`,
+    alt: 'Back to messanger button',
+    attr: {
+        class: 'profile__button-back',
+        type: 'button',
+    },
+    events: {
+        click: () => {
+            Router.go('/messenger');
+        },
     },
 });
 
@@ -444,12 +567,15 @@ export default class UserSettingsPage extends Block<IUserSettingsPageProps> {
     constructor() {
         super('section', {
             avatar: `${defaultAvatarIcon}`,
+            userAvatar,
             userSettingsForm,
             changePasswordForm,
             buttonChangeData,
             buttonChangePassword,
             buttonLogOut,
+            buttonBackToMessenger,
         });
+        getUserData();
     }
     render() {
         return this.compile(userSettingsTemplate, this._props);

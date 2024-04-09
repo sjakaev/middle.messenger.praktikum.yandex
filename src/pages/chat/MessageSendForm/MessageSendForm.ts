@@ -28,32 +28,37 @@ const inputSendMessage: any = new Input('div', {
     attr: {
         class: 'message-send-form__message-input-wrapper',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         input: setAttributeValue,
     },
 });
 
-const submitMessage = () => {
+export function createMessageElement(content: string) {
+    const message = document.createElement('div');
+    message.className = 'chat-window-body__message';
+    message.innerText = content;
+
+    return message;
+}
+
+export function createMessageResponseElement(content: string) {
+    const message = document.createElement('div');
+    message.className = 'chat-window-body__message';
+    message.classList.add('chat-window-body__message_type_response');
+    message.innerText = content;
+
+    return message;
+}
+
+export const submitMessage = () => {
     const messageInputItem = inputSendMessage._element.querySelector('[name="message"]');
     const messageInputValue = messageInputItem.getAttribute('value');
-    const form = document.querySelector('#message-send-form') as HTMLFormElement;
 
     if (messageInputValue) {
-        console.log('--------------------------------');
-        // eslint-disable-next-line
-        console.log('messageSendForm', messageSendForm);
-        console.log('Form name:', form.name);
-        console.log('message', messageInputValue);
-        console.log('--------------------------------');
-
-        const message = document.createElement('div');
-        message.className = 'chat__message';
-        message.innerHTML = messageInputValue;
-        document.querySelector('.chat__messages-wrapper')?.appendChild(message);
-
-        inputSendMessage.setProps({ value: '' });
+        const messageElement = createMessageElement(messageInputValue);
+        document.querySelector('.chat-window-body__messages-wrapper')?.appendChild(messageElement);
+        messageInputItem.value = '';
     }
 };
 
@@ -64,10 +69,6 @@ const buttonSendMessage: any = new Button('button', {
     attr: {
         class: 'message-send-form__send-button',
         type: 'submit',
-        page: 'chat',
-    },
-    events: {
-        click: submitMessage,
     },
 });
 

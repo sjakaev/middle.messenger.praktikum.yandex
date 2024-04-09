@@ -1,6 +1,8 @@
 /* eslint-disable no-use-before-define */
 import Block from '../../core/Block.ts';
+import Router from '../../core/Router.ts';
 import template from './template.ts';
+import authApi from '../../api/authApi.ts';
 import {
     Link,
     Button,
@@ -29,32 +31,45 @@ const setAttributeValue = (event: Event) => {
     inputElement?.setAttribute('value', newValue);
 };
 
-const submitLoginForm = (event: Event) => {
+const submitLoginForm = async (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
     const form = document.querySelector('#login-form') as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form?.name;
+    const login = formData.get('login') as string;
+    const password = formData.get('password') as string;
 
     validateLogin();
     validatePassword();
 
     if (inputLogin._props.error || inputPassword._props.error) {
-        event.preventDefault();
-        event.stopPropagation();
         return;
     }
 
-    console.log('--------------------------------');
-    console.log('loginForm', loginForm);
-    console.log('Form name:', formName);
-
-    Array.from(formData.entries()).forEach(([name, value]) => {
-        console.log(`${name}:`, value);
-    });
-    console.log('-------------------------------');
+    try {
+        await authApi.signIn({ login, password });
+        Router.go('/messenger');
+    } catch (error: any) {
+        if (error.reason === 'User already in system') {
+            Router.go('/messenger');
+            return;
+        }
+        // eslint-disable-next-line
+        console.log('error: ', error);
+        // eslint-disable-next-line
+        alert(`Authorisation error: ${error.reason}`);
+    }
 };
 
-const inputLogin: any = new Input('div', {
-    value: 'Login',
+const handlerLinkClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    Router.go('/sign-up');
+};
+
+const inputLogin: Input = new Input('div', {
+    value: '',
     name: 'login',
     type: 'text',
     placeholder: 'Login',
@@ -67,8 +82,8 @@ const inputLogin: any = new Input('div', {
     },
 });
 
-const inputPassword: any = new Input('div', {
-    value: 'Password1',
+const inputPassword: Input = new Input('div', {
+    value: '',
     name: 'password',
     type: 'password',
     placeholder: 'Password',
@@ -81,12 +96,11 @@ const inputPassword: any = new Input('div', {
     },
 });
 
-const buttonSignIn: any = new Button('button', {
+const buttonSignIn: Button = new Button('button', {
     text: 'Sign in',
     attr: {
         class: 'btn login__button',
         type: 'submit',
-        page: 'chat',
     },
     events: {
         click: submitLoginForm,
@@ -94,10 +108,12 @@ const buttonSignIn: any = new Button('button', {
 });
 
 const link = new Link('div', {
-    page: 'register',
     href: '#',
     text: 'Create a profile',
     class: 'login__footer-link',
+    events: {
+        click: handlerLinkClick,
+    },
 });
 
 const loginForm = new Form('form', {
@@ -120,6 +136,7 @@ export default class LoginPage extends Block<ILoginPageProps> {
             link,
         });
     }
+
     render() {
         return this.compile(template, this._props);
     }

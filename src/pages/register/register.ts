@@ -1,7 +1,9 @@
 /* eslint-disable no-use-before-define */
 import Button from '../../components/button/Button.ts';
 import Block from '../../core/Block.ts';
+import Router from '../../core/Router.ts';
 import registerTemplate from './template.ts';
+import authApi from '../../api/authApi.ts';
 import {
     Input,
     Link,
@@ -63,10 +65,27 @@ const setAttributeValue = (event: Event) => {
     inputElement?.setAttribute('value', newValue);
 };
 
-const submitRegisterForm = (event: Event) => {
+const submitRegisterForm = async (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const form = document.querySelector('#register-form') as HTMLFormElement;
     const formData = new FormData(form);
-    const formName = form.name;
+    const firstName = formData.get('first_name') as string;
+    const secondName = formData.get('second_name') as string;
+    const login = formData.get('login') as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const phone = formData.get('phone') as string;
+
+    const data = {
+        first_name: firstName,
+        second_name: secondName,
+        login,
+        email,
+        password,
+        phone,
+    };
 
     validateLogin();
     validatePassword();
@@ -84,26 +103,33 @@ const submitRegisterForm = (event: Event) => {
         || inputEmail._props.error
         || inputRepeatPassword._props.error
     ) {
-        event.preventDefault();
-        event.stopPropagation();
         return;
     }
 
-    console.log('--------------------------------');
-    console.log('registerForm', registerForm);
-    console.log('Form name:', formName);
-
-    Array.from(formData.entries()).forEach(([name, value]) => {
-        console.log(`${name}:`, value);
-    });
-    console.log('-------------------------------');
+    try {
+        await authApi.signUp(data);
+        Router.go('/messenger');
+    } catch (error) {
+        // eslint-disable-next-line
+        console.log('error: ', error);
+        // eslint-disable-next-line
+        alert('Registration error');
+    }
 };
 
-const inputEmail: any = new Input('div', {
-    value: 'roman@gmail.com',
+const handlerAuthLinkClick = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    Router.go('/');
+};
+
+const inputEmail: Input = new Input('div', {
+    value: '',
     label: 'Email',
     name: 'email',
     type: 'text',
+    placeholder: 'Email',
     attr: {
         class: 'input register__input',
     },
@@ -113,10 +139,11 @@ const inputEmail: any = new Input('div', {
     },
 });
 
-const inputLogin: any = new Input('div', {
-    value: 'Roman3000',
+const inputLogin: Input = new Input('div', {
+    value: '',
     label: 'Login',
     name: 'login',
+    placeholder: 'Login',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -127,10 +154,11 @@ const inputLogin: any = new Input('div', {
     },
 });
 
-const inputFirstName: any = new Input('div', {
-    value: 'Ivan',
+const inputFirstName: Input = new Input('div', {
+    value: '',
     label: 'First name',
     name: 'first_name',
+    placeholder: 'First name',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -141,10 +169,11 @@ const inputFirstName: any = new Input('div', {
     },
 });
 
-const inputSecondName: any = new Input('div', {
-    value: 'Petrov',
+const inputSecondName: Input = new Input('div', {
+    value: '',
     label: 'Second name',
     name: 'second_name',
+    placeholder: 'Second name',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -155,10 +184,11 @@ const inputSecondName: any = new Input('div', {
     },
 });
 
-const inputPhone: any = new Input('div', {
-    value: '+7123456789',
+const inputPhone: Input = new Input('div', {
+    value: '',
     label: 'Phone number',
     name: 'phone',
+    placeholder: '+7123456789',
     type: 'text',
     attr: {
         class: 'input register__input',
@@ -169,11 +199,12 @@ const inputPhone: any = new Input('div', {
     },
 });
 
-const inputPassword: any = new Input('div', {
-    value: 'Roman3001',
+const inputPassword: Input = new Input('div', {
+    value: '',
     label: 'Password',
     name: 'password',
     type: 'password',
+    placeholder: 'Password',
     attr: {
         class: 'input register__input',
     },
@@ -183,11 +214,12 @@ const inputPassword: any = new Input('div', {
     },
 });
 
-const inputRepeatPassword: any = new Input('div', {
-    value: 'Roman3001',
+const inputRepeatPassword: Input = new Input('div', {
+    value: '',
     label: 'Repeat password',
     name: 'second_password',
     type: 'password',
+    placeholder: 'Repeat password',
     attr: {
         class: 'input register__input',
     },
@@ -197,10 +229,9 @@ const inputRepeatPassword: any = new Input('div', {
     },
 });
 
-const buttonRegister: any = new Button('button', {
+const buttonRegister: Button = new Button('button', {
     text: 'Sign up',
     attr: {
-        page: 'chat',
         type: 'submit',
         class: 'btn register__button',
     },
@@ -210,9 +241,11 @@ const buttonRegister: any = new Button('button', {
 });
 
 const authLink = new Link('div', {
-    page: 'login',
     href: '#',
     text: 'Sign in',
+    events: {
+        click: handlerAuthLinkClick,
+    },
 });
 
 const registerForm = new Form('form', {

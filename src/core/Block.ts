@@ -59,7 +59,9 @@ export default abstract class Block<Props extends Record<string, any> = any> {
         this.addAttributes();
     }
 
-    render() {}
+    render(): DocumentFragment {
+        return new DocumentFragment();
+    }
 
     _addEvents() {
         const { events = {} } = this._props;

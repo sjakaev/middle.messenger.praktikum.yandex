@@ -1,5 +1,4 @@
-import renderDOM from './utils/renderDOM.ts';
-import IndexLayout from './layout/index.ts';
+import Router from './core/Router.ts';
 
 import {
     LoginPage,
@@ -10,57 +9,11 @@ import {
     UserSettingsPage,
 } from './pages/index.ts';
 
-const changePage = (newPage: any) => {
-    // eslint-disable-next-line no-use-before-define
-    page.setProps({ content: newPage });
-};
-
-const loginPage = new LoginPage();
-const chatPage = new ChatPage();
-const registerPage = new RegisterPage();
-const error404Page = new Error404Page();
-const error500Page = new Error500Page();
-const userSettingsPage = new UserSettingsPage();
-
-const page = new IndexLayout(
-    'div',
-    {
-        content: loginPage,
-        attr: {
-            class: 'page',
-        },
-        events: {
-            click: (e: any) => {
-                if (e.target.getAttribute('page')) {
-                    const newPage = e.target.getAttribute('page');
-                    if (newPage === 'login') {
-                        changePage(loginPage);
-                    }
-                    if (newPage === 'register') {
-                        changePage(registerPage);
-                    }
-
-                    if (newPage === 'chat') {
-                        changePage(chatPage);
-                    }
-
-                    if (newPage === 'error404') {
-                        changePage(error404Page);
-                    }
-
-                    if (newPage === 'error500') {
-                        changePage(error500Page);
-                    }
-
-                    if (newPage === 'user-settings') {
-                        changePage(userSettingsPage);
-                    }
-                }
-                e.preventDefault();
-                e.stopPropagation();
-            },
-        },
-    },
-);
-
-renderDOM('#app', page);
+Router
+    .use('/', LoginPage)
+    .use('/error404', Error404Page)
+    .use('/messenger', ChatPage)
+    .use('/sign-up', RegisterPage)
+    .use('/error500', Error500Page)
+    .use('/settings', UserSettingsPage)
+    .start();

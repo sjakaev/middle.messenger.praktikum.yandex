@@ -1,5 +1,5 @@
 const tpl = `
-    <a class="link {{ class }}" href="{{ href }}" page="{{page}}">
+    <a class="link {{ class }}" href="{{ href }}">
         {{ text }}
     </a>
 `;

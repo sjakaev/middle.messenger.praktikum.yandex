@@ -30,17 +30,24 @@ function queryStringify(data: Record<string, any>) {
 }
 
 class HTTPTransport {
-    get: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.GET }, options.timeout);
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    _baseUrl: string;
 
-    post: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.POST }, options.timeout);
+    constructor(endpoint: string) {
+        this._baseUrl = `${HTTPTransport.API_URL}${endpoint}`;
+    }
 
-    put: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.PUT }, options.timeout);
+    get: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.GET });
 
-    delete: HTTPMethod = (url, options = {}) => this
-        .request(url, { ...options, method: METHOD.DELETE }, options.timeout);
+    post: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.POST });
+
+    put: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.PUT });
+
+    delete: HTTPMethod = (url, data = {}) => this
+        .request(this._baseUrl + url, { data, method: METHOD.DELETE });
 
     // eslint-disable-next-line class-methods-use-this
     request(
@@ -69,18 +76,31 @@ class HTTPTransport {
                 xhr.timeout = timeout;
             }
 
-            xhr.onload = function () {
-                resolve(xhr);
+            xhr.onload = function onload() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(xhr);
+                } else {
+                    reject(xhr.response);
+                }
             };
 
             xhr.onabort = reject;
             xhr.onerror = reject;
             xhr.ontimeout = reject;
 
+            if (data instanceof FormData === false) {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+            }
+
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
+
             if (isGet || !data) {
                 xhr.send();
-            } else {
+            } else if (data instanceof FormData) {
                 xhr.send(data);
+            } else {
+                xhr.send(JSON.stringify(data));
             }
         });
     }
