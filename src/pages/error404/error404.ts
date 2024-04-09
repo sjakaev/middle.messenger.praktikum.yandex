@@ -14,7 +14,7 @@ const errorInfo = new ErrorInfo(
         code: '404',
         message: 'Page not found',
         attr: {
-            class: 'error-info',
+            class: 'error-info ',
         },
     },
 );
