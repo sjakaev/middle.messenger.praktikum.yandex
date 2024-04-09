@@ -1,9 +1,13 @@
 const tmp = `
     <main class="profile">
-        {{{ userAvatar }}}
         <div class="profile__fields-wrapper">
+            {{{ userAvatar }}}
             {{{ userSettingsForm }}}
             {{{ changePasswordForm }}}
+
+            {{{ buttonSaveUserSettings}}}
+            {{{ buttonSavePassword }}}
+            {{{ buttonCancel }}}
         </div>
 
         <div class="profile__buttons-wrapper">

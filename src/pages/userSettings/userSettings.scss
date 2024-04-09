@@ -1,4 +1,6 @@
 .profile {
+    display: flex;
+    flex-direction: column;
     color: #4a4a4a;
     min-width: 510px;
     margin: 20px;
@@ -52,38 +54,6 @@
 
     &__submit-button {
         margin-top: 60px;
-    }
-
-    &__field {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #EAEAEA;
-
-        &:last-child {
-            border-bottom: none;
-        }
-    }
-
-    &__field-label {
-        font-size: 14px;
-        color: #1E1E1E;
-        margin-bottom: 0;
-    }
-
-
-    &__field-input {
-        max-width: 250px;
-        font-size: 14px;
-        color: var(--color-text-main);
-        text-align: end;
-        border: none;
-        padding: 0;
-
-        &::placeholder {
-            color: var(--color-text-light);
-        }
     }
 
     &__button-back {

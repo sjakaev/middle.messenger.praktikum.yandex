@@ -17,7 +17,8 @@ const tpl = `
     {{{ userSettingsOldPassword }}}
     {{{ userSettingsNewPassword }}}
     {{{ userSettingsConfirmPassword }}}
-    {{{ buttonSaveNewPassword}}}
+    {{{ buttonSavePassword }}}
+    {{{ buttonCancel }}}
     {{{ buttonChangeData }}}
     {{{ buttonChangePassword }}}
     {{{ buttonSaveUserSettings }}}
