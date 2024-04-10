@@ -12,6 +12,22 @@
         "max-params": [2, 3],
         "@typescript-eslint/no-unused-vars": 2,
         "lines-between-class-members": 0,
-        "no-underscore-dangle": "off"
-    }
+        "no-underscore-dangle": "off",
+        "import/no-extraneous-dependencies":[
+            "error",
+            {
+               "devDependencies":[
+                  "**/*.spec.ts"
+               ]
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["**/*.spec.ts"],
+            "rules": {
+                "no-unused-expressions": "off"
+            }
+        }
+    ]
 }
