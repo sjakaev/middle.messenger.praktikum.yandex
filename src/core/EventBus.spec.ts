@@ -20,7 +20,7 @@ describe('EventBus', () => {
         expect(callback).to.have.been.called;
     });
 
-    it('method "off" should unregister an event', () => {
+    it('method "off" should unregister the event', () => {
         const callback = sinon.spy();
         eventBus.on('testEvent', callback);
         eventBus.off('testEvent', callback);
