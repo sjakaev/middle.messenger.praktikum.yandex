@@ -14,12 +14,15 @@ The key technologies include:
 - [**Express.js**](https://expressjs.com/)
 - [**TypeScript**](https://www.typescriptlang.org/)
 - [**Handlebars.js**](https://handlebarsjs.com/)
+- [**Husky**](https://typicode.github.io/husky/)
 
 ## Commands
 To manage the project effectively, the following commands are available:
 - `npm run dev` - launches the project in development mode
 - `npm run build` - builds the project for production
 - `npm start` - performs a pre-build and starts the project
+- `npm run test` - runs tests
+- `npm lint` - runs eslint and stylelint
 
 ## Development Status
 Please note that this application is currently under active development.
