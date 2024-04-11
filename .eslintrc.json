@@ -3,7 +3,8 @@
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
     "env": {
-        "browser": true
+        "browser": true,
+        "mocha": true
     },
     "rules": {
         "no-unused-vars": 2,
@@ -21,13 +22,5 @@
                ]
             }
         ]
-    },
-    "overrides": [
-        {
-            "files": ["**/*.spec.ts"],
-            "rules": {
-                "no-unused-expressions": "off"
-            }
-        }
-    ]
+    }
 }
